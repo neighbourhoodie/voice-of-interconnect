@@ -19,6 +19,9 @@
   },
   "homepage": "https://github.com/gr2m/voice-of-interconnect#readme",
   "dependencies": {
-    "hoodie": "^27.1.3"
+    "hoodie": "^27.1.4"
+  },
+  "hoodie": {
+    "loglevel": "verbose"
   }
 }
