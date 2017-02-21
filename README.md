@@ -5,6 +5,8 @@
 `voice-of-interconnect` is a simple HTML/CSS/JavaScript app and uses [Hoodie](https://github.com/hoodiehq/hoodie)
 for its backend.
 
+![System Architecture](assets/system-architecture.png)
+
 ## Requirements
 
 You need Node.js v6 or newer. We recommend the latest [Node LTS version](https://nodejs.org/en/).
