@@ -1,0 +1,24 @@
+{
+  "name": "voice-of-interconnect",
+  "version": "1.0.0",
+  "description": "Offline First demo app for IBM InterConnect 2017",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "hoodie"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gr2m/voice-of-interconnect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gr2m/voice-of-interconnect/issues"
+  },
+  "homepage": "https://github.com/gr2m/voice-of-interconnect#readme",
+  "dependencies": {
+    "hoodie": "^27.1.3"
+  }
+}
