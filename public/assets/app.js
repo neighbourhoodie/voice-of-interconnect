@@ -18,7 +18,7 @@ $btnRecord.addEventListener('click', function (event) {
     var speech = {
       id: noteId + '/speech',
       _attachments: {
-        'speech.test-12.wav': {
+        'speech.wav': {
           content_type: blob.type,
           data: blob
         }

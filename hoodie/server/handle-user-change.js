@@ -10,29 +10,25 @@ function handleUserChange (server, store, doc) {
   if (isSpeech(doc)) {
     server.log(['verbose', 'speech'], `sending ${noteId} to Speech to Text...`)
 
-    setTimeout(function () {
-      return speechToText(store, noteId)
-        .then(() => {
-          server.log(['verbose', 'speech'], `retrieved text for ${noteId}`)
-        })
-        .catch((error) => {
-          server.log(['error', 'speech'], error)
-        })
-    }, 3000)
+    return speechToText(server, store, noteId)
+      .then(() => {
+        server.log(['verbose', 'speech'], `retrieved text for ${noteId}`)
+      })
+      .catch((error) => {
+        server.log(['error', 'speech'], error)
+      })
   }
 
   if (isText(doc)) {
     server.log(['verbose', 'speech'], `sending ${noteId} to AlchemyLanguage...`)
 
-    setTimeout(function () {
-      return sentiment(store, noteId)
-        .then(() => {
-          server.log(['verbose', 'speech'], `retrieved sentiment for ${noteId}`)
-        })
-        .catch((error) => {
-          server.log(['error', 'speech'], error)
-        })
-    }, 3000)
+    return sentiment(server, store, noteId, doc.text)
+      .then(() => {
+        server.log(['verbose', 'speech'], `retrieved sentiment for ${noteId}`)
+      })
+      .catch((error) => {
+        server.log(['error', 'speech'], error)
+      })
   }
 }
 
