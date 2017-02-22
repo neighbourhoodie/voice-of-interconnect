@@ -10,7 +10,8 @@ const alchemyLanguage = new AlchemyLanguageV1({
 })
 
 var params = {
-  text: process.argv.slice(2).join(' ')
+  text: process.argv.slice(2).join(' '),
+  language: 'english'
 }
 
 console.log('Getting sentiment for "%s".', params.text)
