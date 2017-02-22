@@ -51,7 +51,10 @@ See [Deployment docs](http://docs.hood.ie/en/latest/guides/deployment.html) as w
 For testing integration with Watson Services
 
 ```
+# Speech to Text (uploads hardcoded file from public/assets)
 SPEECH_TO_TEXT_USERNAME=... SPEECH_TO_TEXT_PASSWORD=... node bin/speech-to-text.js
+# Sentiment (pass any text you like)
+ALCHEMY_API_KEY=... node bin/text-to-sentiment.js Marvin is a sore loser
 ```
 
 ## License
