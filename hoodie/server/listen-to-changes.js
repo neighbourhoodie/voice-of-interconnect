@@ -1,5 +1,7 @@
 module.exports = listenToChanges
 
+const handleUserChange = require('./handle-user-change')
+
 function listenToChanges (server, name) {
   const Store = server.plugins.store.api
 
@@ -19,7 +21,7 @@ function listenToChanges (server, name) {
       include_docs: true
     })
     .on('change', function (change) {
-      server.log(['info', 'change'], `${change.id} by ${change.doc.createdAt}`)
+      handleUserChange(server, store, change.doc)
     })
   })
 }
