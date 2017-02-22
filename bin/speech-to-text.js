@@ -19,3 +19,7 @@ const speechToText = new SpeechToTextV1({
 fs.createReadStream(pathToSpeechFile)
   .pipe(speechToText.createRecognizeStream({ content_type: 'audio/l16; rate=44100' }))
   .pipe(process.stdout)
+
+// we can pass a model for different languages and frequency
+// https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/#recognize_audio_websockets
+// https://www.ibm.com/watson/developercloud/doc/speech-to-text/input.shtml#models
