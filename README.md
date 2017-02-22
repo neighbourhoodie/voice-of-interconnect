@@ -42,6 +42,20 @@ npm start -- --dbUrl=http://admin:secret@mycouchdomain.com:5984/
 For debugging user data, using CouchDB or Cloudant is probably the best option,
 as Hoodie has no built-in admin UI for user data yet.
 
+## Connecting to Watson Services
+
+When deployed to Bluemix, the credentials for Speech to Text and AlchemyLanguage
+are read out directly from `VCAP_SERVICES`.
+
+To connect to the watson services from other environments, you have to set the
+following 3 environment variables
+
+1. `SPEECH_TO_TEXT_USERNAME`
+1. `SPEECH_TO_TEXT_PASSWORD`
+1. `ALCHEMY_API_KEY`
+
+If they are not set, the services are simulated.
+
 ## Deployment
 
 See [Deployment docs](http://docs.hood.ie/en/latest/guides/deployment.html) as well as [Deploy to Bluemix](https://github.com/hoodiehq/hoodie-app-tracker/blob/master/deployment.md#deploy-with-bluemix)
