@@ -1,28 +1,19 @@
 module.exports = handleUserChange
 
+const sentiment = require('./sentiment')
+const speechToText = require('./speech-to-text')
+
 function handleUserChange (server, store, doc) {
   server.log(['info', 'change'], `${doc._id} by ${doc.createdAt}`)
   var noteId = toDocId(doc)
 
   if (isSpeech(doc)) {
-    server.log(['verbose', 'speech'], `sending ${doc._id} to Speech to Text...`)
+    server.log(['verbose', 'speech'], `sending ${noteId} to Speech to Text...`)
 
-    // simulate transcription
     setTimeout(function () {
-      return Promise.all([
-        store.update(noteId, function (doc) {
-          doc.progress.push({
-            type: 'transcription',
-            at: new Date()
-          })
-        }),
-        store.add({
-          id: noteId + '/text',
-          text: 'I love dinosaurs'
-        })
-      ])
+      return speechToText(store, noteId)
         .then(() => {
-          server.log(['verbose', 'speech'], `retrieved text for ${doc._id}`)
+          server.log(['verbose', 'speech'], `retrieved text for ${noteId}`)
         })
         .catch((error) => {
           server.log(['error', 'speech'], error)
@@ -31,24 +22,12 @@ function handleUserChange (server, store, doc) {
   }
 
   if (isText(doc)) {
-    server.log(['verbose', 'speech'], `sending ${doc._id} to AlchemyLanguage...`)
+    server.log(['verbose', 'speech'], `sending ${noteId} to AlchemyLanguage...`)
 
-    // simulate sentiment analysis
     setTimeout(function () {
-      return Promise.all([
-        store.update(noteId, function (doc) {
-          doc.progress.push({
-            type: 'analysis',
-            at: new Date()
-          })
-        }),
-        store.add({
-          id: noteId + '/sentiment',
-          sentiment: parseFloat(Math.random().toFixed(6))
-        })
-      ])
+      return sentiment(store, noteId)
         .then(() => {
-          server.log(['verbose', 'speech'], `retrieved sentiment for ${doc._id}`)
+          server.log(['verbose', 'speech'], `retrieved sentiment for ${noteId}`)
         })
         .catch((error) => {
           server.log(['error', 'speech'], error)
