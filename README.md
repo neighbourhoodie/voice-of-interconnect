@@ -51,7 +51,7 @@ See [Deployment docs](http://docs.hood.ie/en/latest/guides/deployment.html) as w
 For testing integration with Watson Services
 
 ```
-speech_to_text_username=... speech_to_text_password=... node bin/speech-to-text.js
+SPEECH_TO_TEXT_USERNAME=... SPEECH_TO_TEXT_PASSWORD=... node bin/speech-to-text.js
 ```
 
 ## License
