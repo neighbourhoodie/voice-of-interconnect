@@ -1,0 +1,9 @@
+applications:
+- path: .
+  memory: 256M
+  instances: 1
+  domain: mybluemix.net
+  name: voice-of-interconnect-staging
+  host: voice-of-interconnect-staging
+  disk_quota: 1024M
+  command: npm start -- --address=0.0.0.0 --port=$PORT
