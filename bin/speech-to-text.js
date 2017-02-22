@@ -5,13 +5,13 @@ const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1')
 
 const pathToSpeechFile = path.resolve(__dirname, '..', 'public', 'assets', 'test-12.wav')
 
-if (!process.env.speech_to_text_username || !process.env.speech_to_text_password) {
-  throw new Error('speech_to_text_username & speech_to_text_password must be set.')
+if (!process.env.SPEECH_TO_TEXT_USERNAME || !process.env.SPEECH_TO_TEXT_PASSWORD) {
+  throw new Error('SPEECH_TO_TEXT_USERNAME & SPEECH_TO_TEXT_PASSWORD must be set.')
 }
 
 const speechToText = new SpeechToTextV1({
-  username: process.env.speech_to_text_username,
-  password: process.env.speech_to_text_password
+  username: process.env.SPEECH_TO_TEXT_USERNAME,
+  password: process.env.SPEECH_TO_TEXT_PASSWORD
 })
 
 // speechToText.recognize seems to cut off at ~5s, so we use the streaming
