@@ -3,11 +3,14 @@ plugin.attributes = {
   name: 'voice-of-interconnect'
 }
 
+const findWatsonCredentials = require('./find-watson-credentials')
 const listenToChanges = require('./listen-to-changes')
 
 function plugin (server, options, next) {
   const Account = server.plugins.account.api
   const Store = server.plugins.store.api
+
+  findWatsonCredentials(server)
 
   server.log(['verbose', 'app'], 'loading all user dbs')
   Account.accounts.findAll({})
