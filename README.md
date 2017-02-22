@@ -46,6 +46,14 @@ as Hoodie has no built-in admin UI for user data yet.
 
 See [Deployment docs](http://docs.hood.ie/en/latest/guides/deployment.html) as well as [Deploy to Bluemix](https://github.com/hoodiehq/hoodie-app-tracker/blob/master/deployment.md#deploy-with-bluemix)
 
+## Scripts
+
+For testing integration with Watson Services
+
+```
+speech_to_text_username=... speech_to_text_password=... node bin/speech-to-text.js
+```
+
 ## License
 
 Copyright 2017 Neighbourhoodie Software GmbH and Make&Model Inc
