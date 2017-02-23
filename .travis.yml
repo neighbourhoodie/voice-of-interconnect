@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - '6'
 script: npm test
-before_deploy: npm run build
+before_deploy: npm run build -- --color=false
 deploy:
   - provider: cloudfoundry
     api: https://api.ng.bluemix.net
