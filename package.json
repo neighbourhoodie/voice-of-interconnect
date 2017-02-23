@@ -4,7 +4,7 @@
   "description": "Offline First demo app for IBM InterConnect 2017",
   "main": "index.js",
   "scripts": {
-    "test": "npm run build",
+    "test": "npm run build -- --color=false",
     "start": "hoodie",
     "build": "webpack --config app/webpack.config.js",
     "dev": "webpack-dev-server --config app/webpack.config.js"
