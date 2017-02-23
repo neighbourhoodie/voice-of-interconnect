@@ -24,5 +24,8 @@
   },
   "hoodie": {
     "loglevel": "verbose"
+  },
+  "engines": {
+    "node": "6.9.x"
   }
 }

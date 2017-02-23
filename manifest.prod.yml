@@ -1,9 +1,14 @@
 applications:
-- path: .
-  memory: 256M
-  instances: 1
-  domain: mybluemix.net
-  name: voice-of-interconnect
-  host: voice-of-interconnect
-  disk_quota: 1024M
-  command: npm start -- --address=0.0.0.0 --port=$PORT
+  - name: voice-of-interconnect
+    instances: 1
+    memory: 256M
+    disk_quota: 1024M
+    routes:
+    - route: voice-of-interconnect.mybluemix.net
+    services:
+    - Cloudant NoSQL DB-ur
+    - Text to Speech-w7
+    - AlchemyAPI-zs
+    - Tone Analyzer-1z
+    - availability-monitoring-auto
+    - Speech to Text-19

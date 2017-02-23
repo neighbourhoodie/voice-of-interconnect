@@ -6,13 +6,11 @@ function findWatsonCredentials (server) {
     const services = JSON.parse(process.env.VCAP_SERVICES)
 
     server.app.alchemy = {
-      apiKey: services.alchemy_api.credentials.apikey
+      apiKey: services.alchemy_api[0].credentials.apikey
     }
     server.app.speechToText = {
-      username: services.speech_to_text.credentials.username
-    }
-    server.app.speechToText = {
-      password: services.speech_to_text.credentials.password
+      username: services.speech_to_text[0].credentials.username,
+      password: services.speech_to_text[0].credentials.password
     }
 
     return
@@ -36,9 +34,7 @@ function findWatsonCredentials (server) {
     apiKey: process.env.ALCHEMY_API_KEY
   }
   server.app.speechToText = {
-    username: process.env.SPEECH_TO_TEXT_USERNAME
-  }
-  server.app.speechToText = {
+    username: process.env.SPEECH_TO_TEXT_USERNAME,
     password: process.env.SPEECH_TO_TEXT_PASSWORD
   }
 }
