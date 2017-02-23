@@ -3,26 +3,25 @@ node_js:
 - '6'
 script: npm test
 deploy:
-  provider: cloudfoundry
-  api: https://api.ng.bluemix.net
-  username: markwats@us.ibm.com
-  password:
-    secure: DXZ7MzM5326hRthYK4yPI4P2WwBugC5/4fJKQeN5dGPhcpJSDqPDGe02T3ocyLPf7n4rDXhdd7LlwPUfqvQcWbq0s/oiHNIy58h1kqk2675j4mGeIYYZZMCKDqyhkvZMkTwiVroN44xkdY40gurMjqXYwN77sQo8VQbUksRIvKDie4QzODMbnj0h5tZ4asw0szdH3rKr/VnxbcbqqzwU84Dsur5Vps8WqLj/tenwE9/YX/7Jb99Aqq27E0T+MLdL/z/AXD+nmgCIHl+FYWpnD/ZqHeuLGmHOtnOGcHFnDnXPYATr2nIJzBOq3TD8WCVJHM+YCmdGnHjUyy5RXd4qgyGQWNzZNlVSv9fyCRMnk/2uVEfE9LYT+HF6EA4t/FNnzfzQqyEIDipWq5OZoJpm7d/+SnTj5craQA+AkNBRqpZB64uIMojf/wRsXC6C0oZIJLhQPRGmTZ/m8iFym12gENKvxE/oArrR3GmEehltP3oqv1tHtDtypnmnt2bKdXVgwpBUnc8iymP3O4O27+O5AgOO8MYxbgr5/AvT+kBCEkz1JXwiNlRBYsA/TaLu/WKcAbuRPCJRryeUb1Gy9jjyFhY/cvA2B6pxK8TLpWZDbsyGpNZOExAWC9eEBAIdhHF2x4xES3LyT245b6PQtbcKzb8Lm2mplN7OxOt2hHvMpeI=
-  organization: bradley.holt@us.ibm.com
-  space: hoodie-partnership
-  manifest: manifest.staging.yml
-  on:
-    repo: neighbourhoodie/voice-of-interconnect
-    branch: master
-deploy:
-  provider: cloudfoundry
-  api: https://api.ng.bluemix.net
-  username: markwats@us.ibm.com
-  password:
-    secure: DXZ7MzM5326hRthYK4yPI4P2WwBugC5/4fJKQeN5dGPhcpJSDqPDGe02T3ocyLPf7n4rDXhdd7LlwPUfqvQcWbq0s/oiHNIy58h1kqk2675j4mGeIYYZZMCKDqyhkvZMkTwiVroN44xkdY40gurMjqXYwN77sQo8VQbUksRIvKDie4QzODMbnj0h5tZ4asw0szdH3rKr/VnxbcbqqzwU84Dsur5Vps8WqLj/tenwE9/YX/7Jb99Aqq27E0T+MLdL/z/AXD+nmgCIHl+FYWpnD/ZqHeuLGmHOtnOGcHFnDnXPYATr2nIJzBOq3TD8WCVJHM+YCmdGnHjUyy5RXd4qgyGQWNzZNlVSv9fyCRMnk/2uVEfE9LYT+HF6EA4t/FNnzfzQqyEIDipWq5OZoJpm7d/+SnTj5craQA+AkNBRqpZB64uIMojf/wRsXC6C0oZIJLhQPRGmTZ/m8iFym12gENKvxE/oArrR3GmEehltP3oqv1tHtDtypnmnt2bKdXVgwpBUnc8iymP3O4O27+O5AgOO8MYxbgr5/AvT+kBCEkz1JXwiNlRBYsA/TaLu/WKcAbuRPCJRryeUb1Gy9jjyFhY/cvA2B6pxK8TLpWZDbsyGpNZOExAWC9eEBAIdhHF2x4xES3LyT245b6PQtbcKzb8Lm2mplN7OxOt2hHvMpeI=
-  organization: bradley.holt@us.ibm.com
-  space: hoodie-partnership
-  manifest: manifest.prod.yml
-  on:
-    repo: neighbourhoodie/voice-of-interconnect
-    branch: live
+  - provider: cloudfoundry
+    api: https://api.ng.bluemix.net
+    username: markwats@us.ibm.com
+    password:
+      secure: DXZ7MzM5326hRthYK4yPI4P2WwBugC5/4fJKQeN5dGPhcpJSDqPDGe02T3ocyLPf7n4rDXhdd7LlwPUfqvQcWbq0s/oiHNIy58h1kqk2675j4mGeIYYZZMCKDqyhkvZMkTwiVroN44xkdY40gurMjqXYwN77sQo8VQbUksRIvKDie4QzODMbnj0h5tZ4asw0szdH3rKr/VnxbcbqqzwU84Dsur5Vps8WqLj/tenwE9/YX/7Jb99Aqq27E0T+MLdL/z/AXD+nmgCIHl+FYWpnD/ZqHeuLGmHOtnOGcHFnDnXPYATr2nIJzBOq3TD8WCVJHM+YCmdGnHjUyy5RXd4qgyGQWNzZNlVSv9fyCRMnk/2uVEfE9LYT+HF6EA4t/FNnzfzQqyEIDipWq5OZoJpm7d/+SnTj5craQA+AkNBRqpZB64uIMojf/wRsXC6C0oZIJLhQPRGmTZ/m8iFym12gENKvxE/oArrR3GmEehltP3oqv1tHtDtypnmnt2bKdXVgwpBUnc8iymP3O4O27+O5AgOO8MYxbgr5/AvT+kBCEkz1JXwiNlRBYsA/TaLu/WKcAbuRPCJRryeUb1Gy9jjyFhY/cvA2B6pxK8TLpWZDbsyGpNZOExAWC9eEBAIdhHF2x4xES3LyT245b6PQtbcKzb8Lm2mplN7OxOt2hHvMpeI=
+    organization: bradley.holt@us.ibm.com
+    space: hoodie-partnership
+    manifest: manifest.staging.yml
+    on:
+      repo: neighbourhoodie/voice-of-interconnect
+      branch: master
+  - provider: cloudfoundry
+    api: https://api.ng.bluemix.net
+    username: markwats@us.ibm.com
+    password:
+      secure: DXZ7MzM5326hRthYK4yPI4P2WwBugC5/4fJKQeN5dGPhcpJSDqPDGe02T3ocyLPf7n4rDXhdd7LlwPUfqvQcWbq0s/oiHNIy58h1kqk2675j4mGeIYYZZMCKDqyhkvZMkTwiVroN44xkdY40gurMjqXYwN77sQo8VQbUksRIvKDie4QzODMbnj0h5tZ4asw0szdH3rKr/VnxbcbqqzwU84Dsur5Vps8WqLj/tenwE9/YX/7Jb99Aqq27E0T+MLdL/z/AXD+nmgCIHl+FYWpnD/ZqHeuLGmHOtnOGcHFnDnXPYATr2nIJzBOq3TD8WCVJHM+YCmdGnHjUyy5RXd4qgyGQWNzZNlVSv9fyCRMnk/2uVEfE9LYT+HF6EA4t/FNnzfzQqyEIDipWq5OZoJpm7d/+SnTj5craQA+AkNBRqpZB64uIMojf/wRsXC6C0oZIJLhQPRGmTZ/m8iFym12gENKvxE/oArrR3GmEehltP3oqv1tHtDtypnmnt2bKdXVgwpBUnc8iymP3O4O27+O5AgOO8MYxbgr5/AvT+kBCEkz1JXwiNlRBYsA/TaLu/WKcAbuRPCJRryeUb1Gy9jjyFhY/cvA2B6pxK8TLpWZDbsyGpNZOExAWC9eEBAIdhHF2x4xES3LyT245b6PQtbcKzb8Lm2mplN7OxOt2hHvMpeI=
+    organization: bradley.holt@us.ibm.com
+    space: hoodie-partnership
+    manifest: manifest.prod.yml
+    on:
+      repo: neighbourhoodie/voice-of-interconnect
+      branch: live
