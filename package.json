@@ -4,7 +4,7 @@
   "description": "Offline First demo app for IBM InterConnect 2017",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 0",
+    "test": "npm run build",
     "start": "hoodie",
     "build": "webpack --config app/webpack.config.js",
     "dev": "webpack-dev-server --config app/webpack.config.js"
