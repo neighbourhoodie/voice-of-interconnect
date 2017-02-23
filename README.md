@@ -21,26 +21,20 @@ cd hoodie
 npm install
 ```
 
-Start the server
-
-```
-npm start
-```
-
-Start the server without persisting any data (great for testing)
-
-```
-npm start -- --inMemory
-```
-
-Persist data in a CouchDB / Cloudant.
+Start hoodie and pass a valid CouchDB URL with credentials of an admin user
 
 ```
 npm start -- --dbUrl=http://admin:secret@mycouchdomain.com:5984/
 ```
 
-For debugging user data, using CouchDB or Cloudant is probably the best option,
-as Hoodie has no built-in admin UI for user data yet.
+In a 2nd terminal tab, start the dev server
+
+```
+npm run dev
+```
+
+If you want to test the build version of the app, run `npm run build` and
+open http://localhost:8080 (served directly from Hoodie)
 
 ## Connecting to Watson Services
 
