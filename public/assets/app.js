@@ -10,16 +10,22 @@ $btnRecord.addEventListener('click', function (event) {
   fetchExmapleRecording()
 
   .then(function (blob) {
-    var doc = {
+    var noteId = 'note/' + generateRandomString(7)
+    var note = {
+      id: noteId,
+      progress: []
+    }
+    var speech = {
+      id: noteId + '/speech',
       _attachments: {
-        'speech.webm': {
+        'speech.wav': {
           content_type: blob.type,
           data: blob
         }
       }
     }
 
-    hoodie.store('note').add(doc)
+    hoodie.store.add([note, speech])
 
     .then(function () {
       console.log('stored')
@@ -33,9 +39,15 @@ $btnRecord.addEventListener('click', function (event) {
 
 $notes.addEventListener('click', function (event) {
   event.preventDefault()
+
+  var action = event.target.dataset.action
+  if (action !== 'play') {
+    return
+  }
+
   var id = event.target.closest('[data-id]').dataset.id
 
-  hoodie.store.db.getAttachment(id, 'speech.webm')
+  hoodie.store.db.getAttachment(id + '/speech', 'speech.test-12.wav')
 
   .then(function (blob) {
     var audio = document.createElement('audio')
@@ -84,14 +96,14 @@ hoodie.ready.then(function () {
   })
 })
 
-function generateRandomString () {
-  return Math.random().toString(36).substr(2)
+function generateRandomString (length) {
+  return Math.random().toString(36).substr(2, length || 25)
 }
 
 function fetchExmapleRecording () {
   return new Promise(function (resolve) {
     var xhr = new XMLHttpRequest()
-    var url = location.origin + '/assets/example.webm'
+    var url = location.origin + '/assets/test-12.wav'
     xhr.open('GET', url, true)
     xhr.responseType = 'blob'
     xhr.onload = function () {
@@ -100,8 +112,6 @@ function fetchExmapleRecording () {
         // debug
         window.blob = blob
         resolve(blob)
-
-        hoodie.store('')
       }
     }
     xhr.send()
@@ -120,9 +130,13 @@ function render () {
   hoodie.store.findAll()
 
   .then(function (docs) {
-    var html = docs.map(function (doc) {
-      return '<li data-id="' + doc.id + '">' + doc.id + '<br><a href="#">speech.webm</a></li>'
-    }).join('\n')
+    var html = docs
+      .filter(function (doc) {
+        return !!doc.progress
+      })
+      .map(function (doc) {
+        return '<tr data-id="' + doc.id + '"><td>' + doc.id + '</td><td><button data-action="play">play</button></td><td>' + JSON.stringify(doc.progress.pop() || null) + '</td></tr>'
+      }).join('\n')
     $notes.innerHTML = html
   })
 }
