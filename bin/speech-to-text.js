@@ -3,7 +3,7 @@ const path = require('path')
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1')
 
-const pathToSpeechFile = path.resolve(__dirname, '..', 'public', 'assets', 'test-12.wav')
+const pathToSpeechFile = path.resolve(__dirname, '..', 'assets', 'test-12.wav')
 
 if (!process.env.SPEECH_TO_TEXT_USERNAME || !process.env.SPEECH_TO_TEXT_PASSWORD) {
   throw new Error('SPEECH_TO_TEXT_USERNAME & SPEECH_TO_TEXT_PASSWORD must be set.')
