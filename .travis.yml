@@ -1,0 +1,29 @@
+language: node_js
+node_js:
+  - "6"
+script:
+  npm test
+deploy:
+  provider: cloudfoundry
+  api: https://api.ng.bluemix.net
+  username: markwats@us.ibm.com
+  password:
+    secure: MdzKDJzkhIdARqU1rzv6J6XPEkp1e834qrYgDMF8BoMLdMs2Igj93+5FAkm+Zt35gGMKaNG41z0tmShXxc1HBwwJBTHl0NLo6zgGfuiL7/vfG485BHZYB+Tqi32yvUhHRPuJgB2ZMlsgPPudmnI9mxBIS3kMyH2wxSaJbaVAdnkuQhPHHhYYDlfFJbOvbEc4tedPAHRwR4QXpj8DiefkMQIajM/JbTs7dkVVju8Ni34DzFYPY5PBocUweU4/UVrV9DSZNJ9K7Z+x7zSOVYl5ZOctbAwvgZOVsy0f+66DIBKpyA+n1g7rTrGIcxyaM0Y16RvTfzE99yqUSuSVrWTc/C++DhelaOafvYuxD9ISmK+sHMb5oV5zgJXWNu5Tucj+NWr1PKj+5SIXI+sX40qdfFLiMYrXtp6cEu5Q2nn3a16qh+tMTCKZEkp85GvoUOnZiy4RnTbnb064mBArQ849brBsezrh5HKjFBzbcMSzMrJo6h56MuTO0sG277IwaJyj4N2mNBCX8htpMXycj7aOFdl3s/6OqQGBSZJSgu1Yz/b+EZwKeEXayIm59tAaLjyVZECEQgwlfLfIhOLFDhrMlW9vIhcPu0BMNkkj2cyZDplt/62MILgmnAZEmFlNCsrlU90EgrZfVLPIwWZx3Ld8Rq2Jsry730sDB6a4aT1n3ls=
+  organization: bradley.holt@us.ibm.com
+  space: hoodie-partnership
+  manifest: manifest.prod.yml
+  on:
+    repo: neighbourhoodie/voice-of-interconnect
+    branch: live
+deploy:
+  provider: cloudfoundry
+  api: https://api.ng.bluemix.net
+  username: markwats@us.ibm.com
+  password:
+    secure: MdzKDJzkhIdARqU1rzv6J6XPEkp1e834qrYgDMF8BoMLdMs2Igj93+5FAkm+Zt35gGMKaNG41z0tmShXxc1HBwwJBTHl0NLo6zgGfuiL7/vfG485BHZYB+Tqi32yvUhHRPuJgB2ZMlsgPPudmnI9mxBIS3kMyH2wxSaJbaVAdnkuQhPHHhYYDlfFJbOvbEc4tedPAHRwR4QXpj8DiefkMQIajM/JbTs7dkVVju8Ni34DzFYPY5PBocUweU4/UVrV9DSZNJ9K7Z+x7zSOVYl5ZOctbAwvgZOVsy0f+66DIBKpyA+n1g7rTrGIcxyaM0Y16RvTfzE99yqUSuSVrWTc/C++DhelaOafvYuxD9ISmK+sHMb5oV5zgJXWNu5Tucj+NWr1PKj+5SIXI+sX40qdfFLiMYrXtp6cEu5Q2nn3a16qh+tMTCKZEkp85GvoUOnZiy4RnTbnb064mBArQ849brBsezrh5HKjFBzbcMSzMrJo6h56MuTO0sG277IwaJyj4N2mNBCX8htpMXycj7aOFdl3s/6OqQGBSZJSgu1Yz/b+EZwKeEXayIm59tAaLjyVZECEQgwlfLfIhOLFDhrMlW9vIhcPu0BMNkkj2cyZDplt/62MILgmnAZEmFlNCsrlU90EgrZfVLPIwWZx3Ld8Rq2Jsry730sDB6a4aT1n3ls=
+  organization: bradley.holt@us.ibm.com
+  space: hoodie-partnership
+  manifest: manifest.staging.yml
+  on:
+    repo: neighbourhoodie/voice-of-interconnect
+    branch: master
