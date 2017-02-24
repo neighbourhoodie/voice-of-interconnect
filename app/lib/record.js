@@ -1,14 +1,40 @@
-/* global XMLHttpRequest, hoodie, location */
+module.exports = record
+
 const generateRandomString = require('./generate-random-string')
+const AudioRecorder = require('./audio-recorder')
 
-const $btnRecord = document.querySelector('#record')
+function record (hoodie) {
+  const $btnRecord = document.querySelector('#record')
+  const $btnStop = document.querySelector('#stop-recording')
+  const $save = document.querySelector('#save-recording')
+  const $volume = document.querySelector('#volume span')
+  const state = {
+    audio: null
+  }
+  let record
 
-$btnRecord.addEventListener('click', function (event) {
-  event.preventDefault()
+  $btnRecord.addEventListener('click', function (event) {
+    event.preventDefault()
 
-  fetchExmapleRecording()
+    record = new AudioRecorder()
 
-  .then(function (blob) {
+    record.getUserPermission()
+
+    .then((stream) => {
+      return record.start(stream, onComplete.bind(null, state), showVolume.bind(null, $volume))
+    })
+  })
+
+  $btnStop.addEventListener('click', function (event) {
+    event.preventDefault()
+    record.stop()
+    showVolume($volume, 0)
+  })
+
+  $save.addEventListener('click', function (event) {
+    event.preventDefault()
+    record.stop()
+
     const noteId = 'note/' + generateRandomString(7)
     const note = {
       id: noteId,
@@ -17,9 +43,9 @@ $btnRecord.addEventListener('click', function (event) {
     const speech = {
       id: noteId + '/speech',
       _attachments: {
-        'speech.wav': {
-          content_type: blob.type,
-          data: blob
+        'speech.webm': {
+          content_type: state.audio.type,
+          data: state.audio
         }
       }
     }
@@ -34,22 +60,18 @@ $btnRecord.addEventListener('click', function (event) {
       console.log(error)
     })
   })
-})
+}
 
-function fetchExmapleRecording () {
-  return new Promise(function (resolve) {
-    var xhr = new XMLHttpRequest()
-    var url = location.origin + '/assets/test-12.wav'
-    xhr.open('GET', url, true)
-    xhr.responseType = 'blob'
-    xhr.onload = function () {
-      if (this.status === 200) {
-        var blob = this.response
-        // debug
-        window.blob = blob
-        resolve(blob)
-      }
-    }
-    xhr.send()
-  })
+function onComplete (state, audioData) {
+  // aborted
+  if (audioData === null) {
+    return
+  }
+
+  state.audio = audioData
+}
+
+function showVolume ($volume, volume, time) {
+  $volume.textContent = volume
+  console.log('volume %d at %dms', volume, time)
 }

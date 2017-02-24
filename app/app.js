@@ -7,20 +7,20 @@ const hoodie = new Hoodie({
 })
 
 const assureAccount = require('./lib/assure-account')
-const setAppStatus = require('./lib/set-app-status')
 const notesList = require('./lib/notes-list')
+const record = require('./lib/record')
+const setAppStatus = require('./lib/set-app-status')
 
 hoodie.ready.then(() => {
+  record(hoodie)
   assureAccount(hoodie)
-
-  .then(function () {
-    console.log('signed up as', hoodie.account.username)
-    init()
-  })
-
-  .catch(function (error) {
-    setAppStatus('Error: ' + error)
-  })
+    .then(function () {
+      console.log('signed up as', hoodie.account.username)
+      init()
+    })
+    .catch(function (error) {
+      setAppStatus('Error: ' + error)
+    })
 
   function init () {
     setAppStatus('app is ready')
@@ -29,3 +29,5 @@ hoodie.ready.then(() => {
     notesList(hoodie)
   }
 })
+
+global.hoodie = hoodie
