@@ -17,14 +17,30 @@ function AudioRecorder () {
 
 function getUserPermission (state) {
   return navigator.mediaDevices.getUserMedia({
-    audio: true,
-    video: false
+    audio: true
   })
 }
 
 function start (state, stream, onComplete, onVolume) {
+  let mimeType = 'unsupported'
+
+  if (MediaRecorder.isTypeSupported('audio/webm; codecs=opus')) {
+    // Chrome does not support ogg, but we convert on the server
+    mimeType = 'audio/webm; codecs=opus'
+  }
+  if (MediaRecorder.isTypeSupported('audio/ogg; codecs=opus')) {
+    // firefox does all we need
+    mimeType = 'audio/ogg; codecs=opus'
+  }
+
+  if (mimeType === 'unsupported') {
+    return Promise.reject('Cannot record audio')
+  }
+
   state.sourceNode = state.audioContext.createMediaStreamSource(stream)
-  state.recorder = new MediaRecorder(stream)
+  state.recorder = new MediaRecorder(stream, {
+    mimeType: mimeType
+  })
   const recordedData = []
 
   state.recorder.addEventListener('error', (event) => {
@@ -48,7 +64,7 @@ function start (state, stream, onComplete, onVolume) {
     tracks.forEach(track => track.stop())
 
     onComplete(new Blob(recordedData, {
-      type: 'audio/webm'
+      type: mimeType.split(';')[0]
     }))
   })
 

@@ -44,7 +44,7 @@ function record (hoodie) {
     const speech = {
       id: noteId + '/speech',
       _attachments: {
-        'speech.opus': {
+        'speech': {
           content_type: state.audio.type,
           data: state.audio
         }

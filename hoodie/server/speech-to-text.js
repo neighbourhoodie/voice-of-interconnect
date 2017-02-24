@@ -4,6 +4,8 @@ const stream = require('stream')
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1')
 
+const convertWebmToOgg = require('./convert-webm-to-ogg')
+
 function speechToText (server, store, noteId) {
   if (server.app.simulateWatson) {
     return new Promise((resolve, reject) => {
@@ -17,9 +19,12 @@ function speechToText (server, store, noteId) {
     username: process.env.SPEECH_TO_TEXT_USERNAME,
     password: process.env.SPEECH_TO_TEXT_PASSWORD
   })
-  return store.db.getAttachment(`${noteId}/speech`, 'speech.opus')
+  return Promise.all([
+    store.find(`${noteId}/speech`),
+    store.db.getAttachment(`${noteId}/speech`, 'speech')
+  ])
 
-  .then((audio) => {
+  .then(([doc, audio]) => {
     return new Promise((resolve, reject) => {
       const audioStream = new stream.PassThrough()
       let text = ''
@@ -34,7 +39,16 @@ function speechToText (server, store, noteId) {
           addText(store, noteId, text).then(resolve, reject)
         })
 
-      audioStream.end(audio)
+      if (doc._attachments.speech.content_type === 'audio/ogg') {
+        return audioStream.end(audio)
+      }
+
+      server.log(['verbose', 'speech-to-text'], `${doc.id}: converting webm to ogg...`)
+      convertWebmToOgg(audio)
+        .then((buffer) => {
+          server.log(['info', 'speech-to-text'], `${doc.id}: converted webm to ogg`)
+          audioStream.end(buffer)
+        })
     })
   })
 }
