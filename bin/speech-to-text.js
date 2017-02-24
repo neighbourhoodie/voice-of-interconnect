@@ -1,15 +1,27 @@
 const fs = require('fs')
-const path = require('path')
-const stream = require('stream')
 
+const ffmpeg = require('fluent-ffmpeg')
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1')
 
-const convertWebmToOgg = require('../hoodie/server/convert-webm-to-ogg')
+if (process.env.FFMPEG_PATH) {
+  ffmpeg.setFfmpegPath(process.env.FFMPEG_PATH)
+}
 
-const pathToSpeechFile = path.resolve(__dirname, '..', 'assets', 'speech.webm')
+const pathToSpeechFile = process.argv[2]
+
+if (!pathToSpeechFile) {
+  console.log('Usage: node bin/speech-to-text ./path/to/file.webm')
+  process.exit(1)
+}
+
+if (!/\.(webm|ogg)$/.test(pathToSpeechFile)) {
+  console.log(`Error: ${pathToSpeechFile} not supported (.webm and .ogg only)`)
+  process.exit(1)
+}
 
 if (!process.env.SPEECH_TO_TEXT_USERNAME || !process.env.SPEECH_TO_TEXT_PASSWORD) {
-  throw new Error('SPEECH_TO_TEXT_USERNAME & SPEECH_TO_TEXT_PASSWORD must be set.')
+  console.log('Error: SPEECH_TO_TEXT_USERNAME & SPEECH_TO_TEXT_PASSWORD must be set.')
+  process.exit(1)
 }
 
 const speechToText = new SpeechToTextV1({
@@ -17,31 +29,16 @@ const speechToText = new SpeechToTextV1({
   password: process.env.SPEECH_TO_TEXT_PASSWORD
 })
 
-// speechToText.recognize seems to cut off at ~5s, so we use the streaming
-// see also https://github.com/watson-developer-cloud/node-sdk#speech-to-text
-// fs.createReadStream(pathToSpeechFile)
-//   .pipe(speechToText.createRecognizeStream())
-//   .pipe(process.stdout)
-
-// we can pass a model for different languages and frequency
-// https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/#recognize_audio_websockets
-// https://www.ibm.com/watson/developercloud/doc/speech-to-text/input.shtml#models
-
-const audioStream = new stream.PassThrough()
-let text = ''
-
-audioStream
-  // .pipe(api.createRecognizeStream({ content_type: 'audio/l16; rate=44100' }))
-  .pipe(speechToText.createRecognizeStream())
-  .on('data', (data) => {
-    text += data
-  })
-  .on('end', () => {
-    console.log(text)
-  })
-
-convertWebmToOgg(fs.readFileSync(pathToSpeechFile))
-  .then((buffer) => {
-    audioStream.end(buffer)
-  })
-  .catch(console.log)
+if (/\.ogg$/.test(pathToSpeechFile)) {
+  console.log(`Transcribing ${pathToSpeechFile}...`)
+  fs.createReadStream(pathToSpeechFile)
+    .pipe(speechToText.createRecognizeStream())
+    .pipe(process.stdout)
+} else {
+  console.log(`Converting ${pathToSpeechFile} to .ogg and transcribing ...`)
+  ffmpeg(fs.createReadStream(pathToSpeechFile))
+    .audioCodec('copy')
+    .format('ogg')
+    .pipe(speechToText.createRecognizeStream())
+    .pipe(process.stdout)
+}

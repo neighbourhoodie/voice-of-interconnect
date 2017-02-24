@@ -1,10 +1,9 @@
 module.exports = speechToText
 
 const stream = require('stream')
+const ffmpeg = require('./ffmpeg-api')
 
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1')
-
-const convertWebmToOgg = require('./convert-webm-to-ogg')
 
 function speechToText (server, store, noteId) {
   if (server.app.simulateWatson) {
@@ -27,28 +26,37 @@ function speechToText (server, store, noteId) {
   .then(([doc, audio]) => {
     return new Promise((resolve, reject) => {
       const audioStream = new stream.PassThrough()
+      let textStream
       let text = ''
 
-      audioStream
-        // .pipe(api.createRecognizeStream({ content_type: 'audio/l16; rate=44100' }))
-        .pipe(api.createRecognizeStream())
+      if (doc._attachments.speech.content_type === 'audio/ogg') {
+        server.log(['verbose', 'speech-to-text'], `${doc.id}: already in ogg format, no conversion required`)
+        textStream = audioStream
+          .pipe(api.createRecognizeStream())
+      } else {
+        server.log(['verbose', 'speech-to-text'], `${doc.id}: converting webm to ogg...`)
+
+        textStream = ffmpeg(audioStream)
+          .on('error', (error) => {
+            server.log(['error', 'speech-to-text'], `cannot find ffmpeg binary for webm to ogg conversion: ${error}`)
+          })
+          .audioCodec('copy')
+          .format('ogg')
+          .pipe(api.createRecognizeStream())
+      }
+
+      textStream
         .on('data', (data) => {
           text += data
         })
         .on('end', () => {
           addText(store, noteId, text).then(resolve, reject)
         })
-
-      if (doc._attachments.speech.content_type === 'audio/ogg') {
-        return audioStream.end(audio)
-      }
-
-      server.log(['verbose', 'speech-to-text'], `${doc.id}: converting webm to ogg...`)
-      convertWebmToOgg(audio)
-        .then((buffer) => {
-          server.log(['info', 'speech-to-text'], `${doc.id}: converted webm to ogg`)
-          audioStream.end(buffer)
+        .on('error', (error) => {
+          reject(`cannot find ffmpeg binary for webm to ogg conversion: ${error}`)
         })
+
+      audioStream.end(audio)
     })
   })
 }
