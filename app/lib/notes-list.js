@@ -35,7 +35,7 @@ function handleNotesClick (hoodie, event) {
 
   var id = event.target.closest('[data-id]').dataset.id
 
-  hoodie.store.db.getAttachment(id + '/speech', 'speech.test-12.wav')
+  hoodie.store.db.getAttachment(id + '/speech', 'speech.webm')
 
   .then(function (blob) {
     var audio = document.createElement('audio')
