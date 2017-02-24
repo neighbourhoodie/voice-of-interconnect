@@ -7,6 +7,7 @@ function record (hoodie) {
   const $btnRecord = document.querySelector('#record')
   const $btnStop = document.querySelector('#stop-recording')
   const $save = document.querySelector('#save-recording')
+  const $download = document.querySelector('#download-recording')
   const $volume = document.querySelector('#volume span')
   const state = {
     audio: null
@@ -59,6 +60,17 @@ function record (hoodie) {
     .catch((error) => {
       console.log(error)
     })
+  })
+
+  $download.addEventListener('click', function (event) {
+    const a = document.createElement('a')
+    const url = window.URL.createObjectURL(state.audio)
+
+    a.href = url
+    a.download = 'speech.webm'
+    a.click()
+
+    window.URL.revokeObjectURL(url)
   })
 }
 
