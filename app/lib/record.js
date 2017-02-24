@@ -69,8 +69,13 @@ function record (hoodie) {
     a.href = url
     a.download = 'speech.webm'
     a.click()
+    document.body.appendChild(a)
 
-    window.URL.revokeObjectURL(url)
+    // http://stackoverflow.com/questions/30694453/blob-createobjecturl-download-not-working-in-firefox-but-works-when-debugging
+    setTimeout(function () {
+      document.body.removeChild(a)
+      window.URL.revokeObjectURL(url)
+    }, 100)
   })
 }
 
