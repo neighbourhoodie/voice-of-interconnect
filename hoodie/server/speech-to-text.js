@@ -17,7 +17,7 @@ function speechToText (server, store, noteId) {
     username: process.env.SPEECH_TO_TEXT_USERNAME,
     password: process.env.SPEECH_TO_TEXT_PASSWORD
   })
-  return store.db.getAttachment(`${noteId}/speech`, 'speech.webm')
+  return store.db.getAttachment(`${noteId}/speech`, 'speech.opus')
 
   .then((audio) => {
     return new Promise((resolve, reject) => {
@@ -26,7 +26,7 @@ function speechToText (server, store, noteId) {
 
       audioStream
         // .pipe(api.createRecognizeStream({ content_type: 'audio/l16; rate=44100' }))
-        .pipe(api.createRecognizeStream({ content_type: 'audio/webm; codecs=opus;' }))
+        .pipe(api.createRecognizeStream())
         .on('data', (data) => {
           text += data
         })
@@ -40,17 +40,12 @@ function speechToText (server, store, noteId) {
 }
 
 function addText (store, noteId, text) {
-  return Promise.all([
-    store.update(noteId, (doc) => {
-      doc.progress.push({
-        type: 'transcription',
-        at: new Date()
-      })
-      return doc
-    }),
-    store.add({
-      id: noteId + '/text',
-      text: text
+  return store.update(noteId, (doc) => {
+    doc.progress.push({
+      type: 'transcription',
+      at: new Date()
     })
-  ])
+    doc.text = text
+    return doc
+  })
 }

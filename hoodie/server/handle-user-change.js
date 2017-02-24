@@ -37,7 +37,7 @@ function isSpeech (doc) {
 }
 
 function isText (doc) {
-  return /text$/.test(doc._id)
+  return doc.text && doc.progress.pop().type === 'transcription'
 }
 
 function toDocId (doc) {
