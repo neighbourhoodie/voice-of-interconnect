@@ -6,6 +6,7 @@
   "scripts": {
     "pretest": "standard",
     "test": "npm run build -- --color=false",
+    "postinstall" : "npm run build -- --color=false",
     "start": "hoodie",
     "build": "webpack --config app/webpack.config.js",
     "dev": "webpack-dev-server --config app/webpack.config.js"
@@ -22,8 +23,14 @@
   },
   "homepage": "https://github.com/gr2m/voice-of-interconnect#readme",
   "dependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "html-webpack-plugin": "^2.28.0",
     "hoodie": "^27.1.5",
-    "watson-developer-cloud": "^2.21.1"
+    "pouchdb-idb": "^1.0.1",
+    "watson-developer-cloud": "^2.21.1",
+    "webpack": "^2.2.1"
   },
   "hoodie": {
     "loglevel": "verbose",
@@ -34,13 +41,7 @@
   },
   "devDependencies": {
     "@hoodie/client": "^9.0.2",
-    "babel-core": "^6.23.1",
-    "babel-loader": "^6.3.2",
-    "copy-webpack-plugin": "^4.0.1",
-    "html-webpack-plugin": "^2.28.0",
-    "pouchdb-idb": "^1.0.1",
     "standard": "^8.6.0",
-    "webpack": "^2.2.1",
     "webpack-dev-server": "^2.4.1"
   }
 }
