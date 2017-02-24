@@ -40,17 +40,12 @@ function sentiment (server, store, noteId, text) {
 }
 
 function addSentiment (store, noteId, sentiment) {
-  return Promise.all([
-    store.update(noteId, function (doc) {
-      doc.progress.push({
-        type: 'analysis',
-        at: new Date()
-      })
-      return doc
-    }),
-    store.add({
-      id: noteId + '/sentiment',
-      sentiment: sentiment
+  return store.update(noteId, function (doc) {
+    doc.progress.push({
+      type: 'analysis',
+      at: new Date()
     })
-  ])
+    doc.sentiment = sentiment
+    return doc
+  })
 }

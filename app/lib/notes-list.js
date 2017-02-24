@@ -19,8 +19,9 @@ function render ($notes, hoodie) {
         return !!doc.progress
       })
       .map(function (doc) {
-        return '<tr data-id="' + doc.id + '"><td>' + doc.id + '</td><td><button data-action="play">play</button></td><td>' + JSON.stringify(doc.progress.pop() || null) + '</td></tr>'
+        return '<tr data-id="' + doc.id + '"><td>' + doc.id + '</td><td><button data-action="play">play</button></td><td><pre>' + JSON.stringify(doc, null, 2) + '</pre></td></tr>'
       }).join('\n')
+
     $notes.innerHTML = html
   })
 }
@@ -35,7 +36,7 @@ function handleNotesClick (hoodie, event) {
 
   var id = event.target.closest('[data-id]').dataset.id
 
-  hoodie.store.db.getAttachment(id + '/speech', 'speech.webm')
+  hoodie.store.db.getAttachment(id + '/speech', 'speech.opus')
 
   .then(function (blob) {
     var audio = document.createElement('audio')

@@ -24,9 +24,7 @@ function getUserPermission (state) {
 
 function start (state, stream, onComplete, onVolume) {
   state.sourceNode = state.audioContext.createMediaStreamSource(stream)
-  state.recorder = new MediaRecorder(stream, {
-    mimeType: 'audio/webm'
-  })
+  state.recorder = new MediaRecorder(stream)
   const recordedData = []
 
   state.recorder.addEventListener('error', (event) => {

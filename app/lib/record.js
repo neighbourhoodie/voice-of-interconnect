@@ -7,6 +7,7 @@ function record (hoodie) {
   const $btnRecord = document.querySelector('#record')
   const $btnStop = document.querySelector('#stop-recording')
   const $save = document.querySelector('#save-recording')
+  const $download = document.querySelector('#download-recording')
   const $volume = document.querySelector('#volume span')
   const state = {
     audio: null
@@ -43,7 +44,7 @@ function record (hoodie) {
     const speech = {
       id: noteId + '/speech',
       _attachments: {
-        'speech.webm': {
+        'speech.opus': {
           content_type: state.audio.type,
           data: state.audio
         }
@@ -59,6 +60,22 @@ function record (hoodie) {
     .catch((error) => {
       console.log(error)
     })
+  })
+
+  $download.addEventListener('click', function (event) {
+    const a = document.createElement('a')
+    const url = window.URL.createObjectURL(state.audio)
+
+    a.href = url
+    a.download = 'speech.webm'
+    a.click()
+    document.body.appendChild(a)
+
+    // http://stackoverflow.com/questions/30694453/blob-createobjecturl-download-not-working-in-firefox-but-works-when-debugging
+    setTimeout(function () {
+      document.body.removeChild(a)
+      window.URL.revokeObjectURL(url)
+    }, 100)
   })
 }
 
