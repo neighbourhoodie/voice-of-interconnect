@@ -4,9 +4,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: './app/index.js',
+  entry: './visualization/index.js',
   output: {
-    path: path.join(__dirname, '..', 'dist'),
+    path: path.join(__dirname, '..', 'dist', 'visualization'),
     filename: 'bundle.js'
   },
   module: {
@@ -17,14 +17,14 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './app/index.html'
+      template: './visualization/index.html'
     }),
     new CopyWebpackPlugin([
-      {from: 'app/assets', to: 'assets'}
+      {from: 'visualization/assets', to: 'assets'}
     ])
   ],
   devServer: {
-    port: 9000,
+    port: 9001,
     proxy: {
       '/hoodie': 'http://localhost:8080'
     }
