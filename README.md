@@ -31,14 +31,19 @@ Start hoodie and pass a valid CouchDB URL with credentials of an admin user
 npm start -- --dbUrl=http://admin:secret@mycouchdomain.com:5984/
 ```
 
-In a 2nd terminal tab, start the dev server
+In a 2nd terminal tab, start the app or the visualization. You can also run
+both at the same time, they use different ports
 
 ```
-npm run dev
+# start app
+npm run app
+# start visualization
+npm run visualization
 ```
 
 If you want to test the build version of the app, run `npm run build` and
-open http://localhost:8080 (served directly from Hoodie)
+open http://localhost:8080 (served directly from Hoodie). The visualization
+is at http://localhost:8080/visualization/
 
 ## Connecting to Watson Services
 
