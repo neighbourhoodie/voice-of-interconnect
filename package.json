@@ -8,8 +8,11 @@
     "test": "npm run build -- --color=false",
     "postinstall": "npm run build -- --color=false",
     "start": "hoodie",
-    "build": "webpack --config app/webpack.config.js",
-    "dev": "webpack-dev-server --config app/webpack.config.js"
+    "build": "npm run -s build-app && npm run -s build-visualization",
+    "build-app": "webpack --config app/webpack.config.js",
+    "build-visualization": "webpack --config visualization/webpack.config.js",
+    "app": "webpack-dev-server --config app/webpack.config.js",
+    "visualization": "webpack-dev-server --config visualization/webpack.config.js"
   },
   "repository": {
     "type": "git",
