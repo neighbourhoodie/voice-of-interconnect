@@ -28,6 +28,7 @@
   "dependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
+    "chart.js": "^2.5.0",
     "copy-webpack-plugin": "^4.0.1",
     "fluent-ffmpeg": "^2.1.0",
     "hoodie": "^27.1.5",
