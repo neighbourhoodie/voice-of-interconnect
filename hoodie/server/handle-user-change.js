@@ -15,7 +15,7 @@ function handleUserChange (server, store, doc) {
         server.log(['verbose', 'speech'], `retrieved text for ${noteId}`)
       })
       .catch((error) => {
-        server.log(['error', 'speech'], error)
+        server.log(['error', 'speech'], error.toString())
       })
   }
 

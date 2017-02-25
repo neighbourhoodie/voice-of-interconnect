@@ -13,6 +13,10 @@ You need Node.js v6 or newer. We recommend the latest [Node LTS version](https:/
 For local development, the Hoodie Backend is using PouchDB to persist its data.
 For production, a CouchDB or Cloudant is recommended
 
+If you use the Speech to Text service and record audio in Chrome, you need
+ffmpeg to be installed ([#35](https://github.com/neighbourhoodie/voice-of-interconnect/issues/35)).
+If it’s not linked globally, you can set `FFMPEG_PATH`.
+
 ## Local Setup
 
 ```
@@ -60,7 +64,10 @@ For testing integration with Watson Services
 
 ```
 # Speech to Text (uploads hardcoded file from public/assets)
-SPEECH_TO_TEXT_USERNAME=... SPEECH_TO_TEXT_PASSWORD=... node bin/speech-to-text.js
+SPEECH_TO_TEXT_USERNAME=... SPEECH_TO_TEXT_PASSWORD=... node bin/speech-to-text.js assets/speech.webm
+# .webm and .ogg files are supported
+# set FFMPEG_PATH for .webm if ffmpeg binary is not globally linked
+
 # Sentiment (pass any text you like)
 ALCHEMY_API_KEY=... node bin/text-to-sentiment.js Marvin is a sore loser
 ```
