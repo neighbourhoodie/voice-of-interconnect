@@ -14,6 +14,7 @@ deploy:
     space:
       secure: "QGaTMjMSDkKPLgmcpVJI9vhfEPg0gxPqyMa/XPJl1zRrxydfP4BX/gqTjLV9dPKftkSx+FoacBj3zi6R2A4/tCkKRqPvzeKrusBFj9bcu4YNLfUBJjckhl/Mzlg9LjLNll6So1t1L4KYovJ/cePyvLjfE2RicuRWlkhjRJeksZf0fnhjD9pTrGZtT++9fGTJ42wgMtlztpmetvzdpM5gYRSXwbeJ9N466fhp6oMAsWE5gZ6PmhKabdLiI1V7uCaB0RmMB06pvpbpeGH0423w3L2m/uQk603trdGovgskKTm0RDZ+Yu2IuoBXoL4OguFf5IQ2Z5CuuexoK8z6zHGvzi2fj6VLJmDKIGYe0kPkUz6KloRM0ENkMGf0xkZaRw8ve8RLS/orL+n9NH4v2ZyDdypyBzBm3JsCku1Kzpe6oI7C96BlBZ6Df46w2hILCN5HVtlLD/z8McwO6Mv6PKkf20boOFsNzk6NV9lnzkxdx5Ax/LkmZmM7Ily+VCKa0UJ5ckPVhU5V2lM4uUI17KsRcpHK2jL+nDmKWmUHLP5NQS6KjhUcrN9j/dofVrcWQRd+Gd8tVfqcuhV480OVk7U93CgAY5U9F0OMweXFasxHr4FkvyRQyUp5uogK8XjbCiEXjG5d02cb5GepaP/A47ZRU/Syz4EPIdIDxknYfaQ9ux0="
     manifest: manifest.staging.yml
+    skip_cleanup: true
     on:
       repo: neighbourhoodie/voice-of-interconnect
       branch: master
@@ -28,6 +29,7 @@ deploy:
     space:
       secure: "QGaTMjMSDkKPLgmcpVJI9vhfEPg0gxPqyMa/XPJl1zRrxydfP4BX/gqTjLV9dPKftkSx+FoacBj3zi6R2A4/tCkKRqPvzeKrusBFj9bcu4YNLfUBJjckhl/Mzlg9LjLNll6So1t1L4KYovJ/cePyvLjfE2RicuRWlkhjRJeksZf0fnhjD9pTrGZtT++9fGTJ42wgMtlztpmetvzdpM5gYRSXwbeJ9N466fhp6oMAsWE5gZ6PmhKabdLiI1V7uCaB0RmMB06pvpbpeGH0423w3L2m/uQk603trdGovgskKTm0RDZ+Yu2IuoBXoL4OguFf5IQ2Z5CuuexoK8z6zHGvzi2fj6VLJmDKIGYe0kPkUz6KloRM0ENkMGf0xkZaRw8ve8RLS/orL+n9NH4v2ZyDdypyBzBm3JsCku1Kzpe6oI7C96BlBZ6Df46w2hILCN5HVtlLD/z8McwO6Mv6PKkf20boOFsNzk6NV9lnzkxdx5Ax/LkmZmM7Ily+VCKa0UJ5ckPVhU5V2lM4uUI17KsRcpHK2jL+nDmKWmUHLP5NQS6KjhUcrN9j/dofVrcWQRd+Gd8tVfqcuhV480OVk7U93CgAY5U9F0OMweXFasxHr4FkvyRQyUp5uogK8XjbCiEXjG5d02cb5GepaP/A47ZRU/Syz4EPIdIDxknYfaQ9ux0="
     manifest: manifest.prod.yml
+    skip_cleanup: true
     on:
       repo: neighbourhoodie/voice-of-interconnect
       branch: live
