@@ -1,0 +1,27 @@
+.stage__questions {
+  background: $purple;
+  color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+
+
+.questions {
+  align-items: center;
+  display: flex;
+  height: 70%;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+
+  p {
+    font-size: 26px;
+    margin: auto;
+    width: 80%;
+  }
+}

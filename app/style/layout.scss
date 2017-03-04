@@ -1,0 +1,20 @@
+.hidden-reference {display: none;}
+
+body{
+  margin: 0;
+}
+
+// TODO: consider refactoring stlyes to use top stage for all
+// traversal-onl type actions
+.stage__mgmt {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+
+  a.list-recordings {
+    position: relative;
+    display: block;
+    margin-top: 10%;
+  }
+}

@@ -1,0 +1,194 @@
+.stage__recordings{
+  background: $mustyBlue;
+  color: $white;
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  overflow: scroll;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+
+  top: -500%;
+  transition: all .3s ease;
+
+  section.learn {
+    align-items: flex-end;
+    background: $purple;
+    display: flex;
+    height: 25%;
+    padding-bottom: 15%;
+    width: 100%;
+
+    .info {
+      margin: auto;
+      text-align: center;
+    }
+
+    a.close {
+      margin: 10% auto 12px;
+      display: inline-block;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin: auto;
+      padding-bottom: 12px;
+      text-align: center;
+
+      margin: auto;
+      width: 80%;
+    }
+    p {
+      font-size: 18px;
+      line-height: 22px;
+      font-weight: 300;
+
+      margin: auto;
+      width: 80%;
+    }
+  }
+
+  ol {
+    margin: 10% auto 0;
+    padding: 0;
+    opacity: 0;
+    transition: all .6s ease;
+
+    li {
+      background: #FFFFFF;
+      border-radius: 3px;
+      box-shadow: 0 1px 0 rgba(0,0,0,.05);
+      box-sizing: border-box;
+      color: $dustyPurple;
+      display: flex;
+      flex-wrap: wrap;
+      list-style: none;
+      position: relative;
+      overflow: hidden;
+
+      margin: 60px auto 12px;
+      padding: 10px;
+      width: 93.75%;
+      transition: all .8s ease;
+    }
+  }
+
+  .progress {
+    background: $lightGrey;
+    position: absolute;
+
+    height: 6px;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    .progress_bar {
+      background: #23B3A9;
+      position: absolute;
+      height: 100%;
+      left: 0;
+      width: 8%;
+      transition: all .3s ease;
+    }
+  }
+  .depiction {
+    font-size: 14px;
+    font-weight:400;
+    padding: 6px 5px 12px;
+    margin: 0;
+    width: 100%;
+  }
+
+  // processing/analyzing/offline states
+  .status {
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 6px 0;
+    position: relative;
+    background: $lightGrey;
+    width: 100%;
+
+    strong {
+      padding-left: 25px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border: 2px solid;
+        border-radius: 6px;
+
+        left: 10px;
+        top: 10px;
+      }
+    }
+
+    &.processing,
+    &.analyzing {
+      strong::before {
+        border-color: $progressGreen;
+      }
+    }
+  }
+
+  // analyzed states
+  li {
+    &.analyzed {
+      align-items: center;
+      display: flex;
+      flex-wrap: nowrap;
+
+      svg {
+        max-width: 20px;
+        width: 20%;
+        padding-right: 2%;
+        padding-left: 2%;
+      }
+      p {
+        width: 80%;
+        padding-bottom: 6px;
+      }
+    }
+  }
+
+  // transition to properties
+  &.active {
+    top: 0;
+
+    ol {
+      margin-top: -3%;
+      opacity: 1;
+
+      li {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+// offline states
+.offline {
+  ol {
+    li {
+      .progress,
+      .depiction,
+      .status {
+        opacity: .8;
+      }
+      .progress {
+        .progress_bar {
+          background-color: $deepGrey;
+        }
+      }
+      .status {
+        strong::before {
+          border-color: $slowMustard;
+        }
+      }
+    }
+  }
+}
