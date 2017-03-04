@@ -1,0 +1,66 @@
+.system__state {
+  bottom: -500%;
+  width: 100%;
+  position: absolute;
+  transition: all .5s ease;
+  z-index: 2;
+
+  p.message {
+    background: #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(0,0,0,.05);
+    box-sizing: border-box;
+    color: $dustyPurple;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    font-weight: 400;
+    list-style: none;
+    overflow: hidden;
+    margin: 12px auto;
+    padding: 10px;
+    position: relative;
+    width: 93.75%;
+
+    strong {
+      padding-left: 20px;
+
+      &::before {
+        content: "";
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        border: 2px solid;
+        border-radius: 6px;
+
+        left: 15px;
+        top: 14px;
+      }
+    }
+  }
+}
+
+.offline {
+  .system__state{
+    &.reconnecting {
+      bottom: 0;
+
+      strong {
+        color: $slowMustard;
+        &::before {
+          border-color: $slowMustard;
+        }
+      }
+    }
+    &.restored {
+      bottom: 0;
+
+      strong {
+        color: $progressGreen;
+        &::before {
+          border-color: $progressGreen;
+        }
+      }
+    }
+  }
+}

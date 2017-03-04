@@ -1,0 +1,47 @@
+a.record {
+  border-radius: 30px;
+  border-width: 4px;
+  border-color: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  text-indent: -9999px;
+  background: rgba(0, 0, 0, 0);
+  height: 50px;
+  width: 50px;
+  border-style: solid;
+  outline: none;
+  position: relative;
+
+  &::after {
+    content: " ";
+    background-color: transparent;
+    transition: all .5s ease;
+  }
+
+  &.active {
+    &::after {
+      content: " ";
+      background-color: #FF4C9A;
+      width: 30px;
+      position: absolute;
+      height: 30px;
+      top: 6px;
+      left: 6px;
+      border-radius: 30px;
+    }
+  }
+}
+
+input[type=submit] {
+  color: $white;
+  background: $pink;
+  border: none;
+  font-size: 20px;
+  font-weight: 400;
+  background: #FF4C9A;
+  line-height: 58px;
+  outline: 0;
+  height: 60px;
+  width: 100%;
+}

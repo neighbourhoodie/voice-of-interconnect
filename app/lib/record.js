@@ -2,34 +2,75 @@ module.exports = record
 
 const generateRandomString = require('./generate-random-string')
 const AudioRecorder = require('./audio-recorder')
+const CanvasAudio = require('./canvas-audio')
 
 function record (hoodie) {
+  // TODO: refactor const declarations
   const $btnRecord = document.querySelector('#record')
-  const $btnStop = document.querySelector('#stop-recording')
   const $save = document.querySelector('#save-recording')
   const $download = document.querySelector('#download-recording')
   const $volume = document.querySelector('#volume span')
+  const $audioControls = document.querySelector('#audioControls')
+  const $discardRecording = document.querySelector('#discard')
+  const $restartRecord = document.querySelector('#restart-record')
+  const $recordingsLists = document.querySelector('#stage__recordings')
+  const $compose = document.querySelector('#compose')
+  const $composeFields = document.querySelector('#compose__field')
+  const $backButton = document.querySelector('#back')
+  const $closeList = document.querySelector('#close')
+  const $answerField = document.querySelector('#answer__compose')
+  const $submitAnswerButton = document.querySelector('#submitAnswer')
+  const $listRecordings = document.querySelector('#list-recordings')
   const state = {
     audio: null
   }
   let record
 
+  $listRecordings.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    $recordingsLists.classList.add('active')
+  })
+
   $btnRecord.addEventListener('click', function (event) {
     event.preventDefault()
 
-    record = new AudioRecorder()
+    if (!$btnRecord.classList.contains('active')) {
+      record = new AudioRecorder()
 
-    record.getUserPermission()
+      record.getUserPermission()
 
-    .then((stream) => {
-      return record.start(stream, onComplete.bind(null, state), showVolume.bind(null, $volume))
-    })
+      .then((stream) => {
+        return record.start(stream, onComplete.bind(null, state), showVolume.bind(null, $volume))
+      })
+
+      $btnRecord.classList.add('active')
+    } else {
+      record.stop()
+      $btnRecord.classList.remove('active')
+      $audioControls.classList.add('active')
+      showVolume($volume, 0)
+    }
   })
 
-  $btnStop.addEventListener('click', function (event) {
+  $closeList.addEventListener('click', function (event) {
     event.preventDefault()
-    record.stop()
-    showVolume($volume, 0)
+    $recordingsLists.classList.remove('active')
+  })
+
+  $discardRecording.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    // TODO: Need to write to actually discard data?
+    $audioControls.classList.remove('active')
+  })
+
+  $restartRecord.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    // TODO: Need to discard data before new AudioRecorder is created?
+    $audioControls.classList.remove('active')
+    $btnRecord.click()
   })
 
   $save.addEventListener('click', function (event) {
@@ -60,6 +101,9 @@ function record (hoodie) {
     .catch((error) => {
       console.log(error)
     })
+
+    $audioControls.classList.remove('active')
+    $recordingsLists.classList.add('active')
   })
 
   $download.addEventListener('click', function (event) {
@@ -77,6 +121,26 @@ function record (hoodie) {
       window.URL.revokeObjectURL(url)
     }, 100)
   })
+
+  $compose.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    $composeFields.classList.add('active')
+  })
+
+  $backButton.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    $composeFields.classList.remove('active')
+  })
+
+  $answerField.addEventListener('keyup', function (event) {
+    if ($answerField.value !== null && $answerField.value !== '') {
+      $submitAnswerButton.classList.add('hasValue')
+    } else {
+      $submitAnswerButton.classList.remove('hasValue')
+    }
+  })
 }
 
 function onComplete (state, audioData) {
@@ -88,7 +152,9 @@ function onComplete (state, audioData) {
   state.audio = audioData
 }
 
-function showVolume ($volume, volume, time) {
+function showVolume ($volume, volume, time, analyser) {
   $volume.textContent = volume
-  console.log('volume %d at %dms', volume, time)
+  CanvasAudio(volume, time, analyser)
+
+  // console.log('volume %d at %dms', volume, time)
 }

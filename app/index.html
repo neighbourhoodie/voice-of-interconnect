@@ -2,25 +2,266 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voice of InterConnect</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,700i" rel="stylesheet">
   </head>
   <body>
-    <h1>Voice of InterConnect!</h1>
 
-    <p>
-      <button id="record">record</button>
-      <button id="stop-recording">stop</button>
-      <span id="volume">Volume: <span>0</span></span>
-      <br>
-      after recording: <button id="save-recording">save</button> <button id="download-recording">download</button>
-    </p>
+  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="display: none;">
+  <defs>
 
-    <hr>
+    <g id="call" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(53.000000, 498.000000)">
+        <path d="M2.22972884,3.38594171 C4.12890624,-0.26617441 8.40582614,-0.881634271 11.2348534,2.0456498 C11.5957077,2.33591521 11.9695813,2.7239853 12.3193901,3.22557307 C12.9452179,4.12294212 13.355316,5.21449852 13.4650344,6.4687971 C13.5899613,7.89696036 13.0076651,9.10873485 12.0199765,10.0039332 C11.624024,10.3628074 11.2364671,10.6255691 10.7342131,10.9008299 C12.1641802,14.0089364 15.1242493,17.2971318 19.5400277,19.9896762 C20.761684,18.3797123 22.7698516,17.6594174 25.4515222,18.1846279 C28.1502931,18.7131874 30.0452762,19.8103218 31.0842516,21.5147626 C31.554877,22.2868245 31.8025558,23.1118805 31.8701572,23.9563025 C31.9153335,24.5206081 31.8829224,24.9791292 31.8014011,25.5282465 C31.5926219,26.9345568 30.7775156,27.911727 29.6992704,28.5929745 C29.2808897,28.8573121 28.8831385,29.0414927 28.5262987,29.1699334 C25.9596386,30.4704222 22.1320158,30.7799962 19.3369445,29.9685774 C19.0983937,29.924698 18.8111832,29.8581298 18.4783554,29.7634439 C17.7319035,29.5510864 16.9003938,29.2358303 15.9949281,28.7994574 C13.5446611,27.6185953 10.9193733,25.7373974 8.2012143,23.0192385 C5.50349193,20.3215161 3.68064711,17.8811436 2.58117051,15.7132617 C1.97760409,14.5231857 1.64882862,13.5375182 1.51643425,12.7773659 C0.623250907,10.03994 0.9200872,6.19609039 2.14903381,3.55002755 C2.19967763,3.4426378 2.21495682,3.41434829 2.22972884,3.38594171 Z M9.22313268,4.28894144 C7.7905444,2.64784347 5.85970986,2.8811102 4.88018984,4.79166122 C3.94651826,6.78222064 3.67689561,10.0396961 4.44741213,12.0711588 C4.44741213,12.0711588 4.6472421,15.2226256 10.3225346,20.8979181 C15.9978272,26.5732107 20.0157225,27.0394695 20.0157225,27.0394695 C22.1149997,27.7113762 25.4221529,27.4708233 27.3484452,26.3993381 C27.3484452,26.3993381 28.6959365,26.0171685 28.8339245,25.0876985 C28.9719125,24.1582285 29.1855411,21.9729383 24.8749209,21.1286949 C20.5643007,20.2844516 21.9259562,24.3283003 20.4888916,23.9466553 C11.9116211,19.6087646 8.24754215,13.6676986 7.20686591,9.99980096 C6.87142181,8.70090908 10.6303582,8.48973776 10.4764464,6.73022044 C10.3225346,4.97070313 9.22313268,4.28894144 9.22313268,4.28894144 Z" id="Rectangle-12" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
 
-    <h2>Debug</h2>
+    <g id="type-message">
+      <path d="M25.6503791,30.5075743 L16.9977684,24 L7.00002024,24 C3.13562768,24 0,20.8667501 0,17.0052166 L0,6.9947834 C0,3.13005898 3.13155308,0 6.9992748,0 L29.0007252,0 C32.8648313,0 36,3.13337517 36,6.9947834 L36,17.0052166 C36,20.8656424 32.8631068,24 29.0084495,24 L27.700305,24 L25.6503791,30.5075743 Z M3,6.9947834 L3,17.0052166 C3,19.2082844 4.79087006,21 7.00002024,21 L18,21 L24.0634766,25.5603027 L25.5,21 L29.0084495,21 C31.2035631,21 33,19.2114745 33,17.0052166 L33,6.9947834 C33,4.79171562 31.2094637,3 29.0007252,3 L6.9992748,3 C4.78679466,3 3,4.78852545 3,6.9947834 Z" id="Rectangle-4" stroke="none" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
 
-    <p id="status">Loading ...</p>
+    <g id="replay">
+      <path d="M75.0638965,132.983277 L92.3429246,121.391535 L75.0638965,109.799794 L75.0638965,132.983277 Z M71.0638965,105.295868 C71.0638965,103.641104 72.1795224,103.048077 73.5520667,103.968856 L97.0347106,119.722331 C98.4088891,120.644207 98.4072549,122.13996 97.0347106,123.06074 L73.5520667,138.814214 C72.1778882,139.73609 71.0638965,139.146827 71.0638965,137.487202 L71.0638965,105.295868 Z" id="Rectangle-6" stroke="none" fill="#FFFFFF" fill-rule="nonzero"></path>
+    </g>
 
-    <table id="notes"></table>
+    <g id="rerecord">
+      <path d="M173.898,131.432 C170.075,136.62 163.941,140 157,140 C145.401,140 136,130.6 136,119 C136,107.401 145.4,98 157,98 C168.599,98 178,107.4 178,119 C178,121.359 177.599,123.62 176.879,125.735 L172.186,118.044 L168.772,120.128 L176.312,132.485 L189.551,126.893 L187.994,123.208 L180.942,126.187 C181.627,123.911 182,121.5 182,119 C182,105.189 170.807,94 157,94 C143.19,94 132,105.192 132,119 C132,132.81 143.193,144 157,144 C165.22,144 172.51,140.034 177.067,133.913 L175.751,134.468 L173.898,131.432 Z" id="Replay" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+    </g>
+
+    <g id="pause">
+      <rect id="Rectangle-2" stroke="none" fill="#fff" fill-rule="evenodd" x="0" y="0" width="4" height="36" rx="2"></rect>
+      <rect id="Rectangle-2" stroke="none" fill="#fff" fill-rule="evenodd" x="14" y="0" width="4" height="36" rx="2"></rect>
+    </g>
+
+
+    <g id="face-happy">
+        <path d="M14,2.5 C14,2.78124976 14.2193336,3 14.5,3 C14.7812498,3 15,2.78066641 15,2.5 C15,2.21875024 14.7806664,2 14.5,2 C14.2187502,2 14,2.21933359 14,2.5 Z M12,2.5 C12,1.11928813 13.1096621,0 14.5,0 C15.8807119,0 17,1.10966206 17,2.5 C17,3.88071187 15.8903379,5 14.5,5 C13.1192881,5 12,3.89033794 12,2.5 Z" id="Rectangle-2" fill="#23B3A9" fill-rule="nonzero"></path>
+        <path d="M3,2.5 C3,2.78124976 3.21933359,3 3.5,3 C3.78124976,3 4,2.78066641 4,2.5 C4,2.21875024 3.78066641,2 3.5,2 C3.21875024,2 3,2.21933359 3,2.5 Z M1,2.5 C1,1.11928813 2.10966206,0 3.5,0 C4.88071187,0 6,1.10966206 6,2.5 C6,3.88071187 4.89033794,5 3.5,5 C2.11928813,5 1,3.89033794 1,2.5 Z" id="Rectangle-2-Copy" fill="#23B3A9" fill-rule="nonzero"></path>
+        <path d="M0.107201746,10.0813145 C0.242267982,11.1064076 0.677332567,12.578831 1.60237556,14.0638762 C3.17140693,16.5827673 5.63837228,18.1196289 9.08520508,18.1196289 C12.5314533,18.1196289 14.9982942,16.586299 16.5675,14.0727902 C17.4928213,12.590637 17.9280372,11.121012 18.0631703,10.097717 L16.0803844,9.8358767 C16.057333,10.0104337 15.9883768,10.3511626 15.8553169,10.8004756 C15.6311713,11.5573641 15.3078089,12.3139301 14.8709766,13.0136356 C13.6491972,14.9706468 11.8007,16.1196289 9.08520508,16.1196289 C6.37029472,16.1196289 4.52192193,14.968136 3.29996819,13.0064363 C2.86298255,12.3049084 2.53949956,11.5463552 2.31526691,10.787467 C2.18214234,10.336923 2.11314297,9.99521275 2.09006388,9.82005266 L0.107201746,10.0813145 Z" id="Path-5" fill="#23B3A9" fill-rule="nonzero"></path>
+    </g>
+
+    <g id="face-sad">
+        <path d="M3,2.5 C3,2.78124976 3.21933359,3 3.5,3 C3.78124976,3 4,2.78066641 4,2.5 C4,2.21875024 3.78066641,2 3.5,2 C3.21875024,2 3,2.21933359 3,2.5 Z M1,2.5 C1,1.11928813 2.10966206,0 3.5,0 C4.88071187,0 6,1.10966206 6,2.5 C6,3.88071187 4.89033794,5 3.5,5 C2.11928813,5 1,3.89033794 1,2.5 Z" id="Rectangle-2" fill="#EB9D00" fill-rule="nonzero"></path>
+        <path d="M14,2.5 C14,2.78124976 14.2193336,3 14.5,3 C14.7812498,3 15,2.78066641 15,2.5 C15,2.21875024 14.7806664,2 14.5,2 C14.2187502,2 14,2.21933359 14,2.5 Z M12,2.5 C12,1.11928813 13.1096621,0 14.5,0 C15.8807119,0 17,1.10966206 17,2.5 C17,3.88071187 15.8903379,5 14.5,5 C13.1192881,5 12,3.89033794 12,2.5 Z" id="Rectangle-2" fill="#EB9D00" fill-rule="nonzero"></path>
+        <path d="M2.08931346,16.6090261 C2.11185017,16.4451067 2.18000405,16.121642 2.31186561,15.6939603 C2.53441095,14.9721536 2.85556678,14.2504252 3.28962384,13.5826227 C4.50836928,11.7075669 6.35935832,10.6024735 9.08520508,10.6024735 C11.8110518,10.6024735 13.6620409,11.7075669 14.8807863,13.5826227 C15.3148434,14.2504252 15.6359992,14.9721536 15.8585445,15.6939603 C15.9904061,16.121642 16.05856,16.4451067 16.0810967,16.6090261 L18.062458,16.3366157 C17.9260888,15.3447426 17.4880741,13.9240794 16.5576902,12.4926717 C14.9854506,10.0737604 12.5211015,8.60247346 9.08520508,8.60247346 C5.64930867,8.60247346 3.18495957,10.0737604 1.61271991,12.4926717 C0.682336046,13.9240794 0.244321338,15.3447426 0.107952169,16.3366157 L2.08931346,16.6090261 Z" id="Path-5" fill="#EB9D00" fill-rule="nonzero"></path>
+    </g>
+
+
+    <g id="left-arrow">
+      <path d="M21.1328,39.1043 L30.0088,30.2283 C30.5178,29.7193 30.5188,28.8923 30.0088,28.3833 C29.4958,27.8703 28.6738,27.8743 28.1648,28.3833 L18.3788,38.1683 C18.1218,38.4263 17.9968,38.7653 17.9998,39.1043 C17.9968,39.4433 18.1218,39.7823 18.3788,40.0393 L28.1648,49.8253 C28.6738,50.3343 29.4958,50.3383 30.0088,49.8253 C30.5188,49.3163 30.5178,48.4893 30.0088,47.9803 L21.1328,39.1043 Z" id="Arrow" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+    </g>
+
+    <g id="list">
+      <path d="M2.0023,4 L30.9973,4 C32.1003,4 33.0003,3.105 33.0003,2 C33.0003,0.888 32.1033,0 30.9973,0 L2.0023,0 C0.9003,0 0.0003,0.895 0.0003,2 C0.0003,3.112 0.8963,4 2.0023,4" id="Fill-1" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+      <path d="M30.9977,7 L2.0027,7 C0.8997,7 -0.0003,7.895 -0.0003,9 C-0.0003,10.112 0.8967,11 2.0027,11 L30.9977,11 C32.1007,11 32.9997,10.105 32.9997,9 C32.9997,7.888 32.1037,7 30.9977,7" id="Fill-4" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+      <path d="M30.9977,14 L2.0027,14 C0.8997,14 -0.0003,14.895 -0.0003,16 C-0.0003,17.112 0.8967,18 2.0027,18 L30.9977,18 C32.1007,18 32.9997,17.105 32.9997,16 C32.9997,14.888 32.1037,14 30.9977,14" id="Fill-7" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+    </g>
+
+    <g id="closeBtn">
+      <path d="M162.962626,38.1456249 L171.838626,29.2696249 C172.347626,28.7606249 172.348626,27.9336249 171.838626,27.4246249 C171.325626,26.9116249 170.503626,26.9156249 169.994626,27.4246249 L161.132626,36.2866249 L152.227626,27.3816249 C151.719626,26.8736249 150.892626,26.8726249 150.383626,27.3816249 C149.870626,27.8946249 149.873626,28.7166249 150.383626,29.2266249 L159.302626,38.1456249 L150.383626,47.0646249 C149.873626,47.5746249 149.870626,48.3966249 150.383626,48.9096249 C150.892626,49.4186249 151.719626,49.4176249 152.227626,48.9096249 L161.132626,40.0046249 L169.994626,48.8666249 C170.503626,49.3756249 171.325626,49.3796249 171.838626,48.8666249 C172.348626,48.3576249 172.347626,47.5306249 171.838626,47.0216249 L162.962626,38.1456249 Z" id="Close" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+    </g>
+
+  </defs>
+  </svg>
+</svg>
+ 
+
+  <div class="stages">
+    <section class="stage__questions">
+      <div class="stage__mgmt">
+        <a class="list-recordings" id="list-recordings">
+          <svg width="35px" height="18px" viewBox="-1 0 35 18">
+            <use xlink:href="#list"></use>
+          </svg>
+        </a>
+      </div>
+
+      <div class="questions">
+        <p>Tell us how you really feel about great giant owls? 🦉 <span id="volume">Volume: <span>0</span></span></p>
+      </div>
+
+      <div class="stage__controls">
+
+        <!-- TODO: sense audiocontext and show or hide record as an option -->
+        <span class="control">
+          <a class="call">
+          <svg width="32px" height="31px" viewBox="53 498 32 31" >
+            <use xlink:href="#call">make a call</use>
+          </svg>
+          </a>
+        </span>
+
+        <span class="control">
+          <a class="record" id="record">record</a>
+        </span>
+
+        <span class="control">
+          <a class="type-message" id="compose">
+            <svg width="36px" height="31px" viewBox="0 0 36 31" >
+              <use xlink:href="#type-message">type message</use>
+            </svg>
+          </a>
+        </span>
+
+
+        <div class="audio__controls" id="audioControls">
+
+          <span class="control save-recording">
+            <a id="save-recording">Save &amp; upload</a>
+          </span>
+
+          <span class="control play">
+            <a class="play">
+              <svg width="28px" height="37px" viewBox="71 103 28 37">
+                <use xlink:href="#replay">replay recording</use>
+              </svg>
+            </a>
+          </span>
+
+          <span class="control pause">
+            <a class="pause">
+              <svg width="18px" height="36px" viewBox="0 0 18 36">
+                <use xlink:href="#pause">pause</use>
+              </svg>
+            </a>
+          </span>
+
+          <span class="control rerecord">
+            <a class="rerecord" id="restart-record">
+              <svg width="58px" height="50px" viewBox="132 94 58 50">
+                <use xlink:href="#rerecord">rerecord</use>
+              </svg>
+            </a>
+          </span>
+
+          <span class="control discard">
+            <a href="#" class="discard" id="discard">Discard</a>
+          </span>
+
+        </div>
+      </div>
+
+      <div class="compose__field" id="compose__field">
+
+
+        <a class="back" id="back">
+          <svg width="14px" height="23px" viewBox="17 28 14 23">
+            <use xlink:href="#left-arrow">back</use>
+          </svg>
+        </a>
+
+        <form action="">
+          <!-- TODO: hook up question text to questions store -->
+          <label for="answer__compose">In four words, please tell us how you feel about dinosaurs.</label>
+          <textarea id="answer__compose" placeholder="Go on..."></textarea>
+
+          <!-- TODO: make submit real! -->
+          <input type="submit" value="Upload" id="submitAnswer">
+        </form>
+      </div>
+
+      <canvas id="canvas" class="visualizer"></canvas>
+    </section>
+
+    <!-- TODO: add "offline" classe when app goes offline -->
+    <section class="stage__recordings" id="stage__recordings">
+
+      <!-- TODO: hook up to a store of "tips" -->
+      <section class="learn">
+        <div class="info">
+          <a class="close" id="close">
+            <svg width="23px" height="23px" viewBox="150 27 23 23">
+              <use xlink:href="#closeBtn">back</use>
+            </svg>
+          </a>
+          <h3>Three</h3>
+          <p>That’s how many recordings you would have lost if your application wasn’t Offline First.</p>
+        </div>
+      </section>
+      <ol class="recordings">
+
+
+        <!-- processing -->
+        <li>
+          <span class="progress">
+            <span class="progress_bar"></span>
+          </span>
+          <p class="depiction">
+            I really, really love dinosaurs. I would have many as pets.
+          </p>
+          <span class="status processing"><strong>Processing</strong> &mdash; waiting for connection</span>
+        </li>
+
+
+
+        <!-- analyzing -->
+        <li>
+          <span class="progress">
+            <span class="progress_bar"></span>
+          </span>
+          <p class="depiction">
+            I really, really love dinosaurs. I would have many as pets.
+          </p>
+          <span class="status analyzing"><strong>Analyzing</strong> &mdash; waiting for connection</span>
+        </li>
+
+
+
+        <!-- analyzed: happy -->
+        <li class="analyzed">
+          <svg width="19px" height="19px" viewBox="0 0 19 19">
+            <use xlink:href="#face-happy"></use>
+          </svg>
+          <p class="depiction analyzed__happy">
+            I really, really love dinosaurs. I would have many as pets.
+          </p>
+        </li>
+
+
+        <!-- analyzed: sad -->
+        <li class="analyzed">
+          <svg width="19px" height="19px" viewBox="0 0 19 19">
+            <use xlink:href="#face-sad"></use>
+          </svg>
+          <p class="depiction analyzed__sad">
+            Dinosaurs are mean!
+          </p>
+        </li>
+
+
+
+      </ol>
+      <table id="notes"></table>
+    </section>
+
+  </div>
+
+
+    <!-- Do not delete - I'm saving to replug in the app logic with the ideal html -->
+    <div class="hidden-reference">
+      <h1>Voice of InterConnect!</h1>
+
+      <hr>
+
+      <h2>Debug</h2>
+      <button id="download-recording">download</button>
+
+      <p id="status">Loading ...</p>
+
+
+    </div>
+
+    <!-- TODO: update class `reconnecting` or `restored` based on system state
+    to get appropriate styling. Governed by `offline` class applied to body. -->
+    <section class="system__state reconnecting">
+      <p class="message">
+        <strong>Reconnecting </strong> &mdash; Don’t worry, your data is safe.
+      </p>
+    </section>
+
+    <section class="system__state restored">
+      <p class="message">
+        <strong>Connection restored </strong> &mdash; Woot!
+      </p>
+    </section>
   </body>
 </html>

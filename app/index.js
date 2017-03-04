@@ -11,6 +11,8 @@ const notesList = require('./lib/notes-list')
 const record = require('./lib/record')
 const setAppStatus = require('./lib/set-app-status')
 
+require('./style/base.scss')
+
 hoodie.ready.then(() => {
   record(hoodie)
   assureAccount(hoodie)

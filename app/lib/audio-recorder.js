@@ -102,7 +102,7 @@ function start (state, stream, onComplete, onVolume) {
         volumeMax = volume
       }
 
-      onVolume(volume, Date.now() - state.startTime)
+      onVolume(volume, Date.now() - state.startTime, analyser)
 
       requestAnimationFrame(trackAudioVolume)
     }
