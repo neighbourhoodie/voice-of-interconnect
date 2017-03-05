@@ -1,0 +1,33 @@
+.temp-hide-canvas {
+  display: none;
+}
+
+body {
+  background: #29103A;
+}
+
+svg {
+  display: flex;
+  align-items: center;
+
+  rect {
+    position: relative;
+    z-index: 2;
+  }
+
+  g {
+    position: relative;
+    z-index: 1;
+  }
+
+  .grid {
+    path {
+      stroke: rgba(255,255,255,.2);
+    }
+    .tick {
+      line {
+        stroke: rgba(255,255,255,.1);
+      }
+    }
+  }
+}
