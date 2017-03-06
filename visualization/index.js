@@ -30,15 +30,9 @@ loadAllSentiment()
     chart.update()
   })
 
-
   var resultSet = result.sentimentsByHour.map(sentiment => sentiment.hour)
   var resultNum = result.sentimentsByHour.map(sentiment => sentiment.num)
   var resultScore = result.sentimentsByHour.map(sentiment => sentiment.score)
-
-  var barPadding = 40
-  const WIDTH = window.innerWidth * .9
-  const HEIGHT = window.innerHeight * .9
-
 
   for (i = 0; i < resultScore.length; i++){
     resultScore[i] = Math.round((resultScore[i] + 1) * 5);
@@ -51,27 +45,28 @@ loadAllSentiment()
   // gridlines in x axis function
   function make_x_gridlines() {
       return d3.axisBottom(x)
-          .ticks(12)
+          .ticks(96)
   }
 
   // gridlines in y axis function
   function make_y_gridlines() {
       return d3.axisLeft(y)
-          .ticks(5)
+          .ticks(8)
   }
 
   var color = d3.scaleQuantize()
     .domain([0,maxScore()])
     .range(['#FF006A','#FF3F00','#FF5500','#FF5500','#F89D00','#D7C017','#79CC1A','#1ACC6D','#1ACCA9','#1ABACC'])
 
+  const WIDTH = window.innerWidth;
+  const HEIGHT = window.innerHeight;
 
   // set the dimensions and margins of the graph
-  var margin = {top: 20, right: 20, bottom: 30, left: 50},
+  var margin = {top: 20, right: 50, bottom: 30, left: 50},
       paddedWidth = WIDTH - margin.left - margin.right,
       paddedHeight = HEIGHT - margin.top - margin.bottom;
 
-  // parse the date / time
-  var parseTime = d3.timeParse("%d-%b-%y");
+  var barPadding = paddedWidth * .7 / resultSet.length;
 
   // set the ranges
   var x = d3.scaleTime().range([0, paddedWidth]);
@@ -83,8 +78,6 @@ loadAllSentiment()
       .y(function(d) { return y(d.close); });
 
 
-
-
   const svg = d3.select('body')
                 .append('svg')
                 .attr('width', paddedWidth)
@@ -94,7 +87,7 @@ loadAllSentiment()
 
   // Gridlines
   svg.append('g')
-    .attr('class', 'grid')
+    .attr('class', 'grid x-grid')
     .attr('transform', 'translate(0,' + paddedHeight + ')')
     .call(make_x_gridlines()
       .tickSize(-paddedHeight)
@@ -102,7 +95,7 @@ loadAllSentiment()
     )
 
   svg.append('g')
-    .attr('class', 'grid')
+    .attr('class', 'grid y-grid')
     .call(make_y_gridlines()
       .tickSize(-paddedWidth)
       .tickFormat("")
@@ -113,7 +106,7 @@ loadAllSentiment()
     .enter()
     .append('rect')
     .attr('x', function (d, i) {
-      return i * (paddedWidth / resultSet.length)
+      return (i * (paddedWidth / resultSet.length)) + barPadding / 2
     })
     .attr('y', function (d, i) {
       return paddedHeight * .5 - resultNum[i] * 1
@@ -127,13 +120,5 @@ loadAllSentiment()
     .attr('fill', function (d, i) {
       return color(d)
     })
-
-
-
-    // data.forEach(function(d) {
-    //     d.date = parseTime(d.date);
-    //     d.close = +d.close;
-    // });
-
 
 })
