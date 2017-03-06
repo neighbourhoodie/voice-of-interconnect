@@ -8,7 +8,7 @@ function generateSentiment (handler) {
   setTimeout(() => {
     handler({
       score: Math.random() * 2 - 1,
-      at: new Date()
+      at: new Date().getHours()
     })
     generateSentiment(handler)
   }, Math.random() * 5000 + 2000)
