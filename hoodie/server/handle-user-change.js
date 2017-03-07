@@ -8,26 +8,26 @@ function handleUserChange (server, store, doc) {
   var noteId = toDocId(doc)
 
   if (isSpeech(doc)) {
-    server.log(['verbose', 'speech'], `sending ${noteId} to Speech to Text...`)
+    server.log(['verbose', 'alchemy'], `sending ${noteId} to Speech to Text...`)
 
     return speechToText(server, store, noteId)
       .then(() => {
-        server.log(['verbose', 'speech'], `retrieved text for ${noteId}`)
+        server.log(['verbose', 'alchemy'], `retrieved text for ${noteId}`)
       })
       .catch((error) => {
-        server.log(['error', 'speech'], error.toString())
+        server.log(['error', 'alchemy'], error.toString())
       })
   }
 
   if (isText(doc)) {
-    server.log(['verbose', 'speech'], `sending ${noteId} to AlchemyLanguage...`)
+    server.log(['verbose', 'alchemy'], `sending ${noteId} to AlchemyLanguage...`)
 
     return sentiment(server, store, noteId, doc.text)
       .then(() => {
-        server.log(['verbose', 'speech'], `retrieved sentiment for ${noteId}`)
+        server.log(['verbose', 'alchemy'], `retrieved sentiment for ${noteId}`)
       })
       .catch((error) => {
-        server.log(['error', 'speech'], error)
+        server.log(['error', 'alchemy'], error)
       })
   }
 }
@@ -37,7 +37,17 @@ function isSpeech (doc) {
 }
 
 function isText (doc) {
-  return doc.text && doc.progress.pop().type === 'transcription'
+  if (!doc.text || doc.sentiment) {
+    return
+  }
+
+  if (doc.hasSpeech === false) {
+    return true
+  }
+
+  if (doc.progress.pop().type === 'transcription') {
+    return true
+  }
 }
 
 function toDocId (doc) {

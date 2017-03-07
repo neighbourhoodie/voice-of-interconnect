@@ -79,6 +79,7 @@ function record (hoodie) {
     const noteId = 'note/' + generateRandomString(7)
     const note = {
       id: noteId,
+      hasSpeech: true,
       progress: []
     }
     const speech = {
@@ -139,6 +140,30 @@ function record (hoodie) {
     } else {
       $submitAnswerButton.classList.remove('hasValue')
     }
+  })
+
+  $submitAnswerButton.addEventListener('click', function (event) {
+    event.preventDefault()
+
+    const text = $answerField.value
+    const noteId = 'note/' + generateRandomString(7)
+    const note = {
+      id: noteId,
+      text: text,
+      hasSpeech: false,
+      progress: []
+    }
+    hoodie.store.add(note)
+
+    .then(() => {
+      console.log('stored')
+    })
+
+    .catch((error) => {
+      console.log(error)
+    })
+
+    $composeFields.classList.remove('active')
   })
 }
 
