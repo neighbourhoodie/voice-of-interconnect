@@ -49,7 +49,6 @@ function record (hoodie) {
       record.stop()
       $btnRecord.classList.remove('active')
       $audioControls.classList.add('active')
-      showVolume($volume, 0)
     }
   })
 
