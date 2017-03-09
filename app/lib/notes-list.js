@@ -1,6 +1,8 @@
 /* global URL */
 module.exports = notesList
 
+const detectOffline = require('./offline-state.js')
+
 function notesList (hoodie) {
   var $notes = document.querySelector('#recordings')
 
@@ -8,10 +10,14 @@ function notesList (hoodie) {
   render($notes, hoodie)
 
   $notes.addEventListener('click', handleNotesClick.bind(null, hoodie))
+
+  detectOffline(hoodie)
 }
 
 function render ($notes, hoodie) {
   hoodie.store.findAll()
+  hoodie.connectionStatus.on('disconnect', handleOfflineState)
+  hoodie.connectionStatus.on('reconnect', handleOnlineState)
 
   .then(function (docs) {
     var html = docs
@@ -20,12 +26,15 @@ function render ($notes, hoodie) {
       })
       .map(function (doc) {
         let docProgress
-        if (doc.progress.length > 0) {
-          docProgress = doc.progress[doc.progress.length - 1].type
-        }
-
         let statusText
         let statusDesc
+
+        if (doc.progress.length > 0) {
+          docProgress = doc.progress[doc.progress.length - 1].type
+        } else {
+          statusText = 'Uploading'
+          statusDesc = 'Sending your voice to the heavens...'
+        }
 
         if (docProgress === 'transcription') {
           statusText = 'Processing'
@@ -34,8 +43,6 @@ function render ($notes, hoodie) {
           statusText = 'Analyzing'
           statusDesc = 'Detecting sentiment...'
         }
-
-        // const docText = doc.text
 
         if ('sentiment' in doc) {
           var sentimentClass = doc.sentiment >= 0 ? 'happy' : 'sad'
@@ -66,7 +73,9 @@ function render ($notes, hoodie) {
           <span class="progress">
             <span class="progress_bar"></span>
           </span>
-          <p class="depiction">uploading...</p>
+          <span class="status ${docProgress}">
+            <strong>${statusText}</strong> &mdash; ${statusDesc}
+          </span>
           <span class="hidden-reference"><button data-action="play">play</button></span>
         </li>`
       }).join('\n')
@@ -92,4 +101,14 @@ function handleNotesClick (hoodie, event) {
     audio.src = URL.createObjectURL(blob)
     audio.play()
   })
+}
+
+function handleOfflineState() {
+  console.log('handle Offline');
+  return "offline"
+}
+
+function handleOnlineState() {
+  console.log('whaat');
+  return "reconnected!"
 }
