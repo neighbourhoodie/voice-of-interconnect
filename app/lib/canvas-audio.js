@@ -1,5 +1,3 @@
-/* global requestAnimationFrame */
-
 // For drawing audio information upon the canvas
 module.exports = CanvasAudio
 
