@@ -37,8 +37,8 @@ function render ($notes, hoodie) {
 
         // const docText = doc.text
 
-        if (doc.sentiment) {
-          var sentimentClass = doc.sentiment > 0 ? 'happy' : 'sad'
+        if ('sentiment' in doc) {
+          var sentimentClass = doc.sentiment >= 0 ? 'happy' : 'sad'
 
           return `<li data-id="${doc.id}" class="analyzed">
             <svg width="19px" height="19px" viewBox="0 0 19 19">
