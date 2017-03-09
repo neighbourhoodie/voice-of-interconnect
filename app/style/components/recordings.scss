@@ -127,7 +127,7 @@
       }
     }
 
-    &.processing,
+    &.transcription,
     &.analyzing {
       strong::before {
         border-color: $progressGreen;
