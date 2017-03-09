@@ -5,7 +5,6 @@ const AudioRecorder = require('./audio-recorder')
 const CanvasAudio = require('./canvas-audio')
 
 function record (hoodie) {
-  // TODO: refactor const declarations
   const $btnRecord = document.querySelector('#record')
   const $save = document.querySelector('#save-recording')
   const $download = document.querySelector('#download-recording')
@@ -60,7 +59,13 @@ function record (hoodie) {
   $discardRecording.addEventListener('click', function (event) {
     event.preventDefault()
 
-    // TODO: Need to write to actually discard data?
+    const canvas = document.querySelector('.visualizer')
+    const canvasCtx = canvas.getContext('2d')
+    let cWidth = canvas.width
+    let cHeight = canvas.height
+
+    canvasCtx.clearRect(0, 0, cWidth, cHeight)
+
     $audioControls.classList.remove('active')
   })
 

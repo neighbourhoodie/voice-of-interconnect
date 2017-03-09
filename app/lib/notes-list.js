@@ -55,7 +55,7 @@ function render ($notes, hoodie) {
               <span class="progress_bar"></span>
             </span>
             <p class="depiction">${doc.text}</p>
-            <span class="status__${docProgress}">
+            <span class="status ${docProgress}">
               <strong>${statusText}</strong> &mdash; ${statusDesc}
             </span>
             <span class="hidden-reference"><button data-action="play">play</button></span>
