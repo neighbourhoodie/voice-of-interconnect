@@ -107,6 +107,13 @@ function record (hoodie) {
       console.log(error)
     })
 
+    const canvas = document.querySelector('.visualizer')
+    const canvasCtx = canvas.getContext('2d')
+    let cWidth = canvas.width
+    let cHeight = canvas.height
+
+    canvasCtx.clearRect(0, 0, cWidth, cHeight)
+
     $audioControls.classList.remove('active')
     $recordingsLists.classList.add('active')
   })
