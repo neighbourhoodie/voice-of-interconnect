@@ -19,28 +19,56 @@ function render ($notes, hoodie) {
         return !!doc.progress
       })
       .map(function (doc) {
-
+        let docProgress
         if (doc.progress.length > 0) {
-          var docProgress = doc.progress[doc.progress.length - 1].type
+          docProgress = doc.progress[doc.progress.length - 1].type
         }
 
-        if (docProgress == "transcription") {
-          var statusText = "Processing"
-          var statusDesc = "Converting audio to text..."
-        } else if (docProgress == "analysis") {
-          var statusText = "Analyzing"
-          var statusDesc = "Detecting sentiment..."
+        let statusText
+        let statusDesc
+
+        if (docProgress === 'transcription') {
+          statusText = 'Processing'
+          statusDesc = 'Converting audio to text...'
+        } else if (docProgress === 'analysis') {
+          statusText = 'Analyzing'
+          statusDesc = 'Detecting sentiment...'
         }
 
-        var docText = doc.text
+        // const docText = doc.text
 
         if (doc.sentiment) {
-          var sentimentClass = doc.sentiment > 0 ? 'happy' : 'sad';
+          var sentimentClass = doc.sentiment > 0 ? 'happy' : 'sad'
 
-          return '<li data-id="' + doc.id + '" class="analyzed"><svg width="19px" height="19px" viewBox="0 0 19 19"><use xlink:href="#face-' + sentimentClass + '"></use></svg><p class="depiction analyzed__'+ sentimentClass +'">' + doc.text + '</p></li><span class="hidden-reference"><button data-action="play">play</button></td><td><pre>' + JSON.stringify(doc, null, 2) + '</pre></span>'
-        } else {
-          return '<li data-id="' + doc.id + '"><span class="progress"><span class="progress_bar"></span></span><p class="depiction">' + doc.text + '</p><span class="status' + doc.progress + '"><strong>' + statusText + '</strong> &mdash; ' + statusDesc + '</span></li><span class="hidden-reference"><button data-action="play">play</button></td><td><pre>' + JSON.stringify(doc, null, 2) + '</pre></span>'
+          return `<li data-id="${doc.id}" class="analyzed">
+            <svg width="19px" height="19px" viewBox="0 0 19 19">
+              <use xlink:href="#face-${sentimentClass}"></use>
+            </svg>
+            <p class="depiction analyzed__${sentimentClass}">${doc.text}</p>
+            <span class="hidden-reference"><button data-action="play">play</button></span>
+          </li>`
         }
+
+        if (doc.text) {
+          return `<li data-id="${doc.id}">
+            <span class="progress">
+              <span class="progress_bar"></span>
+            </span>
+            <p class="depiction">${doc.text}</p>
+            <span class="status__${docProgress}">
+              <strong>${statusText}</strong> &mdash; ${statusDesc}
+            </span>
+            <span class="hidden-reference"><button data-action="play">play</button></span>
+          </li>`
+        }
+
+        return `<li data-id="${doc.id}">
+          <span class="progress">
+            <span class="progress_bar"></span>
+          </span>
+          <p class="depiction">uploading...</p>
+          <span class="hidden-reference"><button data-action="play">play</button></span>
+        </li>`
       }).join('\n')
 
     $notes.innerHTML = html
