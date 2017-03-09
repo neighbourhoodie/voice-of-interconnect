@@ -35,8 +35,6 @@ function CanvasAudio (volume, time, analyser) {
   canvasCtx.clearRect(0, 0, WIDTH, HEIGHT)
 
   function draw () {
-    requestAnimationFrame(draw)
-
     analyser.getByteTimeDomainData(dataArray)
 
     canvasCtx.fillStyle = 'rgba(0, 0, 0, 0)'
