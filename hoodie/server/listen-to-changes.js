@@ -35,13 +35,8 @@ function listenToChanges (server, name) {
 
     // Unless dbUrl is set, this will not work until this bug is resolved:
     // https://github.com/pouchdb/pouchdb-server/pull/214
-    store.db.changes({
-      since: 'now',
-      live: true,
-      include_docs: true
-    })
-    .on('change', function (change) {
-      handleUserChange(server, store, change.doc)
+    store.on('change', function (eventName, doc) {
+      handleUserChange(server, store, eventName, doc)
     })
   })
 }

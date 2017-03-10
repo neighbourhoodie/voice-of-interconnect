@@ -40,7 +40,7 @@ function render ($notes, hoodie) {
         if ('sentiment' in doc) {
           var sentimentClass = doc.sentiment >= 0 ? 'happy' : 'sad'
 
-          return `<li data-id="${doc.id}" class="analyzed">
+          return `<li data-id="${doc._id}" class="analyzed">
             <svg width="19px" height="19px" viewBox="0 0 19 19">
               <use xlink:href="#face-${sentimentClass}"></use>
             </svg>
@@ -50,7 +50,7 @@ function render ($notes, hoodie) {
         }
 
         if (doc.text) {
-          return `<li data-id="${doc.id}">
+          return `<li data-id="${doc._id}">
             <span class="progress">
               <span class="progress_bar"></span>
             </span>
@@ -62,7 +62,7 @@ function render ($notes, hoodie) {
           </li>`
         }
 
-        return `<li data-id="${doc.id}">
+        return `<li data-id="${doc._id}">
           <span class="progress">
             <span class="progress_bar"></span>
           </span>
@@ -91,5 +91,13 @@ function handleNotesClick (hoodie, event) {
     var audio = document.createElement('audio')
     audio.src = URL.createObjectURL(blob)
     audio.play()
+  })
+
+  .catch(function (error) {
+    if (error.status === 404) {
+      // this is a text-only note, no audio file to play. Ignore error
+    }
+
+    throw error
   })
 }

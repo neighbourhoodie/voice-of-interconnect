@@ -3,8 +3,14 @@ module.exports = handleUserChange
 const sentiment = require('./sentiment')
 const speechToText = require('./speech-to-text')
 
-function handleUserChange (server, store, doc) {
-  server.log(['info', 'change'], `${doc._id} by ${doc.createdAt}`)
+function handleUserChange (server, store, eventName, doc) {
+  if (!doc.hoodie) {
+    server.log(['warn', 'change'], `Ignoring change in ${doc._id}: not a Hoodie document`)
+    server.log(['verbose', 'change'], JSON.stringify(doc))
+    return
+  }
+
+  server.log(['info', 'change'], `${doc._id} by ${doc.hoodie.createdAt}`)
   var noteId = toDocId(doc)
 
   if (isSpeech(doc)) {

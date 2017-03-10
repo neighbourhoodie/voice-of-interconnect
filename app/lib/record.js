@@ -83,12 +83,12 @@ function record (hoodie) {
 
     const noteId = 'note/' + generateRandomString(7)
     const note = {
-      id: noteId,
+      _id: noteId,
       hasSpeech: true,
       progress: []
     }
     const speech = {
-      id: noteId + '/speech',
+      _id: noteId + '/speech',
       _attachments: {
         'speech': {
           content_type: state.audio.type,
@@ -160,7 +160,7 @@ function record (hoodie) {
     const text = $answerField.value
     const noteId = 'note/' + generateRandomString(7)
     const note = {
-      id: noteId,
+      _id: noteId,
       text: text,
       hasSpeech: false,
       progress: []
