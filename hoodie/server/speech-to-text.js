@@ -10,7 +10,7 @@ function speechToText (server, store, noteId) {
     return new Promise((resolve, reject) => {
       setTimeout(function () {
         addText(store, noteId, 'I love dinosaurs').then(resolve, reject)
-      }, 3000)
+      }, server.app.simulateWatsonTimeout)
     })
   }
 

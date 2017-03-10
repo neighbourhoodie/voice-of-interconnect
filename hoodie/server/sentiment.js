@@ -7,7 +7,7 @@ function sentiment (server, store, noteId, text) {
     return new Promise((resolve, reject) => {
       setTimeout(function () {
         addSentiment(store, noteId, parseFloat(Math.random().toFixed(6))).then(resolve, reject)
-      }, 3000)
+      }, server.app.simulateWatsonTimeout)
     })
   }
 

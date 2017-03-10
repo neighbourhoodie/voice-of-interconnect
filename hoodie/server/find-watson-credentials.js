@@ -25,6 +25,7 @@ function findWatsonCredentials (server) {
   if (unsetEnvVariables) {
     server.log(['info', 'app'], `Simulating Watson services (unset env: ${unsetEnvVariables})`)
     server.app.simulateWatson = true
+    server.app.simulateWatson = process.env.WATSON_MOCK_TIMEOUT || 3000
     return
   }
 
