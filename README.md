@@ -57,7 +57,9 @@ following 3 environment variables
 1. `SPEECH_TO_TEXT_PASSWORD`
 1. `ALCHEMY_API_KEY`
 
-If they are not set, the services are simulated.
+If they are not set, the services are simulated. There is a default timeout of
+3000ms for both the transcription and sentiment analysis. You can change the
+timeout with `WATSON_MOCK_TIMEOUT` (ms)
 
 ## Deployment
 
