@@ -71,7 +71,7 @@ For testing integration with Watson Services
 
 ```
 # Speech to Text (uploads hardcoded file from public/assets)
-SPEECH_TO_TEXT_USERNAME=... SPEECH_TO_TEXT_PASSWORD=... node bin/speech-to-text.js assets/speech.webm
+SPEECH_TO_TEXT_USERNAME=... SPEECH_TO_TEXT_PASSWORD=... node bin/speech-to-text.js test/fixtures/speech.webm
 # .webm and .ogg files are supported
 # set FFMPEG_PATH for .webm if ffmpeg binary is not globally linked
 
