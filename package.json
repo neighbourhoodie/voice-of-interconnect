@@ -46,11 +46,18 @@
     "d3": "^4.7.0",
     "html-webpack-plugin": "^2.28.0",
     "node-sass": "^4.5.0",
+    "nyc": "^10.1.2",
+    "pouchdb-adapter-memory": "^6.1.2",
+    "pouchdb-core": "^6.1.2",
     "pouchdb-idb": "^1.0.1",
+    "pouchdb-mapreduce": "^6.1.2",
+    "pouchdb-replication": "^6.1.2",
     "sass-loader": "^6.0.2",
+    "simple-mock": "^0.7.3",
     "standard": "^8.6.0",
     "style-loader": "^0.13.1",
-    "webpack-dev-server": "^2.4.1",
-    "webpack": "^2.2.1"
+    "tap": "^10.3.0",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   }
 }
