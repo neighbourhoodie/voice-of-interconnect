@@ -37,7 +37,7 @@
     "node": "6.9.x"
   },
   "devDependencies": {
-    "@hoodie/client": "^9.0.2",
+    "@hoodie/client": "^10.0.0",
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
     "chart.js": "^2.5.0",
