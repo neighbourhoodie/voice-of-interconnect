@@ -5,7 +5,7 @@
 `voice-of-interconnect` is a simple HTML/CSS/JavaScript app and uses [Hoodie](https://github.com/hoodiehq/hoodie)
 for its backend.
 
-![System Architecture](assets/system-architecture-diagram.svg)
+![System Architecture](assets/system-architecture-diagram.png)
 
 ## Requirements
 
