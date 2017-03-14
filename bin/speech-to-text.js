@@ -2,6 +2,7 @@ const fs = require('fs')
 
 const ffmpeg = require('fluent-ffmpeg')
 const SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1')
+const {SPEECH_TO_TEXT_USERNAME, SPEECH_TO_TEXT_PASSWORD} = process.env
 
 if (process.env.FFMPEG_PATH) {
   ffmpeg.setFfmpegPath(process.env.FFMPEG_PATH)
@@ -19,14 +20,14 @@ if (!/\.(webm|ogg)$/.test(pathToSpeechFile)) {
   process.exit(1)
 }
 
-if (!process.env.SPEECH_TO_TEXT_USERNAME || !process.env.SPEECH_TO_TEXT_PASSWORD) {
+if (!SPEECH_TO_TEXT_USERNAME || !SPEECH_TO_TEXT_PASSWORD) {
   console.log('Error: SPEECH_TO_TEXT_USERNAME & SPEECH_TO_TEXT_PASSWORD must be set.')
   process.exit(1)
 }
 
 const speechToText = new SpeechToTextV1({
-  username: process.env.SPEECH_TO_TEXT_USERNAME,
-  password: process.env.SPEECH_TO_TEXT_PASSWORD
+  username: SPEECH_TO_TEXT_USERNAME,
+  password: SPEECH_TO_TEXT_PASSWORD
 })
 
 if (/\.ogg$/.test(pathToSpeechFile)) {

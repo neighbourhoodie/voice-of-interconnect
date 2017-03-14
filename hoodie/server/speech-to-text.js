@@ -14,10 +14,7 @@ function speechToText (server, store, noteId) {
     })
   }
 
-  const api = new SpeechToTextV1({
-    username: process.env.SPEECH_TO_TEXT_USERNAME,
-    password: process.env.SPEECH_TO_TEXT_PASSWORD
-  })
+  const api = new SpeechToTextV1(server.app.speechToText)
   return Promise.all([
     store.find(`${noteId}/speech`),
     store.db.getAttachment(`${noteId}/speech`, 'speech')
