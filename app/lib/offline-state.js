@@ -8,7 +8,12 @@ function detectOffline (hoodie) {
   hoodie.connectionStatus.on('disconnect', handleOfflineState.bind(null, hoodie))
   hoodie.connectionStatus.on('reconnect', handleOnlineState.bind(null, hoodie))
 
-  hoodie.connectionStatus.startChecking({interval: 3000}).then(function () {
+  hoodie.connectionStatus.startChecking({
+    interval: {
+      connected: 30000,
+      disconnected: 3000
+    }
+  }).then(function () {
     if (hoodie.connectionStatus.ok === false) {
       // we are offline
       handleOfflineState(hoodie)
