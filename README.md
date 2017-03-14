@@ -55,7 +55,8 @@ following 3 environment variables
 
 1. `SPEECH_TO_TEXT_USERNAME`
 1. `SPEECH_TO_TEXT_PASSWORD`
-1. `ALCHEMY_API_KEY`
+1. `NATURAL_LANGUAGE_UNDERSTANDING_USERNAME`
+1. `NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD`
 
 If they are not set, the services are simulated. There is a default timeout of
 3000ms for both the transcription and sentiment analysis. You can change the
@@ -76,7 +77,7 @@ SPEECH_TO_TEXT_USERNAME=... SPEECH_TO_TEXT_PASSWORD=... node bin/speech-to-text.
 # set FFMPEG_PATH for .webm if ffmpeg binary is not globally linked
 
 # Sentiment (pass any text you like)
-ALCHEMY_API_KEY=... node bin/text-to-sentiment.js Marvin is a sore loser
+NATURAL_LANGUAGE_UNDERSTANDING_USERNAME=... NATURAL_LANGUAGE_UNDERSTANDING_PASSWORD=... node bin/text-to-sentiment.js Marvin is a sore loser
 ```
 
 ## License
