@@ -40,10 +40,13 @@
   }
 }
 
-.offline {
+.active {
   .system__state{
-    &.reconnecting {
+    position: fixed;
+
+    &.reconnecting.offline {
       bottom: 0;
+      z-index: 3;
 
       strong {
         color: $slowMustard;
@@ -52,7 +55,7 @@
         }
       }
     }
-    &.restored {
+    &.restored.online {
       bottom: 0;
 
       strong {

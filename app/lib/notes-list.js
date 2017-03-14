@@ -20,12 +20,16 @@ function render ($notes, hoodie) {
       })
       .map(function (doc) {
         let docProgress
-        if (doc.progress.length > 0) {
-          docProgress = doc.progress[doc.progress.length - 1].type
-        }
-
         let statusText
         let statusDesc
+
+        if (doc.progress.length > 0) {
+          docProgress = doc.progress[doc.progress.length - 1].type
+        } else {
+          docProgress = 'uploading'
+          statusText = 'Uploading'
+          statusDesc = 'Sending your voice to the heavens...'
+        }
 
         if (docProgress === 'transcription') {
           statusText = 'Processing'
@@ -34,8 +38,6 @@ function render ($notes, hoodie) {
           statusText = 'Analyzing'
           statusDesc = 'Detecting sentiment...'
         }
-
-        // const docText = doc.text
 
         if ('sentiment' in doc) {
           var sentimentClass = doc.sentiment >= 0 ? 'happy' : 'sad'
@@ -51,7 +53,7 @@ function render ($notes, hoodie) {
 
         if (doc.text) {
           return `<li data-id="${doc._id}">
-            <span class="progress">
+            <span class="progress ${docProgress}">
               <span class="progress_bar"></span>
             </span>
             <p class="depiction">${doc.text}</p>
@@ -63,10 +65,12 @@ function render ($notes, hoodie) {
         }
 
         return `<li data-id="${doc._id}">
-          <span class="progress">
+          <span class="progress ${docProgress}">
             <span class="progress_bar"></span>
           </span>
-          <p class="depiction">uploading...</p>
+          <span class="status ${docProgress}">
+            <strong>${statusText}</strong> &mdash; ${statusDesc}
+          </span>
           <span class="hidden-reference"><button data-action="play">play</button></span>
         </li>`
       }).join('\n')
