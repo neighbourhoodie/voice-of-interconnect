@@ -16,7 +16,6 @@
     align-items: flex-end;
     background: $purple;
     display: flex;
-    height: 25%;
     padding-bottom: 15%;
     width: 100%;
 
@@ -26,22 +25,21 @@
     }
 
     a.close {
-      margin: 10% auto 12px;
-      display: inline-block;
+      margin: 10% auto 12px -11px;
+      position: absolute;
+      top: 0;
     }
 
     h3 {
-      font-size: 24px;
-      margin: auto;
+      font-size: 6vw;
+      margin: 100px auto auto;
       padding-bottom: 12px;
       text-align: center;
-
-      margin: auto;
       width: 80%;
     }
     p {
-      font-size: 18px;
-      line-height: 22px;
+      font-size: 5.5vw;
+      line-height: 7vw;
       font-weight: 300;
 
       margin: auto;
@@ -84,12 +82,22 @@
     width: 100%;
 
     .progress_bar {
-      background: #23B3A9;
+      background: $progressGreen;
       position: absolute;
       height: 100%;
       left: 0;
-      width: 8%;
+      width: 0%;
       transition: all .3s ease;
+    }
+
+    &.uploading .progress_bar {
+      width: 10%;
+    }
+    &.processing .progress_bar {
+      width: 60%;
+    }
+    &.analyzing .progress_bar {
+      width: 90%;
     }
   }
   .depiction {
