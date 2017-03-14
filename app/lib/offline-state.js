@@ -1,6 +1,7 @@
 module.exports = detectOffline
 
-const $body = document.querySelector('body')
+const $systemStateOffline = document.querySelector('#reconnecting')
+const $systemStateOnline = document.querySelector('#restored')
 const $recordings = document.querySelector('#stage__recordings')
 
 function detectOffline (hoodie) {
@@ -9,12 +10,17 @@ function detectOffline (hoodie) {
 
     function handleOfflineState() {
       $recordings.classList.add('offline')
-      $body.classList.add('offline')
+      $systemStateOffline.classList.add('offline')
     }
 
     function handleOnlineState() {
       $recordings.classList.remove('offline')
-      $body.classList.remove('offline')
+      $systemStateOffline.classList.remove('offline')
+
+      $systemStateOnline.classList.add('online')
+      setTimeout(function(){
+        $systemStateOnline.classList.remove('online')
+      }, 3000)
     }
 
     if (hoodie.connectionStatus.ok === false) {

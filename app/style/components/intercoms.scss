@@ -40,30 +40,28 @@
   }
 }
 
-.offline {
-  .active {
-    .system__state{
-      position: fixed;
+.active {
+  .system__state{
+    position: fixed;
 
-      &.reconnecting {
-        bottom: 0;
-        z-index: 3;
+    &.reconnecting.offline {
+      bottom: 0;
+      z-index: 3;
 
-        strong {
-          color: $slowMustard;
-          &::before {
-            border-color: $slowMustard;
-          }
+      strong {
+        color: $slowMustard;
+        &::before {
+          border-color: $slowMustard;
         }
       }
-      &.restored {
-        bottom: 0;
+    }
+    &.restored.online {
+      bottom: 0;
 
-        strong {
-          color: $progressGreen;
-          &::before {
-            border-color: $progressGreen;
-          }
+      strong {
+        color: $progressGreen;
+        &::before {
+          border-color: $progressGreen;
         }
       }
     }
