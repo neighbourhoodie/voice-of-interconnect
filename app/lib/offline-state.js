@@ -5,25 +5,26 @@ const $systemStateOnline = document.querySelector('#restored')
 const $recordings = document.querySelector('#stage__recordings')
 
 function detectOffline (hoodie) {
-  hoodie.connectionStatus.on('disconnect', handleOfflineState)
-  hoodie.connectionStatus.on('reconnect', handleOnlineState)
+  hoodie.connectionStatus.on('disconnect', handleOfflineState.bind(null, hoodie))
+  hoodie.connectionStatus.on('reconnect', handleOnlineState.bind(null, hoodie))
 
   hoodie.connectionStatus.startChecking({interval: 3000}).then(function () {
     if (hoodie.connectionStatus.ok === false) {
       // we are offline
-      handleOfflineState()
+      handleOfflineState(hoodie)
     }
   })
 }
 
-function handleOfflineState () {
+function handleOfflineState (hoodie) {
   $recordings.classList.add('offline')
   $systemStateOffline.classList.add('offline')
 }
 
-function handleOnlineState () {
+function handleOnlineState (hoodie) {
   $recordings.classList.remove('offline')
   $systemStateOffline.classList.remove('offline')
+  hoodie.store.connect()
 
   $systemStateOnline.classList.add('online')
   setTimeout(function () {
