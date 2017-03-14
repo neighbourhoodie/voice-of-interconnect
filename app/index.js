@@ -10,6 +10,7 @@ const assureAccount = require('./lib/assure-account')
 const notesList = require('./lib/notes-list')
 const record = require('./lib/record')
 const setAppStatus = require('./lib/set-app-status')
+const detectOffline = require('./lib/offline-state.js')
 
 require('./style/base.scss')
 
@@ -27,6 +28,7 @@ function init () {
   setAppStatus('app is ready')
   console.log('starting app')
 
+  detectOffline(hoodie)
   notesList(hoodie)
 }
 

@@ -233,7 +233,18 @@
 
 
       </ol>
-      <table id="notes"></table>
+
+      <section class="system__state reconnecting">
+        <p class="message">
+          <strong>Reconnecting </strong> &mdash; Don’t worry, your data is safe.
+        </p>
+      </section>
+
+      <section class="system__state restored">
+        <p class="message">
+          <strong>Connection restored </strong> &mdash; Woot!
+        </p>
+      </section>
     </section>
 
   </div>
@@ -252,19 +263,5 @@
 
 
     </div>
-
-    <!-- TODO: update class `reconnecting` or `restored` based on system state
-    to get appropriate styling. Governed by `offline` class applied to body. -->
-    <section class="system__state reconnecting">
-      <p class="message">
-        <strong>Reconnecting </strong> &mdash; Don’t worry, your data is safe.
-      </p>
-    </section>
-
-    <section class="system__state restored">
-      <p class="message">
-        <strong>Connection restored </strong> &mdash; Woot!
-      </p>
-    </section>
   </body>
 </html>

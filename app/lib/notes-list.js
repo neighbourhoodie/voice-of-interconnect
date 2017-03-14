@@ -1,8 +1,6 @@
 /* global URL */
 module.exports = notesList
 
-const detectOffline = require('./offline-state.js')
-
 function notesList (hoodie) {
   var $notes = document.querySelector('#recordings')
 
@@ -10,14 +8,10 @@ function notesList (hoodie) {
   render($notes, hoodie)
 
   $notes.addEventListener('click', handleNotesClick.bind(null, hoodie))
-
-  detectOffline(hoodie)
 }
 
 function render ($notes, hoodie) {
   hoodie.store.findAll()
-  hoodie.connectionStatus.on('disconnect', handleOfflineState)
-  hoodie.connectionStatus.on('reconnect', handleOnlineState)
 
   .then(function (docs) {
     var html = docs
@@ -32,6 +26,7 @@ function render ($notes, hoodie) {
         if (doc.progress.length > 0) {
           docProgress = doc.progress[doc.progress.length - 1].type
         } else {
+          docProgress = 'uploading'
           statusText = 'Uploading'
           statusDesc = 'Sending your voice to the heavens...'
         }
@@ -109,14 +104,4 @@ function handleNotesClick (hoodie, event) {
 
     throw error
   })
-}
-
-function handleOfflineState() {
-  console.log('handle Offline');
-  return "offline"
-}
-
-function handleOnlineState() {
-  console.log('whaat');
-  return "reconnected!"
 }

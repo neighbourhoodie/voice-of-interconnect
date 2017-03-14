@@ -4,7 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   height: 100%;
-  overflow: scroll;
+  overflow: hidden;
   position: absolute;
   width: 100%;
   z-index: 2;
@@ -119,18 +119,12 @@
         position: absolute;
         width: 4px;
         height: 4px;
-        border: 2px solid;
+        border: 2px solid $progressGreen;
         border-radius: 6px;
 
         left: 10px;
         top: 10px;
-      }
-    }
 
-    &.transcription,
-    &.analyzing {
-      strong::before {
-        border-color: $progressGreen;
       }
     }
   }
@@ -157,6 +151,7 @@
 
   // transition to properties
   &.active {
+    overflow: scroll;
     top: 0;
 
     ol {
