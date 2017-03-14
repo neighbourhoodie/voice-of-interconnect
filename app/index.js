@@ -13,23 +13,21 @@ const setAppStatus = require('./lib/set-app-status')
 
 require('./style/base.scss')
 
-hoodie.ready.then(() => {
-  record(hoodie)
-  assureAccount(hoodie)
-    .then(function () {
-      console.log('signed up as', hoodie.account.username)
-      init()
-    })
-    .catch(function (error) {
-      setAppStatus('Error: ' + error)
-    })
+record(hoodie)
+assureAccount(hoodie)
+  .then(function () {
+    console.log('signed up as', hoodie.account.username)
+    init()
+  })
+  .catch(function (error) {
+    setAppStatus('Error: ' + error)
+  })
 
-  function init () {
-    setAppStatus('app is ready')
-    console.log('starting app')
+function init () {
+  setAppStatus('app is ready')
+  console.log('starting app')
 
-    notesList(hoodie)
-  }
-})
+  notesList(hoodie)
+}
 
 global.hoodie = hoodie

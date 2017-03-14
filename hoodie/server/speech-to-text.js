@@ -10,7 +10,7 @@ function speechToText (server, store, noteId) {
     return new Promise((resolve, reject) => {
       setTimeout(function () {
         addText(store, noteId, 'I love dinosaurs').then(resolve, reject)
-      }, 3000)
+      }, server.app.simulateWatsonTimeout)
     })
   }
 
@@ -30,11 +30,11 @@ function speechToText (server, store, noteId) {
       let text = ''
 
       if (doc._attachments.speech.content_type === 'audio/ogg') {
-        server.log(['verbose', 'speech-to-text'], `${doc.id}: already in ogg format, no conversion required`)
+        server.log(['verbose', 'speech-to-text'], `${doc._id}: already in ogg format, no conversion required`)
         textStream = audioStream
           .pipe(api.createRecognizeStream())
       } else {
-        server.log(['verbose', 'speech-to-text'], `${doc.id}: converting webm to ogg...`)
+        server.log(['verbose', 'speech-to-text'], `${doc._id}: converting webm to ogg...`)
 
         textStream = ffmpeg(audioStream)
           .on('error', (error) => {
