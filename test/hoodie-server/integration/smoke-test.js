@@ -60,7 +60,7 @@ test('smoke test', (group) => {
             })
           })
 
-          userDb.add(require('../fixtures/new-note-and-speech'))
+          userDb.add(require('../../fixtures/new-note-and-speech'))
         })
       })
     })
