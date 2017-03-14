@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "standard",
-    "test": "nyc tap test/hoodie-server/*-test.js",
+    "test": "nyc tap 'test/hoodie-server/**/*-test.js'",
     "start": "hoodie",
     "build": "npm run -s build-app && npm run -s build-visualization",
     "build-app": "webpack --config app/webpack.config.js",
