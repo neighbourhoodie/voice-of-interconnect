@@ -22,7 +22,9 @@ function sentiment (server, store, noteId, text) {
     })
   }
 
-  const api = new NaturalLanguageUnderstandingV1(server.app.naturalLanguageUnderstanding)
+  const api = new NaturalLanguageUnderstandingV1(Object.assign({
+    version_date: NaturalLanguageUnderstandingV1.VERSION_DATE_2017_02_27
+  }, server.app.naturalLanguageUnderstanding))
 
   return new Promise((resolve, reject) => {
     api.analyze({
@@ -74,7 +76,11 @@ function addAnalysis (store, noteId, analysis) {
     })
 
     // this is what we use in the app
-    doc.sentiment = analysis[0].sentiment.score || 0
+    if (analysis[0]) {
+      doc.sentiment = analysis[0].sentiment.score || 0
+    } else {
+      doc.sentiment = 0
+    }
 
     // this is just in case we decide to use any of this information later
     doc.analysis = analysis
