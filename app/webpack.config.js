@@ -41,12 +41,13 @@ module.exports = {
         main: [
           '*.js'
         ],
-        additional: [
-          'https://fonts.googleapis.com/*',
-          'https://fonts.gstatic.com/*'
-        ]
+        additional: []
       },
-      externals: ['index.html'],
+      externals: [
+        'index.html',
+        'https://fonts.googleapis.com/*',
+        'https://fonts.gstatic.com/*'
+      ],
       excludes: ['assets/README.md'],
 
       ServiceWorker: {
