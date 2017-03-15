@@ -52,8 +52,6 @@ function render ($notes, hoodie) {
         }
 
         if (doc.text) {
-
-          console.log(docProgress);
           return `<li data-id="${doc._id}" data-state="stop">
             <span class="progress ${docProgress}">
               <span class="progress_bar"></span>
@@ -67,7 +65,6 @@ function render ($notes, hoodie) {
           </li>`
         }
 
-        console.log(docProgress);
         return `<li data-id="${doc._id}" data-state="stop">
           <span class="progress ${docProgress}">
             <span class="progress_bar"></span>
