@@ -44,6 +44,10 @@ module.exports = {
           'index.html'
         ],
         additional: [
+          'assets/manifest.json',
+          'assets/app-icon-1x.png',
+          'assets/app-icon-2x.png',
+          'assets/app-icon-4x.png',
           'https://fonts.googleapis.com/css?family=Lato:300,400,700,700i'
         ],
         optional: [
@@ -52,6 +56,10 @@ module.exports = {
       },
       externals: [
         'index.html',
+        'assets/manifest.json',
+        'assets/app-icon-1x.png',
+        'assets/app-icon-2x.png',
+        'assets/app-icon-4x.png',
         'https://fonts.googleapis.com/css?family=Lato:300,400,700,700i',
         'https://fonts.gstatic.com/*'
       ],

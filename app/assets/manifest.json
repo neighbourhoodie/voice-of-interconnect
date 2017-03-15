@@ -1,0 +1,26 @@
+{
+  "short_name": "Voice of InterConnect",
+  "name": "Voice of InterConnect",
+  "icons": [
+    {
+      "src": "app-icon-1x.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "app-icon-2x.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "app-icon-4x.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "../index.html?pwa",
+  "background_color": "#381650",
+  "theme_color": "#381650",
+  "display": "standalone",
+  "orientation": "portrait"
+}
