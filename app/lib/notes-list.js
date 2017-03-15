@@ -42,17 +42,18 @@ function render ($notes, hoodie) {
         if ('sentiment' in doc) {
           var sentimentClass = doc.sentiment >= 0 ? 'happy' : 'sad'
 
-          return `<li data-id="${doc._id}" class="analyzed">
+          return `<li data-id="${doc._id}" class="analyzed" data-state="stop">
             <svg width="19px" height="19px" viewBox="0 0 19 19">
               <use xlink:href="#face-${sentimentClass}"></use>
             </svg>
             <p class="depiction analyzed__${sentimentClass}">${doc.text}</p>
-            <span class="hidden-reference"><button data-action="play">play</button></span>
+            <button data-action="play">►</button>
+            <button data-action="stop">◼︎</button>
           </li>`
         }
 
         if (doc.text) {
-          return `<li data-id="${doc._id}">
+          return `<li data-id="${doc._id}" data-state="stop">
             <span class="progress ${docProgress}">
               <span class="progress_bar"></span>
             </span>
@@ -60,18 +61,20 @@ function render ($notes, hoodie) {
             <span class="status ${docProgress}">
               <strong>${statusText}</strong> &mdash; ${statusDesc}
             </span>
-            <span class="hidden-reference"><button data-action="play">play</button></span>
+            <button data-action="play">►</button>
+            <button data-action="stop">◼︎</button>
           </li>`
         }
 
-        return `<li data-id="${doc._id}">
+        return `<li data-id="${doc._id}" data-state="stop">
           <span class="progress ${docProgress}">
             <span class="progress_bar"></span>
           </span>
           <span class="status ${docProgress}">
             <strong>${statusText}</strong> &mdash; ${statusDesc}
           </span>
-          <span class="hidden-reference"><button data-action="play">play</button></span>
+          <button data-action="play">►</button>
+          <button data-action="stop">◼︎</button>
         </li>`
       }).join('\n')
 
@@ -79,22 +82,43 @@ function render ($notes, hoodie) {
   })
 }
 
+let audio, $lastLi
 function handleNotesClick (hoodie, event) {
   event.preventDefault()
+  const $li = event.target.closest('[data-state]')
 
-  var action = event.target.dataset.action
+  const action = event.target.dataset.action
+  if (action === 'stop') {
+    audio.pause()
+    $li.dataset.state = 'stop'
+  }
   if (action !== 'play') {
     return
   }
+
+  if (audio) {
+    $lastLi.dataset.state = 'stop'
+    audio.pause()
+  }
+
+  $li.dataset.state = 'play'
 
   var id = event.target.closest('[data-id]').dataset.id
 
   hoodie.store.db.getAttachment(id + '/speech', 'speech')
 
   .then(function (blob) {
-    var audio = document.createElement('audio')
+    audio = document.createElement('audio')
     audio.src = URL.createObjectURL(blob)
+
+    // events https://developer.mozilla.org/en-US/Apps/Fundamentals/Audio_and_video_delivery/Cross-browser_audio_basics#Media_Playing_Events
+    audio.addEventListener('ended', function () {
+      $li.dataset.state = 'stop'
+    })
+
     audio.play()
+
+    $lastLi = $li
   })
 
   .catch(function (error) {

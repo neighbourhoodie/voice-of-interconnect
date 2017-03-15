@@ -69,6 +69,14 @@
       padding: 10px;
       width: 93.75%;
       transition: all .8s ease;
+
+      &[data-state] [data-action] {
+        display: none;
+      }
+      &[data-state="play"] [data-action="stop"],
+      &[data-state="stop"] [data-action="play"] {
+        display: block;
+      }
     }
   }
 
