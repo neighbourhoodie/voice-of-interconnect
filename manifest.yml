@@ -1,0 +1,20 @@
+declared-services:
+  voice-of-interconnect-cloudant:
+    label: cloudantNoSQLDB
+    plan: Lite
+  voice-of-interconnect-speech-to-text:
+    label: speech_to_text
+    plan: standard
+  voice-of-interconnect-natural-language-understanding:
+    label: natural-language-understanding
+    plan: free
+applications:
+  - name: voice-of-interconnect
+    buildpack: https://github.com/markwatsonatx/nodejs-buildpack#ffmpeg
+    instances: 1
+    memory: 1024M
+    disk_quota: 1024M
+    services:
+    - voice-of-interconnect-cloudant
+    - voice-of-interconnect-speech-to-text
+    - voice-of-interconnect-natural-language-understanding
