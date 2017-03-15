@@ -7,8 +7,8 @@ exports.register.attributes = {
 // added redirect
 function redirect (server, options, next) {
   server.ext('onRequest', function (request, reply) {
-    const isHttp = request.connection.info.protocol === 'http'
-    const host = request.headers.host
+    const isHttp = request.headers['x-forwarded-proto'] ? request.headers['x-forwarded-proto'] === 'http' : request.connection.info.protocol === 'http'
+    const host = request.headers['x-forwarded-host'] ? request.headers['x-forwarded-host'] : request.headers.host
     const isLocal = /^(localhost|127\.0\.0\.1)/.test(host)
 
     if (isHttp && !isLocal) {
