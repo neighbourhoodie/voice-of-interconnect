@@ -5,12 +5,15 @@ plugin.attributes = {
 
 const findWatsonCredentials = require('./find-watson-credentials')
 const listenToChanges = require('./listen-to-changes')
+const redirectPlugin = require('./redirect')
 
 function plugin (server, options, next) {
   const Account = server.plugins.account.api
   const Store = server.plugins.store.api
 
   findWatsonCredentials(server)
+
+  server.register(redirectPlugin)
 
   server.log(['verbose', 'app'], 'loading all user dbs')
   Account.accounts.findAll({})
