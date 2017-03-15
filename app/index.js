@@ -2,6 +2,7 @@
 
 const Hoodie = require('@hoodie/client')
 const OfflinePlugin = require('offline-plugin/runtime')
+const PouchDB = require('pouchdb-browser')
 
 const assureAccount = require('./lib/assure-account')
 const notesList = require('./lib/notes-list')
@@ -14,7 +15,7 @@ require('./style/base.scss')
 
 const hoodie = new Hoodie({
   url: location.origin,
-  PouchDB: require('pouchdb-idb')
+  PouchDB: PouchDB
 })
 
 OfflinePlugin.install({
