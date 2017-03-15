@@ -68,6 +68,10 @@ timeout with `WATSON_MOCK_TIMEOUT` (ms)
 
 See [Deployment docs](http://docs.hood.ie/en/latest/guides/deployment.html) as well as [Deploy to Bluemix](https://github.com/hoodiehq/hoodie-app-tracker/blob/master/deployment.md#deploy-with-bluemix)
 
+Note: the app is redirecting form `http://` to `https://` unless the host is
+`localhost` or `127.0.0.1`. The redirect can be disabled with an environment
+variable: `NO_REDIRECT=1`
+
 ## Scripts
 
 For testing integration with Watson Services
