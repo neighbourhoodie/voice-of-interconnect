@@ -23,6 +23,7 @@ function detectOffline (hoodie) {
 
 function handleOfflineState (hoodie) {
   $recordings.classList.add('offline')
+
   $systemStateOffline.classList.add('offline')
 }
 

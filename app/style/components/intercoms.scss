@@ -5,6 +5,28 @@
   transition: all .5s ease;
   z-index: 2;
 
+  &.reconnecting.offline.recording-list-active {
+    bottom: 0;
+    z-index: 3;
+
+    strong {
+      color: $slowMustard;
+      &::before {
+        border-color: $slowMustard;
+      }
+    }
+  }
+  &.restored.online.recording-list-active {
+    bottom: 0;
+
+    strong {
+      color: $progressGreen;
+      &::before {
+        border-color: $progressGreen;
+      }
+    }
+  }
+
   p.message {
     background: #FFFFFF;
     border-radius: 3px;
@@ -35,34 +57,6 @@
 
         left: 15px;
         top: 14px;
-      }
-    }
-  }
-}
-
-.active {
-  .system__state{
-    position: fixed;
-
-    &.reconnecting.offline {
-      bottom: 0;
-      z-index: 3;
-
-      strong {
-        color: $slowMustard;
-        &::before {
-          border-color: $slowMustard;
-        }
-      }
-    }
-    &.restored.online {
-      bottom: 0;
-
-      strong {
-        color: $progressGreen;
-        &::before {
-          border-color: $progressGreen;
-        }
       }
     }
   }

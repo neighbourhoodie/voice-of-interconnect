@@ -20,6 +20,8 @@ function record (hoodie) {
   const $answerField = document.querySelector('#answer__compose')
   const $submitAnswerButton = document.querySelector('#submitAnswer')
   const $listRecordings = document.querySelector('#list-recordings')
+  const $intercomOffline = document.querySelector('#reconnecting')
+  const $intercomOnline = document.querySelector('#restored')
   const state = {
     audio: null
   }
@@ -29,6 +31,8 @@ function record (hoodie) {
     event.preventDefault()
 
     $recordingsLists.classList.add('active')
+    $intercomOffline.classList.add('recording-list-active')
+    $intercomOnline.classList.add('recording-list-active')
   })
 
   $btnRecord.addEventListener('click', function (event) {
@@ -54,6 +58,8 @@ function record (hoodie) {
   $closeList.addEventListener('click', function (event) {
     event.preventDefault()
     $recordingsLists.classList.remove('active')
+    $intercomOffline.classList.remove('recording-list-active')
+    $intercomOnline.classList.add('recording-list-active')
   })
 
   $discardRecording.addEventListener('click', function (event) {
