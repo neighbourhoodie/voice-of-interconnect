@@ -1,4 +1,4 @@
-// For mobile navigation
+/* global localStorage */
 module.exports = appNav
 
 const $nav = document.querySelector('#app-nav')
@@ -10,25 +10,32 @@ const $aboutDisplay = document.querySelector('.about')
 const $closeAbout = document.querySelector('.close__about')
 
 function appNav () {
-  $showAbout.addEventListener('click', function (event) {
+  $showAbout.addEventListener('click', showAbout)
+  $showApp.addEventListener('click', showApp)
+  $closeAbout.addEventListener('click', showApp)
+
+  if (localStorage.getItem('seenWelcome')) {
+    return showApp()
+  }
+}
+
+function showAbout (event) {
+  event.preventDefault()
+
+  $aboutDisplay.classList.add('active')
+  $nav.classList.remove('active')
+
+  localStorage.setItem('seenWelcome', '1')
+}
+
+function showApp (event) {
+  if (event) {
     event.preventDefault()
+  }
 
-    $aboutDisplay.classList.add('active')
-    $nav.classList.remove('active')
-  })
+  $showApp.classList.add('active')
+  $aboutDisplay.classList.remove('active')
+  $nav.classList.remove('active')
 
-  $showApp.addEventListener('click', function (event) {
-    event.preventDefault()
-
-    $showApp.classList.add('active')
-    $aboutDisplay.classList.remove('active')
-    $nav.classList.remove('active')
-  })
-
-  $closeAbout.addEventListener('click', function (event) {
-    event.preventDefault()
-
-    $aboutDisplay.classList.remove('active')
-    $nav.classList.remove('active')
-  })
+  localStorage.setItem('seenWelcome', '1')
 }
