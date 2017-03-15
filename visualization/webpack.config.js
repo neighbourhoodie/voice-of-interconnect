@@ -39,15 +39,24 @@ module.exports = {
       safeToUseOptionalCaches: true,
       caches: {
         main: [
-          '*.js'
+          '*.js',
+          'index.html'
         ],
         additional: [
-          'https://fonts.googleapis.com/*',
+          'https://fonts.googleapis.com/css?family=Lato:300,400,700,700i'
+        ],
+        optional: [
           'https://fonts.gstatic.com/*'
         ]
       },
-      externals: ['index.html'],
-      excludes: ['assets/README.md'],
+      externals: [
+        'index.html',
+        'https://fonts.googleapis.com/css?family=Lato:300,400,700,700i',
+        'https://fonts.gstatic.com/*'
+      ],
+      excludes: [
+        'assets/README.md'
+      ],
 
       ServiceWorker: {
         events: true
