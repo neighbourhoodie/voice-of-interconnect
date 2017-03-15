@@ -30,7 +30,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './visualization/index.html'
+      template: './visualization/index.html',
+      rollbarAccessToken: process.env.ROLLBAR_CLIENT_ACCESS_TOKEN
     }),
     new CopyWebpackPlugin([
       {from: 'visualization/assets', to: 'assets'}
