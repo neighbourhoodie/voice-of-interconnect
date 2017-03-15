@@ -27,6 +27,7 @@
   "dependencies": {
     "fluent-ffmpeg": "^2.1.0",
     "hoodie": "^28.0.0",
+    "rollbar": "^0.6.5",
     "watson-developer-cloud": "^2.21.1"
   },
   "hoodie": {
