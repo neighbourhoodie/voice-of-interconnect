@@ -1,10 +1,7 @@
 /* global location */
 
 const Hoodie = require('@hoodie/client')
-const hoodie = new Hoodie({
-  url: location.origin,
-  PouchDB: require('pouchdb-idb')
-})
+const OfflinePlugin = require('offline-plugin/runtime')
 
 const assureAccount = require('./lib/assure-account')
 const notesList = require('./lib/notes-list')
@@ -13,6 +10,22 @@ const setAppStatus = require('./lib/set-app-status')
 const detectOffline = require('./lib/offline-state.js')
 
 require('./style/base.scss')
+
+const hoodie = new Hoodie({
+  url: location.origin,
+  PouchDB: require('pouchdb-idb')
+})
+
+OfflinePlugin.install({
+  onInstalled: function () {},
+  onUpdating: function () {},
+  onUpdateReady: function () {
+    OfflinePlugin.applyUpdate()
+  },
+  onUpdated: function () {
+    window.location.reload()
+  }
+})
 
 record(hoodie)
 assureAccount(hoodie)

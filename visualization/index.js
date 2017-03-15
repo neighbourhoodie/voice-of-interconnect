@@ -1,10 +1,22 @@
 const Chart = require('chart.js')
 const d3 = require('d3')
+const OfflinePlugin = require('offline-plugin/runtime')
 
 const loadAllSentiment = require('./lib/load-all-sentiments')
 const onNewSentiment = require('./lib/on-new-sentiment')
 
 require('./style/base.scss')
+
+OfflinePlugin.install({
+  onInstalled: function () {},
+  onUpdating: function () {},
+  onUpdateReady: function () {
+    OfflinePlugin.applyUpdate()
+  },
+  onUpdated: function () {
+    window.location.reload()
+  }
+})
 
 loadAllSentiment()
 

@@ -40,7 +40,7 @@ function assureAccount (hoodie) {
     })
 
     .then(function () {
-      return hoodie.store.addOrUpdate('_local/account', {password: options.password})
+      return hoodie.store.updateOrAdd('_local/account', {password: options.password})
     })
 
     .then(function () {
