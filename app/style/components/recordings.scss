@@ -70,13 +70,13 @@
       width: 93.75%;
       transition: all .8s ease;
 
-      &[data-state] [data-action] {
-        display: none;
-      }
-      &[data-state="play"] [data-action="stop"],
-      &[data-state="stop"] [data-action="play"] {
-        display: block;
-      }
+      // &[data-state] [data-action] {
+      //   display: none;
+      // }
+      // &[data-state="play"] [data-action="stop"],
+      // &[data-state="stop"] [data-action="play"] {
+      //   display: block;
+      // }
     }
   }
 
@@ -101,7 +101,7 @@
     &.uploading .progress_bar {
       width: 10%;
     }
-    &.processing .progress_bar {
+    &.transcription .progress_bar {
       width: 60%;
     }
     &.analyzing .progress_bar {
@@ -111,7 +111,7 @@
   .depiction {
     font-size: 14px;
     font-weight:400;
-    padding: 6px 5px 12px;
+    padding: 6px 5px 6px;
     margin: 0;
     width: 100%;
   }
@@ -122,6 +122,7 @@
     display: inline-block;
     font-size: 13px;
     font-weight: 400;
+    margin-top: 6px;
     padding: 6px 0;
     position: relative;
     background: $lightGrey;

@@ -46,12 +46,14 @@ function render ($notes, hoodie) {
               <use xlink:href="#face-${sentimentClass}"></use>
             </svg>
             <p class="depiction analyzed__${sentimentClass}">${doc.text}</p>
-            <button data-action="play">►</button>
-            <button data-action="stop">◼︎</button>
+            <button class="hidden-reference" data-action="play">►</button>
+            <button class="hidden-reference" data-action="stop">◼︎</button>
           </li>`
         }
 
         if (doc.text) {
+
+          console.log(docProgress);
           return `<li data-id="${doc._id}" data-state="stop">
             <span class="progress ${docProgress}">
               <span class="progress_bar"></span>
@@ -60,11 +62,12 @@ function render ($notes, hoodie) {
             <span class="status ${docProgress}">
               <strong>${statusText}</strong> &mdash; ${statusDesc}
             </span>
-            <button data-action="play">►</button>
-            <button data-action="stop">◼︎</button>
+            <button class="hidden-reference" data-action="play">►</button>
+            <button class="hidden-reference" data-action="stop">◼︎</button>
           </li>`
         }
 
+        console.log(docProgress);
         return `<li data-id="${doc._id}" data-state="stop">
           <span class="progress ${docProgress}">
             <span class="progress_bar"></span>
@@ -72,8 +75,8 @@ function render ($notes, hoodie) {
           <span class="status ${docProgress}">
             <strong>${statusText}</strong> &mdash; ${statusDesc}
           </span>
-          <button data-action="play">►</button>
-          <button data-action="stop">◼︎</button>
+          <button class="hidden-reference" data-action="play">►</button>
+          <button class="hidden-reference" data-action="stop">◼︎</button>
         </li>`
       }).join('\n')
 
