@@ -169,6 +169,8 @@
   // transition to properties
   &.active {
     overflow: scroll;
+    padding-right: 0;
+    padding-bottom: 15px;
     top: 0;
 
     ol {
