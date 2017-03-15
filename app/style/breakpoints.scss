@@ -1,0 +1,112 @@
+@media (min-width: 540px) {
+  .questions p {
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  .stage__recordings section.learn h3 {
+    font-size: 36px;
+  }
+
+  .stage__recordings section.learn p {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+}
+
+@media (min-width: 720px) {
+  nav {
+    display: none;
+  }
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+  }
+
+  div.stages {
+    border: 10px solid #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0px 2px rgba(0,0,0,.2);
+    float: left;
+    position: relative;
+    overflow: hidden;
+    height: 640px;
+    width: 360px;
+  }
+
+  div.about {
+    float: left;
+    max-width: 400px;
+    margin: 2%;
+    width: 40%;
+
+    .close__about {
+      display: none;
+    }
+  }
+
+  .active {
+    .system__state{
+
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  nav {
+    bottom: -500%;
+    transition: all .6s ease;
+
+    &.active {
+      bottom: 0;
+    }
+  }
+
+  div.about {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+    max-width: none;
+    z-index: 2;
+
+    top: -500%;
+    transition: all .2s ease;
+
+    .scroll-screen {
+      overflow: scroll;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      box-sizing: border-box;
+      padding: 30px 30px 120px 30px;
+    }
+
+    &.active{
+      top: 0;
+    }
+
+    .close__about {
+      background: $pink;
+      bottom: 0;
+      color: $white;
+      font-size: 20px;
+      font-weight: 400;
+      height: 60px;
+      left: 0;
+      line-height: 58px;
+      text-align: center;
+      text-decoration: none;
+      position: absolute;
+      width: 100%;
+    }
+  }
+}

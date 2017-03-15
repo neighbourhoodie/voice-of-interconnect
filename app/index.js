@@ -8,6 +8,7 @@ const notesList = require('./lib/notes-list')
 const record = require('./lib/record')
 const setAppStatus = require('./lib/set-app-status')
 const detectOffline = require('./lib/offline-state.js')
+const appNav = require('./lib/app-nav.js')
 
 require('./style/base.scss')
 
@@ -43,6 +44,7 @@ function init () {
 
   detectOffline(hoodie)
   notesList(hoodie)
+  appNav()
 }
 
 global.hoodie = hoodie

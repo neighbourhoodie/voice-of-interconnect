@@ -1,0 +1,30 @@
+div.about {
+  background: $mustyBlue;
+  box-sizing: border-box;
+  padding: 30px;
+
+  h3 {
+    font-size: 24px;
+  }
+
+  p {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .about__creators {
+    text-align: center;
+
+    span {
+      display: block;
+      padding: 20px 0;
+    }
+
+    .mm_logo,
+    .nbhoodie_logo {
+      height: 50px;
+      margin: auto;
+      width: 250px;
+    }
+  }
+}
