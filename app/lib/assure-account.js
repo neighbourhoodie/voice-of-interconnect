@@ -13,7 +13,7 @@ function assureAccount (hoodie) {
   .then(({id, session}) => {
     if (session) {
       if (session.invalid) {
-        tryToSignIn(hoodie)
+        return tryToSignIn(hoodie)
       }
       return
     }
@@ -47,11 +47,17 @@ function assureAccount (hoodie) {
       return // resolve with nothing
     })
   })
+
+  .catch(function (error) {
+    // something went wrong ... but let’s try to continue anyway
+    console.log(`\nerror ==============================`)
+    console.log(error)
+  })
 }
 
 function tryToSignIn (hoodie) {
   return Promise.all([
-    hoodie.store.get('_local/account'),
+    hoodie.store.find('_local/account'),
     hoodie.account.get('username', {local: true})
   ])
 

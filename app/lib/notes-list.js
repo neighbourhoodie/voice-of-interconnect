@@ -1,6 +1,5 @@
 /* global URL */
 module.exports = notesList
-
 function notesList (hoodie) {
   var $notes = document.querySelector('#recordings')
 
