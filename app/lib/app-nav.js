@@ -8,7 +8,6 @@ const $showApp = document.querySelector('.view__app')
 const $aboutDisplay = document.querySelector('.about')
 
 const $closeAbout = document.querySelector('.close__about')
-const $closeApp = document.querySelector('.close__app')
 
 function appNav () {
   $showAbout.addEventListener('click', function (event) {
