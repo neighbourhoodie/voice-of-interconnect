@@ -2,6 +2,8 @@
 
 >  Offline First demo app for IBM InterConnect 2017
 
+[![Build Status](https://travis-ci.org/neighbourhoodie/voice-of-interconnect.svg?branch=master)](https://travis-ci.org/neighbourhoodie/voice-of-interconnect)
+
 `voice-of-interconnect` is a simple HTML/CSS/JavaScript app and uses [Hoodie](https://github.com/hoodiehq/hoodie)
 for its backend.
 
