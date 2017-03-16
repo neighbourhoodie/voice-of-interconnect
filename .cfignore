@@ -2,5 +2,6 @@
 .hoodie
 .hoodierc
 *.log
+dist
 node_modules
 data
