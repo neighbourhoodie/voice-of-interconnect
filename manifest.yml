@@ -5,7 +5,7 @@ declared-services:
   voice-of-interconnect-speech-to-text:
     label: speech_to_text
     plan: standard
-  voice-of-interconnect-natural-language-understanding:
+  voice-of-interconnect-natural-language:
     label: natural-language-understanding
     plan: free
 applications:
@@ -17,4 +17,4 @@ applications:
     services:
     - voice-of-interconnect-cloudant
     - voice-of-interconnect-speech-to-text
-    - voice-of-interconnect-natural-language-understanding
+    - voice-of-interconnect-natural-language
