@@ -20,3 +20,4 @@ applications:
     - voice-of-interconnect-natural-language
 env:
     FFMPEG_PATH: ffmpeg-3.2.4-64bit-static/ffmpeg
+    NPM_CONFIG_PRODUCTION: false
