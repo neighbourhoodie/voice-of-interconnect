@@ -17,3 +17,16 @@ stages:
       npm install
       npm run build
       rm .cfignore
+- name: Deploy Stage
+  inputs:
+  - type: job
+    stage: Build Stage
+    job: Build
+  triggers:
+  - type: stage
+  jobs:
+  - name: Deploy to dev
+    type: deployer
+    script: |-
+      #!/bin/bash
+      cf push "${CF_APP}"
