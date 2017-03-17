@@ -27,6 +27,8 @@ stages:
   jobs:
   - name: Deploy to dev
     type: deployer
+    target:
+      application: voice-of-interconnect
     script: |-
       #!/bin/bash
       cf push "${CF_APP}"
