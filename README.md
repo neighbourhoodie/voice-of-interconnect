@@ -66,6 +66,8 @@ timeout with `WATSON_MOCK_TIMEOUT` (ms)
 
 ## Deployment
 
+[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/neighbourhoodie/voice-of-interconnect&branch=deploy-to-bluemix)
+
 See [Deployment docs](http://docs.hood.ie/en/latest/guides/deployment.html) as well as [Deploy to Bluemix](https://github.com/hoodiehq/hoodie-app-tracker/blob/master/deployment.md#deploy-with-bluemix)
 
 Note: the app is redirecting form `http://` to `https://` unless the host is
