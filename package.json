@@ -11,7 +11,8 @@
     "build-app": "webpack --config app/webpack.config.js",
     "build-visualization": "webpack --config visualization/webpack.config.js",
     "app": "webpack-dev-server --config app/webpack.config.js",
-    "visualization": "webpack-dev-server --config visualization/webpack.config.js"
+    "visualization": "webpack-dev-server --config visualization/webpack.config.js",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
