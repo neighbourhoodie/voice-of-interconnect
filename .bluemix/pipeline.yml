@@ -28,7 +28,10 @@ stages:
   - name: Deploy to dev
     type: deployer
     target:
-      application: voice-of-interconnect
+      region_id: ibm:yp:us-south
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
     script: |-
       #!/bin/bash
       cf push "${CF_APP}"
