@@ -12,7 +12,7 @@ applications:
   - name: voice-of-interconnect
     buildpack: https://github.com/markwatsonatx/nodejs-buildpack#ffmpeg
     instances: 1
-    memory: 1024M
+    memory: 2048M
     disk_quota: 1024M
     services:
     - voice-of-interconnect-cloudant
