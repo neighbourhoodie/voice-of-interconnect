@@ -26,6 +26,19 @@
   },
   "homepage": "https://github.com/gr2m/voice-of-interconnect#readme",
   "dependencies": {
+    "fluent-ffmpeg": "^2.1.0",
+    "hoodie": "^28.0.0",
+    "rollbar": "^0.6.5",
+    "watson-developer-cloud": "^2.21.1"
+  },
+  "hoodie": {
+    "loglevel": "verbose",
+    "public": "dist"
+  },
+  "engines": {
+    "node": "6.9.x"
+  },
+  "devDependencies": {
     "@hoodie/client": "^10.0.0",
     "autoprefixer": "^6.7.7",
     "babel-core": "^6.23.1",
@@ -50,17 +63,6 @@
     "style-loader": "^0.13.1",
     "tap": "^10.3.0",
     "webpack": "^2.2.1",
-    "webpack-dev-server": "^2.4.1",
-    "fluent-ffmpeg": "^2.1.0",
-    "hoodie": "^28.0.0",
-    "rollbar": "^0.6.5",
-    "watson-developer-cloud": "^2.21.1"
-  },
-  "hoodie": {
-    "loglevel": "verbose",
-    "public": "dist"
-  },
-  "engines": {
-    "node": "6.9.x"
+    "webpack-dev-server": "^2.4.1"
   }
 }
