@@ -29,8 +29,24 @@ function handleUserChange (server, store, eventName, doc) {
     server.log(['verbose', 'natural-language-understanding'], `sending ${noteId} to Natural Language Understanding...`)
 
     return sentiment(server, store, noteId, doc.text)
-      .then(() => {
+      .then((doc) => {
         server.log(['verbose', 'natural-language-understanding'], `retrieved sentiment for ${noteId}`)
+
+        const dayAndHour = doc.hoodie.createdAt.substr(0, 13).replace(/\D/g, '')
+        const sentimentDocId = `sentiment/${dayAndHour}/${doc._id.substr(5)}`
+        server.log(['verbose', 'sentiments'], `creating sentiments document for analysis: ${sentimentDocId}`)
+        server.plugins.sentiments.db.updateOrAdd({
+          _id: sentimentDocId,
+          sentiment: doc.sentiment,
+          analysis: doc.analysis,
+          hoodie: doc.hoodie
+        })
+          .then((doc) => {
+            server.log(['verbose', 'sentiments'], `${sentimentDocId} created/updated: #${doc._rev}`)
+          })
+          .catch((error) => {
+            server.log(['error', 'sentiments'], `Could not create ${sentimentDocId}: ${error}`)
+          })
       })
       .catch((error) => {
         server.log(['error', 'natural-language-understanding'], error)
