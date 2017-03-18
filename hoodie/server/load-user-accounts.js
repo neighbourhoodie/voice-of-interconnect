@@ -1,8 +1,10 @@
 module.exports.register = loadUserAccounts
 module.exports.register.attributes = {
-  name: 'load-user-accounts'
+  name: 'load-user-accounts',
+  dependencies: 'sentiments'
 }
 
+const bootstrap = require('./bootstrap')
 const listenToChanges = require('./listen-to-changes')
 
 function loadUserAccounts (server, options, next) {
@@ -30,8 +32,15 @@ function loadUserAccounts (server, options, next) {
 
     Promise.all(promises)
 
-    .then(function () {
+    .then(function (userStores) {
       next()
+
+      // we throttle bootstrapping, so don’t wait for it to finish before
+      // accepting requests.
+      bootstrap(server, userStores)
+        .catch((error) => {
+          server.log(['error', 'bootstrap'], error.message)
+        })
     })
 
     .catch((error) => {

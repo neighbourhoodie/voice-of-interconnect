@@ -16,8 +16,8 @@ function plugin (server, options, next) {
   const pluginsWitOptions = [
     redirectPlugin,
     rollbarPlugin,
-    loadUserAccountsPlugin,
-    sentimentsDbPlugin
+    sentimentsDbPlugin,
+    loadUserAccountsPlugin
   ].map((plugin) => {
     return {register: plugin, options}
   })
