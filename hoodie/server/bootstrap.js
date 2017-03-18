@@ -38,7 +38,7 @@ function findAllSentiments (server, store) {
     })
 
     server.log(['verbose', 'bootstrap'], `Adding sentiment docs for to ${store.db.name}`)
-    server.plugins.sentiments.db.add(sentimentDocs)
+    return server.plugins.sentiments.db.add(sentimentDocs)
       .then((result) => {
         // already existent docs get ignored
         server.log(['verbose', 'bootstrap'], `Sentiment docs added to ${store.db.name}`)
@@ -46,5 +46,9 @@ function findAllSentiments (server, store) {
       .catch((error) => {
         server.log(['error', 'bootstrap'], `Error adding sentiment docs to ${store.db.name}: ${error}`)
       })
+  })
+
+  .catch((error) => {
+    server.log(['error', 'bootstrap'], `Error bootstrapping ${store.db.name}: ${error}`)
   })
 }
