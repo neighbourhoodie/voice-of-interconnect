@@ -228,8 +228,6 @@
         </div>
 
         <div class="compose__field" id="compose__field">
-
-
           <a class="back" id="back">
             <svg width="14px" height="23px" viewBox="17 28 14 23">
               <use xlink:href="#left-arrow">back</use>
@@ -242,6 +240,18 @@
 
             <input type="submit" value="Upload" id="submitAnswer">
           </form>
+        </div>
+
+        <div class="record-error" id="record-error" data-modal="hide">
+          <div class="audio-record-support-missing">
+            <p>
+              Your browser does not support recording audio, but you can enter
+              a message by typing
+            </p>
+            <p>
+              <span class="btn" data-dismiss="#record-error">close</span>
+            </p>
+          </div>
         </div>
 
         <canvas id="canvas" class="visualizer"></canvas>

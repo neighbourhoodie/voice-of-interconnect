@@ -1,0 +1,23 @@
+.record-error {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: #d90;
+  color: #111;
+  text-align: center;
+  padding: 20px;
+
+  &.show {
+    display: block;
+  }
+
+  .btn {
+    border: 1px solid #111;
+    padding: 4px 6px;
+    cursor: pointer;
+  }
+}

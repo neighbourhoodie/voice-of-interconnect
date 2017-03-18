@@ -10,6 +10,7 @@ const record = require('./lib/record')
 const setAppStatus = require('./lib/set-app-status')
 const detectOffline = require('./lib/offline-state.js')
 const appNav = require('./lib/app-nav.js')
+const common = require('./lib/common')
 
 require('./style/base.scss')
 
@@ -30,6 +31,7 @@ OfflinePlugin.install({
 })
 
 record(hoodie)
+common(hoodie)
 assureAccount(hoodie)
   .then(function () {
     console.log('signed up as', hoodie.account.username)
@@ -48,4 +50,5 @@ function init () {
   appNav()
 }
 
+// debuging
 global.hoodie = hoodie
