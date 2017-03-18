@@ -68,8 +68,10 @@ function checkDb (name) {
   .then(result => result.rows.map(row => row.doc))
 
   .then((docs) => {
-    // migrate to new hoodie format)
-    docs = docs.map((doc) => {
+    // migrate from older formats
+    const docsToMigrate = docs.map((doc) => {
+      let needsMigration = false
+
       if (!doc.hoodie) {
         console.log(`doc migrated in ${dbName}`)
         doc.hoodie = {
@@ -79,23 +81,47 @@ function checkDb (name) {
 
         delete doc.createdAt
         delete doc.updatedAt
+        needsMigration = true
       }
 
-      return doc
-    })
+      if (!doc.progress) {
+        doc.progress = []
+        needsMigration = true
+      }
+
+      return needsMigration ? doc : false
+    }).filter(Boolean)
+
+    if (docsToMigrate.length) {
+      console.log(`migrating ${docsToMigrate.length} in ${name}`)
+      return db.bulkDocs(docsToMigrate)
+
+      .then(() => {
+        return checkDb(name)
+      })
+    }
 
     // find docs with speech but without text
     const docsWithPendingTranscription = docs.filter((doc) => {
       return doc.hasSpeech && !doc.text
     })
     console.log(`${docsWithPendingTranscription.length} docs with pending transcription`)
-    const transcriptionPromises = docsWithPendingTranscription.map((doc) => {
-      return transcribe(db, doc)
+    const transcriptionPromises = docsWithPendingTranscription.map((promise, doc) => {
+      return promise
+
+      .then(() => {
+        transcribe(db, doc)
+      })
+
+      .then(() => {
+        // timeout to avoid rate limits
+        return new Promise(resolve => setTimeout(resolve, 1000))
+      })
 
       .catch((error) => {
         console.log('Transcription error:', error)
       })
-    })
+    }, Promise.resolve())
 
     // find docs with text but without sentiment
     const docsWithPendingSentimentAnalysis = docs.filter((doc) => {
@@ -103,13 +129,22 @@ function checkDb (name) {
     })
     console.log(`${docsWithPendingSentimentAnalysis.length} docs with pending sentiment analysis`)
 
-    const analysisPromises = docsWithPendingSentimentAnalysis.map((doc) => {
-      addSentiment(db, doc)
+    const analysisPromises = docsWithPendingSentimentAnalysis.reduce((promise, doc) => {
+      return promise
+
+      .then(() => {
+        addSentiment(db, doc)
+      })
+
+      .then(() => {
+        // timeout to avoid rate limits
+        return new Promise(resolve => setTimeout(resolve, 1000))
+      })
 
       .catch((error) => {
         console.log('Sentiment Analysis error:', error)
       })
-    })
+    }, Promise.resolve())
 
     return Promise.all(transcriptionPromises.concat(analysisPromises))
   })
