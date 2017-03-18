@@ -1,23 +1,46 @@
 .record-error {
-  display: none;
+  background-color: $white;
+  border-radius: 3px;
+  bottom: 10%;
+  box-sizing: border-box;
+  color: $dustyPurple;
+  left: 2.5%;
+  opacity: 0;
+  margin: auto;
+  padding: 4.5%;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1000;
-  background: #d90;
-  color: #111;
   text-align: center;
-  padding: 20px;
+  transition: all 1s ease;
+  width: 95%;
+  z-index: -10;
+
+  &:after {
+    background-color: $white;
+    bottom: -7px;
+    content: "";
+    height: 20px;
+    position: absolute;
+    right: 21%;
+    transform: rotate(-45deg);
+    width: 20px;
+  }
+
+  p {
+    font-weight: 400;
+    margin: 0;
+    padding-bottom: 2.5%;
+  }
+
+  span.close__error {
+    color: $slowMustard;
+    display: block;
+    font-weight: 600;
+  }
 
   &.show {
-    display: block;
+    bottom: 17%;
+    opacity: 1.0;
+    z-index: 1;
   }
 
-  .btn {
-    border: 1px solid #111;
-    padding: 4px 6px;
-    cursor: pointer;
-  }
 }
