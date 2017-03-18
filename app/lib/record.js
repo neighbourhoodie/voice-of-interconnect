@@ -7,7 +7,6 @@ const CanvasAudio = require('./canvas-audio')
 function record (hoodie) {
   const $btnRecord = document.querySelector('#record')
   const $save = document.querySelector('#save-recording')
-  const $download = document.querySelector('#download-recording')
   const $volume = document.querySelector('#volume span')
   const $audioControls = document.querySelector('#audioControls')
   const $discardRecording = document.querySelector('#discard')
@@ -128,22 +127,6 @@ function record (hoodie) {
 
     $audioControls.classList.remove('active')
     $recordingsLists.classList.add('active')
-  })
-
-  $download.addEventListener('click', function (event) {
-    const a = document.createElement('a')
-    const url = window.URL.createObjectURL(state.audio)
-
-    a.href = url
-    a.download = 'speech.webm'
-    a.click()
-    document.body.appendChild(a)
-
-    // http://stackoverflow.com/questions/30694453/blob-createobjecturl-download-not-working-in-firefox-but-works-when-debugging
-    setTimeout(function () {
-      document.body.removeChild(a)
-      window.URL.revokeObjectURL(url)
-    }, 100)
   })
 
   $compose.addEventListener('click', function (event) {
