@@ -1,9 +1,7 @@
-const Chart = require('chart.js')
 const d3 = require('d3')
 const OfflinePlugin = require('offline-plugin/runtime')
 
-const loadAllSentiment = require('./lib/load-all-sentiments')
-const onNewSentiment = require('./lib/on-new-sentiment')
+const sentiments = require('./lib/sentiments')
 
 require('./style/base.scss')
 
@@ -18,32 +16,7 @@ OfflinePlugin.install({
   }
 })
 
-loadAllSentiment()
-
-.then((result) => {
-  const chart = new Chart('chart', {
-    type: 'bar',
-    data: {
-      labels: result.sentimentsByHour.map(sentiment => sentiment.hour),
-      datasets: [{
-        label: 'number of sentiments',
-        data: result.sentimentsByHour.map(sentiment => sentiment.num),
-        backgroundColor: result.sentimentsByHour.map(sentiment => `hsl(${Math.round((sentiment.score + 1) * 360)},  100%,50%)`)
-      }]
-    }
-  })
-
-  onNewSentiment((sentiment) => {
-    // console.log(`\nsentiment ==============================`)
-    // console.log(sentiment)
-
-    chart.data.datasets[0].data[23] += 1
-    chart.data.datasets[0].backgroundColor[23] = `hsl(${Math.round(Math.random() * 360)},  100%,50%)`
-    chart.update()
-
-    updateSentimentChart(sentiment)
-  })
-
+sentiments((result) => {
   var resultSet = result.sentimentsByHour.map(sentiment => sentiment.hour)
   var resultNum = result.sentimentsByHour.map(sentiment => sentiment.num)
   var resultScore = result.sentimentsByHour.map(sentiment => sentiment.score)
@@ -88,9 +61,7 @@ loadAllSentiment()
     var numRelativeHeight = []
 
     for (var i = 0; i < resultNum.length; i++) {
-      console.log(resultNum[i])
       numRelativeHeight[i] = resultNum[i] * multiplier
-      console.log(numRelativeHeight[i])
     }
 
     // set the ranges
@@ -102,6 +73,7 @@ loadAllSentiment()
       .x(function (d) { return x(d.date) })
       .y(function (d) { return y(d.close) })
 
+    document.body.innerHTML = ''
     const svg = d3.select('body')
                   .append('svg')
                   .attr('width', paddedWidth)
@@ -147,9 +119,4 @@ loadAllSentiment()
   }
 
   drawSentimentChart()
-
-  function updateSentimentChart (sentiment) {
-    // data.push(resultScore)
-    // console.log(sentiment);
-  }
 })
