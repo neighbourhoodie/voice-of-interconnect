@@ -20,6 +20,7 @@ function findAllSentiments (server, store) {
   return store.findAll()
 
   .then((docs) => {
+    server.log(['info', 'bootstrap'], `${docs.length} total docs found in ${store.db.name}`)
     return docs.filter(doc => !!doc.sentiment)
   })
 
