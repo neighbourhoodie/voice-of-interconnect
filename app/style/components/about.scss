@@ -4,11 +4,14 @@ div.about {
   padding: 30px;
 
   h3 {
-    font-size: 24px;
+    color: $purple;
+    font-size: 30px;
+    line-height: 36px;
   }
 
   p {
     font-size: 18px;
+    line-height: 24px;
     font-weight: 400;
   }
 
@@ -16,7 +19,9 @@ div.about {
     text-align: center;
 
     span {
+      color: $dustyPurple;
       display: block;
+      font-style: italic;
       padding: 20px 0;
     }
 
@@ -25,6 +30,23 @@ div.about {
       height: 50px;
       margin: auto;
       width: 250px;
+    }
+  }
+
+  .about__feedback {
+    background: $lightGrey;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 36px;
+
+    p {
+      margin: 0;
+
+      a {
+        color: $progressGreen;
+        font-weight: 600;
+        text-decoration: none;
+      }
     }
   }
 }

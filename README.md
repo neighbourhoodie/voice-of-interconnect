@@ -88,6 +88,6 @@ NATURAL_LANGUAGE_UNDERSTANDING_USERNAME=... NATURAL_LANGUAGE_UNDERSTANDING_PASSW
 
 ## License
 
-Copyright 2017 Neighbourhoodie Software GmbH and Make&Model Inc
+Copyright 2017 [Neighbourhoodie Software GmbH](http://neighbourhood.ie/offline-first/) and [Make&Model Inc](http://www.makemodel.co)
 
 [Apache 2.0](LICENSE)
