@@ -22,6 +22,7 @@ function record (hoodie) {
   const $listRecordings = document.querySelector('#list-recordings')
   const $intercomOffline = document.querySelector('#reconnecting')
   const $intercomOnline = document.querySelector('#restored')
+  const $recordError = document.querySelector('#record-error')
   const state = {
     audio: null
   }
@@ -39,7 +40,12 @@ function record (hoodie) {
     event.preventDefault()
 
     if (!$btnRecord.classList.contains('active')) {
-      record = new AudioRecorder()
+      try {
+        record = new AudioRecorder()
+      } catch (error) {
+        $recordError.classList.add('show')
+        return
+      }
 
       record.getUserPermission()
 
