@@ -4,6 +4,7 @@ module.exports = appNav
 const $nav = document.querySelector('#app-nav')
 
 const $showAbout = document.querySelector('.view__about')
+const $infoIcon = document.querySelector('.info')
 const $showApp = document.querySelector('.view__app')
 const $aboutDisplay = document.querySelector('.about')
 
@@ -11,6 +12,7 @@ const $closeAbout = document.querySelector('.close__about')
 
 function appNav () {
   $showAbout.addEventListener('click', showAbout)
+  $infoIcon.addEventListener('click', showAbout)
   $showApp.addEventListener('click', showApp)
   $closeAbout.addEventListener('click', showApp)
 
