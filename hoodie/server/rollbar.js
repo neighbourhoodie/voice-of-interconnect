@@ -12,6 +12,14 @@ function rollbar (server, options, next) {
     rollbar.handleUncaughtExceptionsAndRejections(process.env.POST_SERVER_ITEM_ACCESS_TOKEN, {
       exitOnUncaughtException: true
     })
+
+    server.on('log', (event, tags) => {
+      if (!tags.error) {
+        return
+      }
+
+      rollbar.reportMessage(event.data)
+    })
   }
 
   next()
