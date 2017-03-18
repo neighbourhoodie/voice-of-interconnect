@@ -59,7 +59,7 @@ function isSpeech (doc) {
 }
 
 function isText (doc) {
-  if (!doc.text || doc.sentiment) {
+  if (!doc.text || 'sentiment' in doc) {
     return
   }
 
