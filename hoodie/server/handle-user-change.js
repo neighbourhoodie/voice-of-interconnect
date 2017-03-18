@@ -10,7 +10,15 @@ function handleUserChange (server, store, eventName, doc) {
     return
   }
 
-  server.log(['info', 'change'], `${doc._id} by ${doc.hoodie.createdAt}`)
+  const dbName = store.db.name
+  const revision = parseInt(doc._rev, 10)
+
+  if (revision > 10) {
+    server.log(['error', 'change'], `${dbName}/${doc._id} has revision higher than 10. Ignoring to avoid unwanted infinite-loop changes.`)
+    return
+  }
+
+  server.log(['info', 'change'], `${dbName}/${doc._id} by ${doc.hoodie.createdAt}`)
   var noteId = toDocId(doc)
 
   if (isSpeech(doc)) {
