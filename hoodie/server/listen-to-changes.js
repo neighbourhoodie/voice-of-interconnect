@@ -38,5 +38,7 @@ function listenToChanges (server, name) {
     store.on('change', function (eventName, doc) {
       handleUserChange(server, store, eventName, doc)
     })
+
+    return store
   })
 }
