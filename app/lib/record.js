@@ -44,6 +44,7 @@ function record (hoodie) {
         record = new AudioRecorder()
       } catch (error) {
         $recordError.classList.add('show')
+        $btnRecord.classList.add('disabled')
         return
       }
 

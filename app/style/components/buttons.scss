@@ -31,6 +31,10 @@ a.record {
       border-radius: 30px;
     }
   }
+
+  &.disabled {
+    opacity: .3;
+  }
 }
 
 input[type=submit] {
