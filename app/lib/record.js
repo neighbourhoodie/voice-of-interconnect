@@ -42,19 +42,18 @@ function record (hoodie) {
     if (!$btnRecord.classList.contains('active')) {
       try {
         record = new AudioRecorder()
+        record.getUserPermission()
+
+        .then((stream) => {
+          return record.start(stream, onComplete.bind(null, state), showVolume.bind(null, $volume))
+        })
+
+        $btnRecord.classList.add('active')
       } catch (error) {
         $recordError.classList.add('show')
         $btnRecord.classList.add('disabled')
         return
       }
-
-      record.getUserPermission()
-
-      .then((stream) => {
-        return record.start(stream, onComplete.bind(null, state), showVolume.bind(null, $volume))
-      })
-
-      $btnRecord.classList.add('active')
     } else {
       record.stop()
       $btnRecord.classList.remove('active')
