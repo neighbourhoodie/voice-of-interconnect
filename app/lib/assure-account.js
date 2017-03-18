@@ -1,10 +1,16 @@
 module.exports = assureAccount
 
 const generateRandomString = require('./generate-random-string')
+const reportError = require('./report-error')
 
 function assureAccount (hoodie) {
   hoodie.account.on('unauthenticate', tryToSignIn.bind(null, hoodie))
+  hoodie.store.one('add', signUp.bind(null, hoodie))
 
+  return Promise.resolve()
+}
+
+function signUp (hoodie) {
   // We need to sign in in order for data to be synced to the server. Instead
   // of asking the user to enter a username / password, we use the account id
   // as username and a random password that we persist locally
@@ -48,11 +54,7 @@ function assureAccount (hoodie) {
     })
   })
 
-  .catch(function (error) {
-    // something went wrong ... but let’s try to continue anyway
-    console.log(`\nerror ==============================`)
-    console.log(error)
-  })
+  .catch(reportError)
 }
 
 function tryToSignIn (hoodie) {
