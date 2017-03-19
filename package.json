@@ -10,8 +10,8 @@
     "build": "npm run -s build-app && npm run -s build-visualization",
     "build-app": "webpack --config app/webpack.config.js",
     "build-visualization": "webpack --config visualization/webpack.config.js",
-    "app": "webpack-dev-server --config app/webpack.config.js",
-    "visualization": "webpack-dev-server --config visualization/webpack.config.js"
+    "app": "webpack-dev-server --config app/webpack.config.js --host 0.0.0.0",
+    "visualization": "webpack-dev-server --config visualization/webpack.config.js  --host 0.0.0.0"
   },
   "repository": {
     "type": "git",
