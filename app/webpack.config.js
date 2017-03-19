@@ -1,6 +1,7 @@
 const path = require('path')
 
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const OfflinePlugin = require('offline-plugin')
 
@@ -17,12 +18,9 @@ module.exports = {
         use: 'babel-loader'
       }, {
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-          'postcss-loader'
-        ]
+        loader: ExtractTextPlugin.extract({
+          use: 'css-loader!sass-loader!postcss-loader'
+        })
       }
     ]
   },
@@ -32,6 +30,7 @@ module.exports = {
       template: './app/index.html',
       rollbarAccessToken: process.env.ROLLBAR_CLIENT_ACCESS_TOKEN
     }),
+    new ExtractTextPlugin('app.[hash:8].css'),
     new CopyWebpackPlugin([
       {from: 'app/assets', to: 'assets'}
     ]),
