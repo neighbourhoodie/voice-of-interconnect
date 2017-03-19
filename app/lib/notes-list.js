@@ -78,6 +78,14 @@ function render ($notes, hoodie) {
       }).join('\n')
 
     $notes.innerHTML = html
+
+    var $emptyState = document.querySelector('.empty-state')
+
+    if (docs.length === 0) {
+      $emptyState.classList.add('show')
+    } else {
+      $emptyState.classList.remove('show')
+    }
   })
 }
 
