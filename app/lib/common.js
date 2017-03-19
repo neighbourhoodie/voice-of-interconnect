@@ -2,8 +2,14 @@ module.exports = common
 
 function common (hoodie) {
   document.body.addEventListener('click', (event) => {
-    if (event.target.dataset.dismiss) {
-      document.querySelector(event.target.dataset.dismiss).classList.remove('show')
+    const el = event.target.closest('[data-dismiss]')
+
+    if (!el) {
+      return
+    }
+
+    if (el.dataset.dismiss) {
+      document.querySelector(el.dataset.dismiss).classList.remove('show')
     }
   })
 }

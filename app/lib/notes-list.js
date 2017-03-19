@@ -79,10 +79,12 @@ function render ($notes, hoodie) {
 
     $notes.innerHTML = html
 
+    var $emptyState = document.querySelector('.empty-state')
+
     if (docs.length === 0) {
-      console.log('show it');
+      $emptyState.classList.add('show')
     } else {
-      console.log('remove empty state');
+      $emptyState.classList.remove('show')
     }
   })
 }
