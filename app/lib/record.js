@@ -128,6 +128,8 @@ function record (hoodie) {
 
     $audioControls.classList.remove('active')
     $recordingsLists.classList.add('active')
+    $intercomOffline.classList.add('recording-list-active')
+    $intercomOnline.classList.add('recording-list-active')
   })
 
   $compose.addEventListener('click', function (event) {
@@ -172,6 +174,9 @@ function record (hoodie) {
     })
 
     $composeFields.classList.remove('active')
+    $recordingsLists.classList.add('active')
+    $intercomOffline.classList.add('recording-list-active')
+    $intercomOnline.classList.add('recording-list-active')
   })
 }
 

@@ -5,14 +5,16 @@ body{
 
 .stage__mgmt {
   position: relative;
+  height: 20%;
   text-align: center;
   width: 100%;
   z-index: 1;
 
   a.list-recordings {
+    box-sizing: border-box;
     position: relative;
     display: block;
-    margin-top: 10%;
+    padding: 10%;
   }
 }
 
