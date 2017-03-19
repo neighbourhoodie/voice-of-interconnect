@@ -161,152 +161,148 @@
     </div>
 
     <div class="stages">
-
-      <section class="stage__questions">
-        <div class="stage__mgmt">
-          <a class="list-recordings" id="list-recordings">
-            <svg width="35px" height="18px" viewBox="-1 0 35 18">
-              <use xlink:href="#list"></use>
-            </svg>
-          </a>
-        </div>
-
-        <div class="questions">
-          <p>
-            Press record and describe how you're feeling right now.
-            <span id="volume" style="display:none !important;">Volume: <span>0</span></span>
-          </p>
-        </div>
-
-        <div class="stage__controls">
-
-          <!-- TODO: sense audiocontext and show or hide record as an option -->
-          <span class="control">
-            <a class="info">
-            <svg width="12px" height="27px" viewBox="23 0 12 27">
-              <use xlink:href="#info">make a call</use>
-            </svg>
-            </a>
-          </span>
-
-          <span class="control">
-            <a class="record" id="record">record</a>
-          </span>
-
-          <span class="control">
-            <a class="type-message" id="compose">
-              <svg width="30px" height="26px" viewBox="0 0 30 26" >
-                <use xlink:href="#type-message">type message</use>
+      <div class="update__wrap">
+        <section class="stage__questions">
+          <div class="stage__mgmt">
+            <a class="list-recordings" id="list-recordings">
+              <svg width="35px" height="18px" viewBox="-1 0 35 18">
+                <use xlink:href="#list"></use>
               </svg>
             </a>
-          </span>
-
-
-          <div class="audio__controls" id="audioControls">
-
-            <span class="control save-recording">
-              <a id="save-recording">Save &amp; upload</a>
-            </span>
-
-            <span class="control play">
-              <a class="play">
-                <svg width="28px" height="37px" viewBox="71 103 28 37">
-                  <use xlink:href="#replay">replay recording</use>
-                </svg>
-              </a>
-            </span>
-
-            <span class="control pause">
-              <a class="pause">
-                <svg width="18px" height="36px" viewBox="0 0 18 36">
-                  <use xlink:href="#pause">pause</use>
-                </svg>
-              </a>
-            </span>
-
-            <span class="control rerecord">
-              <a class="rerecord" id="restart-record">
-                <svg width="58px" height="50px" viewBox="132 94 58 50">
-                  <use xlink:href="#rerecord">rerecord</use>
-                </svg>
-              </a>
-            </span>
-
-            <span class="control discard">
-              <a href="#" class="discard" id="discard">Discard</a>
-            </span>
-
           </div>
-        </div>
 
-        <section class="app-update" id="app-update" data-modal="hide">
-          <span data-dismiss="#app-update">
-            <svg width="17px" height="15px" viewBox="132 94 17 15">
-              <use xlink:href="#rerecord">rerecord</use>
-            </svg>
-            We made updates. <strong>Tap to reload.</strong>
-          </span>
-        </section>
-
-        <div class="compose__field" id="compose__field">
-          <a class="back" id="back">
-            <svg width="14px" height="23px" viewBox="17 28 14 23">
-              <use xlink:href="#left-arrow">back</use>
-            </svg>
-          </a>
-
-          <form action="" id="form-text">
-            <label for="answer__compose">In four words, please tell us how you feel about dinosaurs.</label>
-            <textarea id="answer__compose" placeholder="Go on..." onFocus="setTimeout(function () {window.scrollTo(0, 0)}, 500)"></textarea>
-
-            <button type="submit" id="form-text-submit">Upload</button>
-          </form>
-        </div>
-
-        <div class="record-error" id="record-error" data-modal="hide">
-          <div class="audio-record-support-missing">
+          <div class="questions">
             <p>
-              Your browser does not support recording audio, but you can enter
-              a message by typing
+              Press record and describe how you are feeling right now.
+              <span id="volume" style="display:none !important;">Volume: <span>0</span></span>
             </p>
-            <span class="close__error" data-dismiss="#record-error">Tap to dismiss</span>
           </div>
-        </div>
 
-        <canvas id="canvas" class="visualizer"></canvas>
-      </section>
+          <div class="stage__controls">
+            <span class="control">
+              <a class="info">
+              <svg width="12px" height="27px" viewBox="23 0 12 27">
+                <use xlink:href="#info">make a call</use>
+              </svg>
+              </a>
+            </span>
 
-      <section class="stage__recordings" id="stage__recordings">
-        <section class="learn">
-          <div class="info">
-            <a class="close" id="close">
-              <svg width="23px" height="23px" viewBox="150 27 23 23">
-                <use xlink:href="#closeBtn">back</use>
+            <span class="control">
+              <a class="record" id="record">record</a>
+            </span>
+
+            <span class="control">
+              <a class="type-message" id="compose">
+                <svg width="30px" height="26px" viewBox="0 0 30 26" >
+                  <use xlink:href="#type-message">type message</use>
+                </svg>
+              </a>
+            </span>
+
+
+            <div class="audio__controls" id="audioControls">
+              <span class="control save-recording">
+                <a id="save-recording">Save &amp; upload</a>
+              </span>
+
+              <span class="control play">
+                <a class="play">
+                  <svg width="28px" height="37px" viewBox="71 103 28 37">
+                    <use xlink:href="#replay">replay recording</use>
+                  </svg>
+                </a>
+              </span>
+
+              <span class="control pause">
+                <a class="pause">
+                  <svg width="18px" height="36px" viewBox="0 0 18 36">
+                    <use xlink:href="#pause">pause</use>
+                  </svg>
+                </a>
+              </span>
+
+              <span class="control rerecord">
+                <a class="rerecord" id="restart-record">
+                  <svg width="58px" height="50px" viewBox="132 94 58 50">
+                    <use xlink:href="#rerecord">rerecord</use>
+                  </svg>
+                </a>
+              </span>
+
+              <span class="control discard">
+                <a href="#" class="discard" id="discard">Discard</a>
+              </span>
+
+            </div>
+          </div>
+
+          <div class="compose__field" id="compose__field">
+            <a class="back" id="back">
+              <svg width="14px" height="23px" viewBox="17 28 14 23">
+                <use xlink:href="#left-arrow">back</use>
               </svg>
             </a>
-            <h3>Feeling Sentimental</h3>
-            <p>Just because you're offline doesn't mean you shoud lose your data.</p>
+
+            <form action="" id="form-text">
+              <label for="answer__compose">In four words, please tell us how you feel about dinosaurs.</label>
+              <textarea id="answer__compose" placeholder="Go on..." onFocus="setTimeout(function () {window.scrollTo(0, 0)}, 500)"></textarea>
+
+              <button type="submit" id="form-text-submit">Upload</button>
+            </form>
           </div>
+
+          <div class="record-error" id="record-error" data-modal="hide">
+            <div class="audio-record-support-missing">
+              <p>
+                Your browser does not support recording audio, but you can enter
+                a message by typing
+              </p>
+              <span class="close__error" data-dismiss="#record-error">Tap to dismiss</span>
+            </div>
+          </div>
+
+          <canvas id="canvas" class="visualizer"></canvas>
         </section>
-        <div class="empty-state">
-          <h3>If it's answers you're looking for, you wont find'em here.</h3>
-          <p>(Until you record them.)</p>
-        </div>
-        <ol class="recordings" id="recordings"></ol>
-      </section>
 
-      <section class="system__state reconnecting" id="reconnecting">
-        <p class="message">
-          <strong>Reconnecting </strong> &mdash; Don’t worry, your data is safe.
-        </p>
-      </section>
+        <section class="stage__recordings" id="stage__recordings">
+          <section class="learn">
+            <div class="info">
+              <a class="close" id="close">
+                <svg width="23px" height="23px" viewBox="150 27 23 23">
+                  <use xlink:href="#closeBtn">back</use>
+                </svg>
+              </a>
+              <h3>Feeling Sentimental</h3>
+              <p>Just because you're offline doesn't mean you shoud lose your data.</p>
+            </div>
+          </section>
+          <div class="empty-state">
+            <h3>If it's answers you're looking for, you wont find them here.</h3>
+            <p>(Until you record them.)</p>
+          </div>
+          <ol class="recordings" id="recordings"></ol>
+        </section>
 
-      <section class="system__state restored" id="restored">
-        <p class="message">
-          <strong>Connection restored </strong> &mdash; Woot!
-        </p>
-      </section>
+        <section class="system__state reconnecting" id="reconnecting">
+          <p class="message">
+            <strong>Reconnecting </strong> &mdash; Don’t worry, your data is safe.
+          </p>
+        </section>
 
+        <section class="system__state restored" id="restored">
+          <p class="message">
+            <strong>Connection restored </strong> &mdash; Woot!
+          </p>
+        </section>
+      </div>
+      <section class="app-update" id="app-update" data-modal="hide">
+        <span data-dismiss="#app-update">
+          <svg width="17px" height="15px" viewBox="132 94 17 15">
+            <use xlink:href="#rerecord">rerecord</use>
+          </svg>
+          We made updates. <strong>Tap to reload.</strong>
+        </span>
+      </section>
     </div>
   </main>
   </body>

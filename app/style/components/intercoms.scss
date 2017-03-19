@@ -62,19 +62,35 @@
   }
 }
 
-.app-update {
-  position: relative;
+.update__wrap {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  transition: all .5s ease;
   z-index: 3;
+
+
+  &.active {
+    height: 94%;
+  }
+}
+
+.app-update {
+  align-items: center;
+  background-color: $slowMustard;
+  bottom: 0;
+  display: flex;
   font-size: 13px;
   font-weight: 600;
+  height: 6%;
   left: 0;
-  bottom: 0;
+  position: absolute;
   text-align: center;
   width: 100%;
+  z-index: 2;
 
   span {
-    background-color: $slowMustard;
-    display: inline-block;
     margin: auto;
     width: 100%;
     padding: 5px;
