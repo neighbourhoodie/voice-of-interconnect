@@ -78,6 +78,12 @@ function render ($notes, hoodie) {
       }).join('\n')
 
     $notes.innerHTML = html
+
+    if (docs.length === 0) {
+      console.log('show it');
+    } else {
+      console.log('remove empty state');
+    }
   })
 }
 
