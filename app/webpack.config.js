@@ -38,6 +38,7 @@ module.exports = {
       safeToUseOptionalCaches: true,
       caches: {
         main: [
+          '*.css',
           '*.js',
           'index.html'
         ],
