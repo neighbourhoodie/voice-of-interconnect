@@ -17,7 +17,8 @@ function record (hoodie) {
   const $backButton = document.querySelector('#back')
   const $closeList = document.querySelector('#close')
   const $answerField = document.querySelector('#answer__compose')
-  const $submitAnswerButton = document.querySelector('#submitAnswer')
+  const $submitAnswerForm = document.querySelector('#form-text')
+  const $submitAnswerButton = document.querySelector('#form-text-submit')
   const $listRecordings = document.querySelector('#list-recordings')
   const $intercomOffline = document.querySelector('#reconnecting')
   const $intercomOnline = document.querySelector('#restored')
@@ -149,7 +150,7 @@ function record (hoodie) {
     }
   })
 
-  $submitAnswerButton.addEventListener('click', function (event) {
+  $submitAnswerForm.addEventListener('submit', function (event) {
     event.preventDefault()
 
     const text = $answerField.value

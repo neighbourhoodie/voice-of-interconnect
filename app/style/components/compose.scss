@@ -82,11 +82,12 @@
     }
   }
 
-  input[type=submit] {
+  button[type=submit] {
     position: absolute;
     display: none;
     bottom: 0;
     opacity: 0;
+    left: 0;
 
     &.hasValue {
       animation: opacity .3s;
