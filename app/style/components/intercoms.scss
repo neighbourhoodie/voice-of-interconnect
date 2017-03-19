@@ -80,9 +80,10 @@
   align-items: center;
   background-color: $slowMustard;
   bottom: 0;
+  color: #fff;
   display: flex;
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
   height: 6%;
   left: 0;
   position: absolute;
@@ -94,5 +95,11 @@
     margin: auto;
     width: 100%;
     padding: 5px;
+
+    svg {
+      vertical-align: top;
+      margin-right: 4px;
+      margin-top: -1px;
+    }
   }
 }
