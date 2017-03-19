@@ -7,7 +7,6 @@ const CanvasAudio = require('./canvas-audio')
 function record (hoodie) {
   const $btnRecord = document.querySelector('#record')
   const $save = document.querySelector('#save-recording')
-  const $volume = document.querySelector('#volume span')
   const $audioControls = document.querySelector('#audioControls')
   const $discardRecording = document.querySelector('#discard')
   const $restartRecord = document.querySelector('#restart-record')
@@ -45,7 +44,7 @@ function record (hoodie) {
         record.getUserPermission()
 
         .then((stream) => {
-          return record.start(stream, onComplete.bind(null, state), showVolume.bind(null, $volume))
+          return record.start(stream, onComplete.bind(null, state), showVolume.bind(null))
         })
 
         $btnRecord.classList.add('active')
@@ -189,8 +188,7 @@ function onComplete (state, audioData) {
   state.audio = audioData
 }
 
-function showVolume ($volume, volume, time, analyser) {
-  $volume.textContent = volume
+function showVolume (volume, time, analyser) {
   CanvasAudio(volume, time, analyser)
 
   // console.log('volume %d at %dms', volume, time)
