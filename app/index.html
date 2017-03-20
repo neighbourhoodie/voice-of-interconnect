@@ -176,8 +176,8 @@
           </div>
 
           <div class="questions">
-            <p>
-              Let’s detect your sentiment. Tell us about something you either really enjoy or find very unpleasant.
+            <p id="question-speech">
+              <!-- loaded dynamically, see lib/questions.js -->
             </p>
           </div>
 
@@ -247,8 +247,10 @@
             </a>
 
             <form action="" id="form-text">
-              <label for="answer__compose">Let’s detect your sentiment. Tell us about something you either really enjoy or find very unpleasant</label>
-              <textarea id="answer__compose" placeholder="Go on..." onFocus="setTimeout(function () {window.scrollTo(0, 0)}, 500)"></textarea>
+              <label id="question-text">
+                <!-- loaded dynamically, see lib/questions.js -->
+              </label>
+              <textarea id="answer__compose" placeholder="Go on..."></textarea>
 
               <button type="submit" id="form-text-submit">Upload</button>
             </form>

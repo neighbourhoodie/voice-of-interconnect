@@ -10,6 +10,7 @@ const record = require('./lib/record')
 const detectOffline = require('./lib/offline-state.js')
 const appNav = require('./lib/app-nav.js')
 const common = require('./lib/common')
+const questions = require('./lib/questions')
 
 require('./style/base.scss')
 
@@ -31,6 +32,7 @@ OfflinePlugin.install({
 
 record(hoodie)
 common(hoodie)
+questions(hoodie)
 assureAccount(hoodie)
   .then(function () {
     console.log('signed up as', hoodie.account.username)
