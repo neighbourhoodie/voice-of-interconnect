@@ -44,7 +44,7 @@ sentiments((result) => {
 
     function makeLabels () {
       return d3.axisBottom(x)
-            .ticks(25)
+            .ticks(9)
     }
 
     var color = d3.scaleQuantize()
@@ -78,7 +78,7 @@ sentiments((result) => {
       .x(function (d) { return x(d.date) })
       .y(function (d) { return y(d.close) })
 
-    var visDiv = document.querySelector('.visualization');
+    var visDiv = document.querySelector('.visualization')
     visDiv.innerHTML = ''
     const svg = d3.select(visDiv)
                   .append('svg')
@@ -123,14 +123,15 @@ sentiments((result) => {
         return color(d)
       })
 
-    var times = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0]
+    const labels = result.labels
+    let labelIndex = 0
 
     svg.append('g')
       .attr('transform', 'translate(0,' + paddedHeight + ')')
       .attr('class', 'labels')
       .call(makeLabels()
-        .tickFormat(function(d) {
-          return times.shift()
+        .tickFormat(() => {
+          return labels[labelIndex++]
         })
       )
   }
