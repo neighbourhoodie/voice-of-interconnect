@@ -121,7 +121,7 @@ function hourToLabels (hour) {
   let a = []
   for (i = 0; i < 25; i++) {
     m.add(1, 'hour')
-    a.push(m.format('ha'))
+    a.push(m.format('h a'))
     hour++
     if (hour > 23) {
       hour = 0
