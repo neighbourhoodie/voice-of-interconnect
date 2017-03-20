@@ -1,15 +1,18 @@
 module.exports = common
 
 function common (hoodie) {
-  document.body.addEventListener('click', (event) => {
-    const el = event.target.closest('[data-dismiss]')
+  document.body.addEventListener('click', dismiss)
+  document.body.addEventListener('touchend', dismiss)
+}
 
-    if (!el) {
-      return
-    }
+function dismiss (event) {
+  const el = event.target.closest('[data-dismiss]')
 
-    if (el.dataset.dismiss) {
-      document.querySelector(el.dataset.dismiss).classList.remove('show')
-    }
-  })
+  if (!el) {
+    return
+  }
+
+  if (el.dataset.dismiss) {
+    document.querySelector(el.dataset.dismiss).classList.remove('show')
+  }
 }
