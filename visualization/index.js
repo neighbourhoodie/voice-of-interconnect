@@ -129,8 +129,8 @@ sentiments((result) => {
     svg.append('g')
       .attr('transform', 'translate(0,' + paddedHeight + ')')
       .attr('class', 'labels')
-      .style('font-size','16px')
-      .style('font-family','Lato')
+      .style('font-size', '16px')
+      .style('font-family', 'Lato')
       .call(makeLabels()
         .tickFormat(() => {
           return labels[labelIndex++]
