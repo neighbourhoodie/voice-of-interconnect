@@ -42,6 +42,11 @@ sentiments((result) => {
             .ticks(8)
     }
 
+    function makeLabels () {
+      return d3.axisBottom(x)
+            .ticks(9)
+    }
+
     var color = d3.scaleQuantize()
       .domain([0, maxScore()])
       .range(['#FF006A', '#FF3F00', '#FF5500', '#FF5500', '#F89D00', '#D7C017', '#79CC1A', '#1ACC6D', '#1ACCA9', '#1ABACC'])
@@ -50,7 +55,7 @@ sentiments((result) => {
     const HEIGHT = window.innerHeight
 
     // set the dimensions and margins of the graph
-    var margin = {top: 20, right: 50, bottom: 30, left: 50}
+    var margin = {top: 20, right: 50, bottom: 120, left: 50}
     var paddedWidth = WIDTH - margin.left - margin.right
     var paddedHeight = HEIGHT - margin.top - margin.bottom
 
@@ -73,8 +78,9 @@ sentiments((result) => {
       .x(function (d) { return x(d.date) })
       .y(function (d) { return y(d.close) })
 
-    document.body.innerHTML = ''
-    const svg = d3.select('body')
+    var visDiv = document.querySelector('.visualization')
+    visDiv.innerHTML = ''
+    const svg = d3.select(visDiv)
                   .append('svg')
                   .attr('width', paddedWidth)
                   .attr('height', paddedHeight)
@@ -116,6 +122,20 @@ sentiments((result) => {
       .attr('fill', function (d, i) {
         return color(d)
       })
+
+    const labels = result.labels
+    let labelIndex = 0
+
+    svg.append('g')
+      .attr('transform', 'translate(0,' + paddedHeight + ')')
+      .attr('class', 'labels')
+      .style('font-size', '16px')
+      .style('font-family', 'Lato')
+      .call(makeLabels()
+        .tickFormat(() => {
+          return labels[labelIndex++]
+        })
+      )
   }
 
   drawSentimentChart()

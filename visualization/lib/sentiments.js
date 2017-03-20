@@ -43,6 +43,7 @@ function onNextHour (state) {
   if (state.result) {
     state.result.start = state.result.start === 23 ? 0 : state.result.start + 1
     state.result.end = state.result.end === 23 ? 0 : state.result.end + 1
+    state.result.labels = hourToLabels(state.result.start)
     state.result.sentimentsByHour.shift()
     state.result.sentimentsByHour.push({
       hour: state.result.end,
@@ -100,7 +101,8 @@ function loadAllSentiment (state) {
     }
     const end = m.hours()
 
-    return {start, end, max, sentimentsByHour}
+    const labels = hourToLabels(start)
+    return {start, end, max, labels, sentimentsByHour}
   })
 }
 
@@ -111,4 +113,20 @@ function updateStats (state) {
     state.result = result
     state.notify(state.result)
   })
+}
+
+function hourToLabels (hour) {
+  const m = moment().subtract(24, 'hours')
+  let i = 0
+  let a = []
+  for (i = 0; i < 25; i++) {
+    m.add(1, 'hour')
+    a.push(m.format('h a'))
+    hour++
+    if (hour > 23) {
+      hour = 0
+    }
+  }
+
+  return a
 }
