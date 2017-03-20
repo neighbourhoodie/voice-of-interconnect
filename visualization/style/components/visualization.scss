@@ -49,4 +49,14 @@ svg {
       }
     }
   }
+  .labels {
+
+    text {
+      fill: #fff;
+    }
+
+    path {
+      stroke: transparent;
+    }
+  }
 }
