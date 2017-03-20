@@ -151,6 +151,15 @@ function record (hoodie) {
     }
   })
 
+  $answerField.addEventListener('keydown', function (event) {
+    const charCode = 'which' in event ? event.which : event.keyCode
+
+    if (charCode === 13) {
+      event.preventDefault()
+      $submitAnswerForm.submit()
+    }
+  })
+
   $submitAnswerForm.addEventListener('submit', function (event) {
     event.preventDefault()
 
