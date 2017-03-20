@@ -24,6 +24,7 @@ function appNav () {
 function showAbout (event) {
   event.preventDefault()
 
+  console.log('test');
   $aboutDisplay.classList.add('active')
   $nav.classList.remove('active')
 
