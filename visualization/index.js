@@ -44,7 +44,7 @@ sentiments((result) => {
 
     function makeLabels () {
       return d3.axisBottom(x)
-            .ticks(9)
+            .ticks(25)
     }
 
     var color = d3.scaleQuantize()

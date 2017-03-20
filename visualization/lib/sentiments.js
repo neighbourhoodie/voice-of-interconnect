@@ -121,12 +121,18 @@ function hourToLabels (hour) {
   let a = []
   for (i = 0; i < 25; i++) {
     m.add(1, 'hour')
-    a.push(m.format('h a'))
+
+    // only labels for each 3rd hour
+    if (i % 3 === 0) {
+      a.push(m.format('h a'))
+    } else {
+      a.push('')
+    }
+
     hour++
     if (hour > 23) {
       hour = 0
     }
   }
-
   return a
 }
