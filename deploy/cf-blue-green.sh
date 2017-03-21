@@ -64,9 +64,12 @@ do
    if [ ${#urlParts[@]} = 2 ]; then
       cf map-route $GREEN $url
       cf unmap-route $BLUE $url
-   elif [ ${urlParts[2]} == "com" ]; then
+   elif [ ${#urlParts[@]} = 3 ] && [ ${urlParts[2]} == "com" ]; then
       cf map-route $GREEN $url
       cf unmap-route $BLUE $url
+   elif [ ${#urlParts[@]} = 4 ]; then
+      cf map-route $GREEN ${urlParts[1]}.${urlParts[2]}.${urlParts[3]} --hostname ${urlParts[0]}
+      cf unmap-route $BLUE ${urlParts[1]}.${urlParts[2]}.${urlParts[3]} --hostname ${urlParts[0]}
    else
       cf map-route $GREEN ${urlParts[1]}.${urlParts[2]} --hostname ${urlParts[0]}
       cf unmap-route $BLUE ${urlParts[1]}.${urlParts[2]} --hostname ${urlParts[0]}
@@ -80,9 +83,12 @@ do
    if [ ${#urlParts[@]} = 2 ]; then
       cf unmap-route $GREEN $url
       cf delete-route $url -f
-   elif [ ${urlParts[2]} == "com" ]; then
+   elif [ ${#urlParts[@]} = 3 ] && [ ${urlParts[2]} == "com" ]; then
       cf unmap-route $GREEN $url
       cf delete-route $url -f
+   elif [ ${#urlParts[@]} = 4 ]; then
+      cf unmap-route $BLUE ${urlParts[1]}.${urlParts[2]}.${urlParts[3]} --hostname ${urlParts[0]}
+      cf delete-route ${urlParts[1]}.${urlParts[2]}.${urlParts[3]} --hostname ${urlParts[0]} -f
    else
       cf unmap-route $GREEN ${urlParts[1]}.${urlParts[2]} --hostname ${urlParts[0]}
       cf delete-route ${urlParts[1]}.${urlParts[2]} --hostname ${urlParts[0]} -f
