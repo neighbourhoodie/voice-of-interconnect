@@ -10,6 +10,11 @@ function handleUserChange (server, store, eventName, doc) {
     return
   }
 
+  if (doc._deleted) {
+    server.log(['verbose', 'change'], `Ignoring change in ${doc._id}: delete`)
+    return
+  }
+
   const dbName = store.db.name
   const revision = parseInt(doc._rev, 10)
 

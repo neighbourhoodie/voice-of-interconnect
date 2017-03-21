@@ -1,21 +1,41 @@
 /* global URL */
 module.exports = notesList
+
+let resetDataCounter = 0
+
 function notesList (hoodie) {
-  var $notes = document.querySelector('#recordings')
+  const $notes = document.querySelector('#recordings')
+  const $resetDataButton = document.querySelector('#reset-data-button')
 
   hoodie.store.on('change', render.bind(null, $notes, hoodie))
   render($notes, hoodie)
 
   $notes.addEventListener('click', handleNotesClick.bind(null, hoodie))
+
+  $resetDataButton.addEventListener('click', (event) => {
+    event.preventDefault()
+
+    resetDataCounter++
+
+    if (resetDataCounter >= 3) {
+      hoodie.store.removeAll()
+      resetDataCounter = 0
+    }
+  })
 }
 
 function render ($notes, hoodie) {
+  resetDataCounter = 0
+
   hoodie.store.findAll()
 
   .then(function (docs) {
     var html = docs
       .filter(function (doc) {
         return !!doc.progress
+      })
+      .sort((a, b) => {
+        return a.hoodie.createdAt > b.hoodie.createdAt ? -1 : 1
       })
       .map(function (doc) {
         let docProgress
