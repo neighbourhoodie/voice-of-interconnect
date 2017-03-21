@@ -100,6 +100,7 @@ done
 cf stop $BLUE
 cf rename $BLUE "$BLUE-deleted"
 cf rename $GREEN $BLUE
+cf delete "$BLUE-deleted" -f
 finally
 
 echo "DONE"
