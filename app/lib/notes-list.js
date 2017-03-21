@@ -17,6 +17,9 @@ function render ($notes, hoodie) {
       .filter(function (doc) {
         return !!doc.progress
       })
+      .sort((a, b) => {
+        return a.hoodie.createdAt > b.hoodie.createdAt ? -1 : 1
+      })
       .map(function (doc) {
         let docProgress
         let statusText
