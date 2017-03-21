@@ -19,6 +19,6 @@ popd > /dev/null
 
 export B_DOMAIN=$CF_STAGING_DOMAIN
 
-$SCRIPTPATH/cf-blue-green.sh $CF_STAGING_APP
+$SCRIPTPATH/cf-blue-green-staging2.sh $CF_STAGING_APP
 
 cf logout

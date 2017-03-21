@@ -97,10 +97,10 @@ done
 
 # cleanup
 # TODO consider 'stop'-ing the BLUE instead of deleting it, so that depedencies are cached for next time
-#cf delete $BLUE -f
 cf stop $BLUE
 cf rename $BLUE "$BLUE-deleted"
 cf rename $GREEN $BLUE
+cf delete "$BLUE-deleted" -f
 finally
 
 echo "DONE"
